@@ -14,7 +14,10 @@ const characterSchema = Schema({
         type: Array,
     },
     baseStats: {
-        type: Array,
+        type: Object,
+    },
+    evoBaseStats: {
+        type: Object,
     },
     tags: [{
         type: Schema.Types.ObjectId,
