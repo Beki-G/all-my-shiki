@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import tagsAPI from "../../utils/tagsAPI";
 import Options from "../DropdownOptions/DropdownOptions";
 
-function SearchBlurb() {
+function SearchBlurb({ setIsTag, tagId, setTagId }) {
   const [tags, setTags] = useState([]);
-  const [tagId, setTagId] = useState({id:""});
 
   useEffect(() => {
     getTagNames();
@@ -17,11 +16,12 @@ function SearchBlurb() {
     setTags(tagNames);
   }
 
-//on change sets TagID to target value
-  function onSelectChange(e){
-    //   e.preventDefault();
-    //   console.log("Option ID is: ", e.target.value)
-      setTagId({id:e.target.value})
+  //on change sets TagID to target value
+  function onSelectChange(e) {
+    e.preventDefault();
+    console.log("Option value is: ", e.target.value);
+    setTagId({ id: e.target.value });
+    e.target.value === "false" ? setIsTag(false) : setIsTag(true);
   }
 
   return (
@@ -29,7 +29,14 @@ function SearchBlurb() {
       <p className="bg-pink-200 rounded text-center">
         How to Search Blurb to go here soon. But first want to work on dynamic
         dropdown.
-        <select onChange={onSelectChange} >{tags.map((tag) =>{ return <Options  tag={tag} key={tag._id}/>})}</select>
+        <select onChange={onSelectChange}>
+          <option className="font-sans" value={false}>
+            ---Choose a trait---
+          </option>
+          {tags.map((tag) => {
+            return <Options tag={tag} key={tag._id} />;
+          })}
+        </select>
       </p>
     </div>
   );
