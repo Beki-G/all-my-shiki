@@ -23,4 +23,13 @@ module.exports = {
             res.json(error);
         }
     },
+    async getCharacterProfile(req, res) {
+        try {
+            const characterProfile = await db.Character.findOne({ _id: req.params.id }).populate('tags');
+            res.json(characterProfile);
+        } catch (error) {
+            console.log('Error in getCharacterProfile: Character Profile', error);
+            res.json(error);
+        }
+    },
 };
