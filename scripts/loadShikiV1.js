@@ -1,6 +1,7 @@
 /* eslint-disable object-shorthand */
 /* eslint-disable no-console */
 const mongoose = require('mongoose');
+const _ = require('lodash');
 const db = require('../models');
 const shikiData = require('./shiki');
 
@@ -45,7 +46,7 @@ async function getShikiData() {
         const tagIds = await getTagsIdArr(newTags);
         // console.log(tagIds);
         const newShikiObj = {
-            name: shiki.name,
+            name: _.startCase(shiki.name),
             tags: tagIds,
         };
 
