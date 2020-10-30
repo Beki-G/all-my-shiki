@@ -16,7 +16,7 @@ module.exports = {
     async findCharactersWithTag(req, res) {
         try {
             const charactersArr = await db.Character.find({ tags: req.params.id });
-            console.log(charactersArr);
+            // console.log(charactersArr);
             res.json(charactersArr);
         } catch (error) {
             console.log('Error in FindCharactersWithTag: CharacterController, ', error);

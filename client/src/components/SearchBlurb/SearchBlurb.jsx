@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import tagsAPI from "../../utils/tagsAPI";
 import Options from "../DropdownOptions/DropdownOptions";
+import characterAPI from '../../utils/characterAPI'
 
-function SearchBlurb({ setIsTag, tagId, setTagId }) {
+
+function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag }) {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
@@ -16,12 +18,20 @@ function SearchBlurb({ setIsTag, tagId, setTagId }) {
     setTags(tagNames);
   }
 
+  async function getCharactersWithTag(tag) {
+    setIsTag(true)
+
+    const characters = await characterAPI.getCharactersWithTag(tag)
+    console.log('Here are the characters: ', characters)
+    setCharactersWithTag(characters)
+}
+
   //on change sets TagID to target value
   function onSelectChange(e) {
     e.preventDefault();
     console.log("Option value is: ", e.target.value);
     setTagId({ id: e.target.value });
-    e.target.value === "false" ? setIsTag(false) : setIsTag(true);
+    e.target.value === "false" ? setIsTag(false)  : getCharactersWithTag(e.target.value );
   }
 
   return (

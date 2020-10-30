@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react"
+import TagResultsLink from '../TagResultsLink/TagResultsLink'
 
-function TagResults({ tagId }){
-    const [charactersWithTag, setCharactersWithTag] = useState([])
+function TagResults({ tagId, charactersWithTag}){
     
 
     return (
         <div className="bg-pink-200 rounded text-center w-3/4 m-0 mx-auto mt-10">
-            <div>Here's the tagId: {tagId.id} </div>
+            <p>All these characters have the tagID: {tagId.id}</p>
+            <br />
+            <div> 
+                {charactersWithTag.map((characters) => <TagResultsLink name={characters.name} id={characters._id} key={characters._id}/>)}
+            </div>
         </div>
     )
 }
