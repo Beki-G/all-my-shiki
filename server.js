@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// const routes = require("./routes")
+const routes = require('./routes');
 require('dotenv').config();
 
 const app = express();
@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 }
 
-// app.use(routes)
+app.use(routes);
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shikidata', { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true });
 

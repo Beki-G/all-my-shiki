@@ -1,4 +1,4 @@
-import mongoose, { model } from 'mongoose';
+const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
@@ -15,6 +15,6 @@ const soulSchema = Schema({
 
 });
 
-const SoulSet = model('SoulSet', soulSchema);
+const SoulSet = mongoose.model('SoulSet', soulSchema);
 
-export default SoulSet;
+module.exports = SoulSet;

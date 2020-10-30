@@ -1,0 +1,12 @@
+.hero-image{
+    height: 40vh;
+    /* background-image:radial-gradient(ellipse farthest-corner at 0 180%, #350aaa 0%, #9b80e7 70%, #000000 70%); */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.212), rgba(0, 0, 0, 0.198)), url("../../assets/heroImg.png");
+    background-size: cover;
+    /* transform: rotateY(180deg); */
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 0 0 50% 50%/0 0 20% 20%;
+
+}

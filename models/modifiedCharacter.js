@@ -1,4 +1,6 @@
-import { model, Schema } from 'mongoose';
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const modifiedCharacter = Schema({
     character: [{
@@ -38,6 +40,6 @@ const modifiedCharacter = Schema({
     },
 });
 
-const ModCharacter = model('ModCharacter', modifiedCharacter);
+const ModCharacter = mongoose.model('ModCharacter', modifiedCharacter);
 
-export default ModCharacter;
+module.exports = ModCharacter;

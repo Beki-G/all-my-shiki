@@ -1,9 +1,9 @@
-import mongoose, { model } from 'mongoose';
+const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
 const tagSchema = Schema({
-    name: {
+    tag: {
         type: String,
     },
     definition: {
@@ -14,6 +14,6 @@ const tagSchema = Schema({
     },
 });
 
-const Tag = model('Tag', tagSchema);
+const Tag = mongoose.model('Tag', tagSchema);
 
-export default Tag;
+module.exports = Tag;

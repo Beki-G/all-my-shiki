@@ -1,4 +1,6 @@
-import { model, Schema } from 'mongoose';
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const teamSchema = Schema({
     title: {
@@ -45,6 +47,6 @@ const teamSchema = Schema({
     },
 });
 
-const Team = model('Team', teamSchema);
+const Team = mongoose.model('Team', teamSchema);
 
-export default Team;
+module.exports = Team;
