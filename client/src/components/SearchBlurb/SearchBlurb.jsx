@@ -4,15 +4,24 @@ import Options from "../DropdownOptions/DropdownOptions";
 
 function SearchBlurb() {
   const [tags, setTags] = useState([]);
+  const [tagId, setTagId] = useState({id:""});
 
   useEffect(() => {
     getTagNames();
   }, []);
 
+  //gets an array of objects of tag names and ids
   async function getTagNames() {
     const tagNames = await tagsAPI.getAllTagNames();
-    console.log("tagNames in Search Blurb is: ", tagNames);
+    // console.log("tagNames in Search Blurb is: ", tagNames);
     setTags(tagNames);
+  }
+
+//on change sets TagID to target value
+  function onSelectChange(e){
+    //   e.preventDefault();
+    //   console.log("Option ID is: ", e.target.value)
+      setTagId({id:e.target.value})
   }
 
   return (
@@ -20,7 +29,7 @@ function SearchBlurb() {
       <p className="bg-pink-200 rounded text-center">
         How to Search Blurb to go here soon. But first want to work on dynamic
         dropdown.
-        <select >{tags.map((tag) =>{ return <Options tag={tag} key={tag._id}/>})}</select>{" "}
+        <select onChange={onSelectChange} >{tags.map((tag) =>{ return <Options  tag={tag} key={tag._id}/>})}</select>
       </p>
     </div>
   );

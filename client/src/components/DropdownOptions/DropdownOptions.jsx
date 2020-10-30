@@ -2,7 +2,7 @@ import React from "react"
 
 function Options({tag}){
     return (
-        <option id={tag._id}>
+        <option className="font-sans" value={tag._id}>
             {tag.tag}
         </option>
     )   
