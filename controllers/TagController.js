@@ -8,14 +8,8 @@ module.exports = {
         // console.log("I'm in all tag names");
         try {
             const allTags = await db.Tag.find({}, { _id: 1, tag: 1 });
-            const tags = allTags.map((tag) => {
-                const newName = _.startCase(tag.tag);
-                // eslint-disable-next-line no-underscore-dangle
-                const newObj = { tag: newName, _id: tag._id };
-                return newObj;
-            });
-            // console.log('tags in get allTagNames, ', tags);
-            res.json(tags);
+            // console.log('allTags in get allTagNames, ', allTags);
+            res.json(allTags);
         } catch (error) {
             console.log('Error in AllTagNames: TagController:', error);
             res.json(error);

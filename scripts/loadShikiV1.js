@@ -7,9 +7,7 @@ const shikiData = require('./shiki');
 
 // This file empties the Books collection and inserts the books below
 
-mongoose.connect(
-    process.env.MONGODB_URI || 'mongodb://localhost/shikidata',
-);
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shikidata', { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true });
 
 const removeFalsy = (obj) => {
     const newArr = [];
@@ -24,7 +22,7 @@ const removeFalsy = (obj) => {
     return newArr;
 };
 async function getId(tag) {
-    const { _id } = await db.Tag.findOne({ tag: tag }, { _id: 1 });
+    const { _id } = await db.Tag.findOne({ tag: _.startCase(tag) }, { _id: 1 });
     // console.log(`Id for ${tag} is: `, _id);
     return _id;
 }
@@ -57,9 +55,10 @@ async function getShikiData() {
     return newShikiData;
 }
 
+// Tags MUST BE loaded into DB prior to running this script!
 getShikiData().then((data) => {
     console.log('data is, ', data);
-    db.Character.remove({})
+    db.Character.deleteMany({})
         .then(() => db.Character.collection.insertMany(data))
         .then((newData) => {
             console.log(`${newData.result.n} records inserted`);
