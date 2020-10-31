@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 // const Object = require('mongoose').Types.ObjectId;
-const _ = require('lodash');
 const db = require('../models');
 
 module.exports = {
@@ -22,6 +21,15 @@ module.exports = {
             res.json(newTag);
         } catch (error) {
             console.log('Error in NewTag: TagController', error);
+            res.json(error);
+        }
+    },
+    async getTagById(req, res) {
+        try {
+            const tag = await db.Tag.findOne({ _id: req.params.id });
+            res.json(tag);
+        } catch (error) {
+            console.error('Error in getTagbyID: tagController: ', error);
             res.json(error);
         }
     },
