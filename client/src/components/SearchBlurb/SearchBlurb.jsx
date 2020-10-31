@@ -22,15 +22,16 @@ function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag }) {
     setIsTag(true)
 
     const characters = await characterAPI.getCharactersWithTag(tag)
-    console.log('Here are the characters: ', characters)
+    // console.log('Here are the characters: ', characters)
     setCharactersWithTag(characters)
 }
 
   //on change sets TagID to target value
   function onSelectChange(e) {
     e.preventDefault();
-    console.log("Option value is: ", e.target.value);
-    setTagId({ id: e.target.value });
+    const tagName =  e.target.selectedOptions[0].getAttribute("name");
+    // console.log("from onSelectChange is ", tagName);
+    setTagId({ id: e.target.value, name: tagName} );
     e.target.value === "false" ? setIsTag(false)  : getCharactersWithTag(e.target.value );
   }
 

@@ -7,4 +7,8 @@ export default {
         const { data } = await axios.get("/api/tag");
         return data;
     },
+    getTagById: async function(id){
+        const { data } = await axios.get('/api/tag/'+id);
+        return data;
+    }
 }
