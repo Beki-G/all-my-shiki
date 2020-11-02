@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import tagsAPI from "../../utils/tagsAPI";
 import Options from "../DropdownOptions/DropdownOptions";
 import characterAPI from '../../utils/characterAPI'
+import { UseUserSession } from "../../utils/userContext";
 
 
 function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag, setIsCharacter }) {
@@ -10,6 +11,8 @@ function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag, setIsCharacter 
   useEffect(() => {
     getTagNames();
   }, []);
+
+  const { userProfile } = UseUserSession();
 
   //gets an array of objects of tag names and ids
   async function getTagNames() {
@@ -40,6 +43,7 @@ function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag, setIsCharacter 
 
   return (
     <div className="flex flex-col w-3/4 m-0 mx-auto mt-10 ">
+      <div className="text-center">Welcome back {userProfile.displayName===""?"NamelessMaster":userProfile.displayName}!</div>
       <p className="bg-pink-200 rounded text-center p-2">
         How to Search Blurb to go here soon. But first want to work on dynamic
         dropdown.
