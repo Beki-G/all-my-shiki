@@ -4,7 +4,7 @@ import Options from "../DropdownOptions/DropdownOptions";
 import characterAPI from '../../utils/characterAPI'
 
 
-function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag }) {
+function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag, setIsCharacter }) {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
@@ -29,15 +29,18 @@ function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag }) {
   //on change sets TagID to target value
   function onSelectChange(e) {
     e.preventDefault();
+    //isCharacter conditionally renders Character Profile
+    setIsCharacter(false)
+    
     const tagName =  e.target.selectedOptions[0].getAttribute("name");
     // console.log("from onSelectChange is ", tagName);
     setTagId({ id: e.target.value, name: tagName} );
-    e.target.value === "false" ? setIsTag(false)  : getCharactersWithTag(e.target.value );
+    e.target.value === "false" ? setIsTag(false) : getCharactersWithTag(e.target.value );
   }
 
   return (
-    <div className="flex flex-col w-3/4 m-0 mx-auto mt-10">
-      <p className="bg-pink-200 rounded text-center">
+    <div className="flex flex-col w-3/4 m-0 mx-auto mt-10 ">
+      <p className="bg-pink-200 rounded text-center p-2">
         How to Search Blurb to go here soon. But first want to work on dynamic
         dropdown.
         <select onChange={onSelectChange}>
