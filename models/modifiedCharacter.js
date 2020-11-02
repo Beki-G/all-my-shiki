@@ -24,9 +24,10 @@ const modifiedCharacter = Schema({
     creatorId: {
         type: Schema.Types.ObjectId,
     },
-    likes: {
-        type: Array,
-    },
+    likes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    }],
     dateCreated: {
         type: Date,
         default: Date.now,
