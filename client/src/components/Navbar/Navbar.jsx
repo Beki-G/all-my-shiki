@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated, logout, loginWithRedirect } = useAuth0();
 
   function toggleSideMenu(e) {
     e.preventDefault();
@@ -53,7 +54,22 @@ function Navbar() {
         >
           Home
         </Link>
-
+        {/* If user is logged in show logout, vice versa */}
+        {isAuthenticated ? (
+          <button
+            onClick={() => logout()}
+            className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
+          >
+            Log Out
+          </button>
+        ) : (
+          <button
+            onClick={() => loginWithRedirect()}
+            className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
+          >
+            Log In
+          </button>
+        )}
       </div>
     </nav>
   );
