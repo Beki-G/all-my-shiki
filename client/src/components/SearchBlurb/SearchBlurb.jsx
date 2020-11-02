@@ -43,7 +43,7 @@ function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag, setIsCharacter 
 
   return (
     <div className="flex flex-col w-3/4 m-0 mx-auto mt-10 ">
-      <div className="text-center">Welcome back {userProfile.displayName===""?"NamelessMaster":userProfile.displayName}!</div>
+      <div className="text-center">Welcome back {userProfile.userName===""?"NamelessMaster":userProfile.userName}!</div>
       <p className="bg-pink-200 rounded text-center p-2">
         How to Search Blurb to go here soon. But first want to work on dynamic
         dropdown.

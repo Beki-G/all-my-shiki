@@ -1,14 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserSessionContext } from "./utils/userContext";
+import userAPI from "./utils/userAPI";
 import Home from "./pages/Home";
-import Test from "./pages/Test"
+import Test from "./pages/Test";
 
 function App() {
-  const guestUser = { __guest: true, displayName: "Onmyoji" };
-
-  const [userProfile, setUserProfile] = useState(guestUser);
+  const [userProfile, setUserProfile] = useState( { userName: "Wandering Onmyoji" });
 
   const { user } = useAuth0();
 
@@ -16,20 +16,27 @@ function App() {
     fetchUserData();
   }, [user]);
 
-  function fetchUserData() {
+  async function fetchUserData() {
     if (user !== undefined) {
-      let userName;
+      let userName, dbProfile;
+
       user.nickname === ""
-        ? (userName = "Nameless Mistress")
+        ? (userName = "Nameless Onmyoji")
         : (userName = user.nickname);
       const userNewProfile = {
-        __guest: false,
-        displayName: userName,
+        userName: userName,
+        auth0Id: user.sub,
       };
 
-      setUserProfile(userNewProfile);
+      // check to see if user exists in DB if it does get profile otherwise create new profile
+      const isUser = await userAPI.isUser(userNewProfile.auth0Id);
+      isUser
+        ? (dbProfile = await userAPI.getUser(userNewProfile.auth0Id))
+        : (dbProfile = await userAPI.createUser(userNewProfile));
+
+      setUserProfile(dbProfile);
     } else {
-      setUserProfile(guestUser);
+      setUserProfile( { userName: "Wandering Onmyoji" });
     }
   }
 
