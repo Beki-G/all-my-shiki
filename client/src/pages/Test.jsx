@@ -9,7 +9,7 @@ const Test = () => {
     console.log("user Profile in Test", userProfile)
     return (
         <div>
-            {userProfile.displayName}
+            {userProfile.userName}
         </div>
     )
 }

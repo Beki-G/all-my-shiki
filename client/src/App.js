@@ -8,9 +8,11 @@ import Home from "./pages/Home";
 import Test from "./pages/Test";
 
 function App() {
-  const [userProfile, setUserProfile] = useState( { userName: "Wandering Onmyoji" });
+  const [userProfile, setUserProfile] = useState({
+    userName: "Wandering Onmyoji",
+  });
 
-  const { user } = useAuth0();
+  const { user, logout, loginWithRedirect } = useAuth0();
 
   useEffect(() => {
     fetchUserData();
@@ -20,9 +22,11 @@ function App() {
     if (user !== undefined) {
       let userName, dbProfile;
 
+      //Discord UserNames are not imported so this is a back up
       user.nickname === ""
         ? (userName = "Nameless Onmyoji")
         : (userName = user.nickname);
+
       const userNewProfile = {
         userName: userName,
         auth0Id: user.sub,
@@ -36,12 +40,19 @@ function App() {
 
       setUserProfile(dbProfile);
     } else {
-      setUserProfile( { userName: "Wandering Onmyoji" });
+      setUserProfile({ userName: "Wandering Onmyoji" });
+      console.log(logout);
     }
   }
 
   return (
-    <UserSessionContext.Provider value={{ userProfile }}>
+    <UserSessionContext.Provider
+      value={{
+        userProfile: userProfile,
+        loginMethod: loginWithRedirect,
+        logoutMethod: logout,
+      }}
+    >
       <div>
         <Router>
           <Switch>

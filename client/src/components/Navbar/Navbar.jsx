@@ -1,15 +1,27 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { UseUserSession } from '../../utils/userContext'
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated, logout, loginWithRedirect } = useAuth0();
+  const [isUser, setIsUser] = useState(false);
+  const {loginMethod, logoutMethod, userProfile} = UseUserSession();
+
+  useEffect(()=>{
+    getIsUser()
+  }, [userProfile])
 
   function toggleSideMenu(e) {
     e.preventDefault();
     setIsOpen(!isOpen);
   }
+
+  function getIsUser() {
+    if (!userProfile.auth0Id) setIsUser(false)
+    else setIsUser(true)
+  }
+  // console.log(userProfile.auth0Id)
 
   return (
     <nav className="bg-transparent sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3">
@@ -55,16 +67,16 @@ function Navbar() {
           Home
         </Link>
         {/* If user is logged in show logout, vice versa */}
-        {isAuthenticated ? (
+        {isUser ? (
           <button
-            onClick={() => logout()}
+            onClick={()=>logoutMethod()}
             className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
           >
             Log Out
           </button>
         ) : (
           <button
-            onClick={() => loginWithRedirect()}
+            onClick={() => loginMethod()}
             className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
           >
             Log In

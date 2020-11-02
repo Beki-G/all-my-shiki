@@ -2,12 +2,12 @@ import { createContext, useContext } from 'react'
 
 export const UserSessionContext = createContext({
     userProfile: null,
-    login:()=>{}, 
-    logout:()=>{},
+    loginMethod:null, 
+    logoutMethod:null,
 })
 
 export function UseUserSession() {
-    const { userProfile, login, logout } = useContext(UserSessionContext);
-    return {userProfile, login, logout}
+    const { userProfile, loginMethod, logoutMethod } = useContext(UserSessionContext);
+    return {userProfile, loginMethod, logoutMethod}
 }
 
