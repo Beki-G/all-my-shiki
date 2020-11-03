@@ -1,4 +1,5 @@
 import React from "react";
+import AddFavorite from "../Buttons/AddFavorite/AddFavorite";
 
 function HomeCharacterProfile({ characterProfile }) {
   const snakeCase = (string) => {
@@ -10,7 +11,7 @@ function HomeCharacterProfile({ characterProfile }) {
   };
 
   return (
-    <div className="bg-pink-200 rounded text-center w-3/4 m-0 mx-auto mt-4 mb-4" id={snakeCase(characterProfile.name)}>
+    <div className="bg-pink-200 rounded text-center w-3/4 m-0 mx-auto mt-4 mb-4 pb-3 pt-3" id={snakeCase(characterProfile.name)}>
       <h3 className="text-lg font-semibold">{characterProfile.name}</h3>
       <p>{characterProfile.name} has the following traits:</p>
       <div className="flex flex-wrap -mx-1 overflow-hidden">
@@ -27,6 +28,8 @@ function HomeCharacterProfile({ characterProfile }) {
             })
           : ""}
       </div>
+      <br />
+      <AddFavorite characterId={characterProfile._id} />
     </div>
   );
 }

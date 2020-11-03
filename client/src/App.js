@@ -41,7 +41,7 @@ function App() {
       setUserProfile(dbProfile);
     } else {
       setUserProfile({ userName: "Wandering Onmyoji" });
-      console.log(logout);
+      // console.log(logout);
     }
   }
 

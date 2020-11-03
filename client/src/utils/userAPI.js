@@ -13,5 +13,22 @@ export default {
     getUser: async function(auth0Id) {
         const { data } = await axios.get("/api/user/profile/"+auth0Id);
         return data;
-    }
+    },
+    addFavorite: async function(userId, characterId) {
+        const newFavorite = {
+            userId: userId,
+            characterId: characterId
+        }
+
+        const { data } = await axios.post("/api/user/favorites", newFavorite)
+        return data;
+    }, 
+    removeFavorite: async function(userId, characterId) {
+        const removeFavorite = {
+            userId: userId,
+            characterId: characterId
+        }
+        const { data } = await axios.put("/api/user/favorites", removeFavorite)
+        return data;
+    },
 }

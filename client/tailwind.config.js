@@ -23,6 +23,12 @@ module.exports = {
       fontFamily: {
         sans: ['"Open Sans"', ...defaultTheme.fontFamily.sans]
       },
+      inset: {
+        '1/2': '50%'
+      }, 
+      zIndex: {
+        '100': 100,
+      }
     },
   },
   variants: {},
