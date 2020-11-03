@@ -3,16 +3,18 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserSessionContext } from "./utils/userContext";
+import ProtectedRoute from "./components/Auth/protected-route";
 import userAPI from "./utils/userAPI";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
+import Loading from "./components/Auth/Loading";
 
 function App() {
   const [userProfile, setUserProfile] = useState({
     userName: "Wandering Onmyoji",
   });
 
-  const { user, logout, loginWithRedirect } = useAuth0();
+  const { user, logout, loginWithRedirect, isLoading } = useAuth0();
 
   useEffect(() => {
     fetchUserData();
@@ -45,6 +47,10 @@ function App() {
     }
   }
 
+  if(isLoading) {
+    return <Loading />
+  }
+
   return (
     <UserSessionContext.Provider
       value={{
@@ -58,7 +64,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             {/* Test component for useContect testing  */}
-            <Route exact path="/test" component={Test} />
+            <ProtectedRoute path="/test" component={Test} />
           </Switch>
         </Router>
       </div>
