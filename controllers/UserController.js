@@ -48,7 +48,7 @@ module.exports = {
         try {
             await db.User.findByIdAndUpdate({ _id: req.body.userId },
                 { $pull: { favorites: new ObjectId(req.body.characterId) } });
-            const newFavorites = await db.User.findOne({ _id: req.body.id }, { favorites: 1, _id: 0 });
+            const newFavorites = await db.User.findOne({ _id: req.body.userId }, { favorites: 1, _id: 0 });
             res.json(newFavorites);
         } catch (err) {
             console.log('Error in removeFavorite: UserController,', err);
