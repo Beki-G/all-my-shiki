@@ -1,7 +1,9 @@
+/* eslint-disable quotes */
 /* eslint-disable max-len */
 /* eslint-disable no-console */
-const db = require('../models');
+// eslint-disable-next-line prefer-destructuring
 const ObjectId = require("mongoose").Types.ObjectId;
+const db = require('../models');
 
 module.exports = {
     async isUser(req, res) {
