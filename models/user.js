@@ -13,7 +13,7 @@ const userSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'Team',
     }],
-    favorties: [{
+    favorites: [{
         type: Schema.Types.ObjectId,
         ref: 'ModCharacter',
     }],

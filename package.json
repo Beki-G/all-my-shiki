@@ -21,7 +21,8 @@
     "express": "^4.17.1",
     "if-env": "^1.0.4",
     "lodash": "^4.17.20",
-    "mongoose": "^5.10.11"
+    "mongoose": "^5.10.11",
+    "nodemon": "^2.0.6"
   },
   "devDependencies": {
     "eslint": "^7.12.1",

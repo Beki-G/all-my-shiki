@@ -8,5 +8,7 @@ router.route('/:id')
     .get(userController.isUser);
 router.route('/profile/:id')
     .get(userController.getUser);
+router.route('/favorites')
+    .post(userController.addFavorite);
 
 module.exports = router;
