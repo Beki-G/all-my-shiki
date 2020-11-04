@@ -21,20 +21,15 @@ const userSchema = Schema({
         type: Date,
         default: Date.now,
     },
-    isAdmin: {
-        type: Boolean,
-        default: false,
-    },
-    isMod: {
-        type: Boolean,
-        default: false,
-    },
-    isDeveloper: {
-        type: Boolean,
-        default: false,
-    },
     auth0Id: {
         type: String,
+    },
+    guild: {
+        type: String,
+        default: 'N/A',
+    },
+    privileges: {
+        type: Array,
     },
 
 });
