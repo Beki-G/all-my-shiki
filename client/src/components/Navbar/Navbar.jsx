@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { UseUserSession } from '../../utils/userContext'
+import { UseUserSession } from "../../utils/userContext";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isUser, setIsUser] = useState(false);
-  const {loginMethod, logoutMethod, userProfile} = UseUserSession();
+  const { loginMethod, logoutMethod, userProfile } = UseUserSession();
 
-  useEffect(()=>{
-    getIsUser()
-  }, [userProfile])
+  useEffect(() => {
+    getIsUser();
+  }, [userProfile]);
 
   function toggleSideMenu(e) {
     e.preventDefault();
@@ -18,8 +18,8 @@ function Navbar() {
   }
 
   function getIsUser() {
-    if (!userProfile.auth0Id) setIsUser(false)
-    else setIsUser(true)
+    if (!userProfile.auth0Id) setIsUser(false);
+    else setIsUser(true);
   }
   // console.log(userProfile.auth0Id)
 
@@ -56,7 +56,7 @@ function Navbar() {
       </div>
 
       <div
-        className={` px-2 pt-2 pb-4 sm:flex sm:p-0 ${
+        className={` px-2 pt-2 pb-4 sm:flex sm:p-0 sm:justify-end ${
           isOpen ? "block" : "hidden"
         }`}
       >
@@ -68,12 +68,20 @@ function Navbar() {
         </Link>
         {/* If user is logged in show logout, vice versa */}
         {isUser ? (
-          <button
-            onClick={()=>logoutMethod()}
-            className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
-          >
-            Log Out
-          </button>
+          <>
+            <Link
+              to="/profile"
+              className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
+            >
+              Profile
+            </Link>
+            <button
+              onClick={() => logoutMethod()}
+              className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
+            >
+              Log Out
+            </button>
+          </>
         ) : (
           <button
             onClick={() => loginMethod()}

@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/Auth/protected-route";
 import userAPI from "./utils/userAPI";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
+import Profile from "./pages/Profile"
 import Loading from "./components/Auth/Loading";
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
             <Route exact path="/" component={Home} />
             {/* Test component for useContect testing  */}
             <ProtectedRoute path="/test" component={Test} />
+            <ProtectedRoute path="/profile" component={Profile} />
           </Switch>
         </Router>
       </div>
