@@ -2,16 +2,20 @@
 import React, { useState, useEffect } from "react";
 import { UseUserSession } from "../../utils/userContext";
 import { EditProfileBtn } from "../Buttons/EditProfileBtn/EditProfileBtn";
+import Modal from "../Modal/Modal";
 
 export const ProfileUser = () => {
-    const { userProfile } = UseUserSession();
-    const { dateCreated, userName } = userProfile;
+  const { userProfile } = UseUserSession();
+  const { dateCreated, userName, guild } = userProfile;
 
-
+  const [isOpen, setIsOpen] = useState(false);
   const [dateJoined, setDateJoined] = useState("");
   const [isEdit, setIsEdit] = useState(false);
-  const [userEdits, setUserEdits] = useState({ userName: userName, guild: "" });
-  
+  const [userEdits, setUserEdits] = useState({
+    userName: userName,
+    guild: guild,
+  });
+  const [modalText, setModalText] = useState({ modalTxt: "" });
 
   useEffect(() => {
     if (dateCreated) {
@@ -30,6 +34,8 @@ export const ProfileUser = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     setIsEdit(!isEdit);
+    setModalText({ modalTxt: "Thank you for editing!" });
+    setIsOpen(true);
   };
 
   const handleInputChanges = (e) => {
@@ -59,7 +65,6 @@ export const ProfileUser = () => {
             placeholder={` ${userName}`}
             disabled={!isEdit}
             onChange={handleInputChanges}
-            
           />
         </label>
         <br />
@@ -82,7 +87,7 @@ export const ProfileUser = () => {
             id="guild"
             type="text"
             name="guild"
-            placeholder="Future Addition"
+            placeholder={guild}
             disabled={!isEdit}
             onChange={handleInputChanges}
           />
@@ -100,6 +105,9 @@ export const ProfileUser = () => {
           )}
         </div>
       </form>
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        {modalText.modalTxt}
+      </Modal>
     </div>
   );
 };
