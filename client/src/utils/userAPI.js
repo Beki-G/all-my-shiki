@@ -31,4 +31,16 @@ export default {
         const { data } = await axios.put("/api/user/favorites", removeFavorite)
         return data;
     },
+    updateUser: async function(_id, updates) {
+        const body = {
+            id:_id,
+            update:updates
+        }
+        const { data } = await axios.put("/api/user", body)
+        return data;
+    },
+    isUsernameAvailable: async function(userName){
+        const { data } =await axios.get("/api/user/username/"+userName)
+        return data;
+    },
 }
