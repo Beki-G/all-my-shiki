@@ -57,4 +57,25 @@ module.exports = {
             res.json(err);
         }
     },
+    async isUsernameInDb(req, res) {
+        try {
+            console.log("Pinged");
+            const isUser = await db.User.exists({ userName: req.params.username });
+            console.log(`${req.params.username} =`, isUser);
+            res.json(isUser);
+        } catch (err) {
+            console.log('Error in isUsernameInDb: UserController:', err);
+            res.json(err);
+        }
+    },
+    async updateUser(req, res) {
+        try {
+            await db.User.findOneAndUpdate({ _id: req.body.id }, { $set: req.body.update });
+            const user = await db.User.findOne({ _id: req.body.id });
+            res.json(user);
+        } catch (err) {
+            console.log('Error in updateUser: UserControler: ', err);
+            res.json(err);
+        }
+    },
 };
