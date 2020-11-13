@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const modifiedCharacter = Schema({
+    name: {
+        type: String,
+    },
     character: [{
         type: Schema.Types.ObjectId,
         ref: 'Character',
@@ -15,7 +18,13 @@ const modifiedCharacter = Schema({
         type: Schema.Types.ObjectId,
         ref: 'Soulset',
     }],
-    primarySoulStats: {
+    soulsetSlotTwo: {
+        type: String,
+    },
+    soulsetSlotFour: {
+        type: String,
+    },
+    soulsetSlotSix: {
         type: String,
     },
     userNotes: {
