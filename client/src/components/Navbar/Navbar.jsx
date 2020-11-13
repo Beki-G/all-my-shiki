@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { UseUserSession } from "../../utils/userContext";
+import { UseUserSession } from "../../utils/UserContext";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

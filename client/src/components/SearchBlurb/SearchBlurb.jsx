@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import tagsAPI from "../../utils/tagsAPI";
 import Options from "../DropdownOptions/DropdownOptions";
 import characterAPI from '../../utils/characterAPI'
-import { UseUserSession } from "../../utils/userContext";
+import { UseUserSession } from "../../utils/UserContext";
 
 
 function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag, setIsCharacter }) {

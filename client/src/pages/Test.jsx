@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UseUserSession } from "../utils/userContext";
+import { UseUserSession } from "../utils/UserContext";
 import Modal from "../components/Modal/Modal";
 import Loading from "../components/Auth/Loading";
 

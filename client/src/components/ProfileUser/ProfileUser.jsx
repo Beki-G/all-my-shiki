@@ -1,21 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import { UseUserSession } from "../../utils/userContext";
+import { UseUserSession, UpdateUserSession } from "../../utils/UserContext";
 import { EditProfileBtn } from "../Buttons/EditProfileBtn/EditProfileBtn";
 import Modal from "../Modal/Modal";
+import userAPI from "../../utils/userAPI";
 
 export const ProfileUser = () => {
-  const { userProfile } = UseUserSession();
-  const { dateCreated, userName, guild } = userProfile;
+  let { userProfile } = UseUserSession();
+  const updateProfile = UpdateUserSession();
+
+  console.log("userProfile is: ", userProfile)
 
   const [isOpen, setIsOpen] = useState(false);
   const [dateJoined, setDateJoined] = useState("");
   const [isEdit, setIsEdit] = useState(false);
   const [userEdits, setUserEdits] = useState({
-    userName: userName,
-    guild: guild,
+    userName: userProfile.userName,
+    guild: userProfile.guild,
   });
   const [modalText, setModalText] = useState({ modalTxt: "" });
+  
+  const { dateCreated,  _id } = userProfile;
 
   useEffect(() => {
     if (dateCreated) {
@@ -31,11 +36,27 @@ export const ProfileUser = () => {
     }
   }, [userProfile]);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    //close editiong
     setIsEdit(!isEdit);
-    setModalText({ modalTxt: "Thank you for editing!" });
-    setIsOpen(true);
+    //check if username is available
+    const isUsername = await userAPI.isUsernameAvailable(userEdits.userName);
+    //if it is send update then prompt user
+    //else prompt user to choose another username
+    if (!isUsername) {
+      const newProfile = await userAPI.updateUser(_id, userEdits);
+      console.log("New Profile is", newProfile);
+      // eslint-disable-next-line no-const-assign
+      // setContext({...context, userProfile: newProfile});
+      // setUserProfile(newProfile)
+      updateProfile();
+      setModalText({ modalTxt: "Thank you for updating!" });
+      setIsOpen(true);
+    } else {
+      setModalText({ modalTxt: "Username is already taken, please choose another." });
+      setIsOpen(true);
+    }
   };
 
   const handleInputChanges = (e) => {
@@ -47,6 +68,8 @@ export const ProfileUser = () => {
       ...userEdits,
       [name]: value,
     });
+
+    console.log("UserEdits", userEdits)
   };
 
   return (
@@ -62,7 +85,7 @@ export const ProfileUser = () => {
             id="userName"
             type="text"
             name="userName"
-            placeholder={` ${userName}`}
+            placeholder={` ${userProfile.userName}`}
             disabled={!isEdit}
             onChange={handleInputChanges}
           />
@@ -87,7 +110,7 @@ export const ProfileUser = () => {
             id="guild"
             type="text"
             name="guild"
-            placeholder={guild}
+            placeholder={userProfile.guild}
             disabled={!isEdit}
             onChange={handleInputChanges}
           />

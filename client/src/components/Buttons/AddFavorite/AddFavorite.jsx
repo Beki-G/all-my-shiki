@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import userAPI from "../../../utils/userAPI";
-import { UseUserSession } from "../../../utils/userContext";
+import { UseUserSession } from "../../../utils/UserContext";
 import Modal from "../../Modal/Modal";
 
 const AddFavorite = ({ characterId }) => {
