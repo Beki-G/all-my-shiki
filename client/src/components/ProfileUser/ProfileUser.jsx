@@ -9,8 +9,6 @@ export const ProfileUser = () => {
   let { userProfile } = UseUserSession();
   const updateProfile = UpdateUserSession();
 
-  console.log("userProfile is: ", userProfile)
-
   const [isOpen, setIsOpen] = useState(false);
   const [dateJoined, setDateJoined] = useState("");
   const [isEdit, setIsEdit] = useState(false);
@@ -45,11 +43,7 @@ export const ProfileUser = () => {
     //if it is send update then prompt user
     //else prompt user to choose another username
     if (!isUsername) {
-      const newProfile = await userAPI.updateUser(_id, userEdits);
-      console.log("New Profile is", newProfile);
-      // eslint-disable-next-line no-const-assign
-      // setContext({...context, userProfile: newProfile});
-      // setUserProfile(newProfile)
+      await userAPI.updateUser(_id, userEdits);
       updateProfile();
       setModalText({ modalTxt: "Thank you for updating!" });
       setIsOpen(true);
@@ -69,7 +63,6 @@ export const ProfileUser = () => {
       [name]: value,
     });
 
-    console.log("UserEdits", userEdits)
   };
 
   return (

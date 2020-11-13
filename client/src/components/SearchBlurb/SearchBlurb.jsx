@@ -17,7 +17,6 @@ function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag, setIsCharacter 
   //gets an array of objects of tag names and ids
   async function getTagNames() {
     const tagNames = await tagsAPI.getAllTagNames();
-    // console.log("tagNames in Search Blurb is: ", tagNames);
     setTags(tagNames);
   }
 
@@ -25,7 +24,6 @@ function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag, setIsCharacter 
     setIsTag(true)
 
     const characters = await characterAPI.getCharactersWithTag(tag)
-    // console.log('Here are the characters: ', characters)
     setCharactersWithTag(characters)
 }
 
@@ -36,7 +34,6 @@ function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag, setIsCharacter 
     setIsCharacter(false)
     
     const tagName =  e.target.selectedOptions[0].getAttribute("name");
-    // console.log("from onSelectChange is ", tagName);
     setTagId({ id: e.target.value, name: tagName} );
     e.target.value === "false" ? setIsTag(false) : getCharactersWithTag(e.target.value );
   }

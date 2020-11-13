@@ -24,7 +24,6 @@ function TagResultsLink({ name, id, setCharacterProfile, setIsCharacter }) {
     const characterProfile = await characterAPI.getCharacterProfile(
       characterId
     );
-    console.log(characterProfile);
     setCharacterProfile(characterProfile);
     setIsCharacter(true);
   }

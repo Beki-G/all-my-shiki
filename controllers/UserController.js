@@ -59,9 +59,7 @@ module.exports = {
     },
     async isUsernameInDb(req, res) {
         try {
-            console.log("Pinged");
             const isUser = await db.User.exists({ userName: req.params.username });
-            console.log(`${req.params.username} =`, isUser);
             res.json(isUser);
         } catch (err) {
             console.log('Error in isUsernameInDb: UserController:', err);

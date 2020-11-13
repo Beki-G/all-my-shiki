@@ -21,7 +21,6 @@ function Navbar() {
     if (!userProfile.auth0Id) setIsUser(false);
     else setIsUser(true);
   }
-  // console.log(userProfile.auth0Id)
 
   return (
     <nav className="bg-transparent sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3">

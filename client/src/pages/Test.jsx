@@ -9,7 +9,6 @@ const Test = () => {
   const { userProfile } = UseUserSession();
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log("user Profile in Test", userProfile);
   return (
     <>
       <div>{userProfile.userName}</div>
