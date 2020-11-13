@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import modCharacterAPI from "../../../utils/modCharacterAPI";
 import userAPI from "../../../utils/userAPI";
 import { UseUserSession } from "../../../utils/UserContext";
 import Modal from "../../Modal/Modal";
@@ -10,9 +11,11 @@ const AddFavorite = ({ characterId }) => {
 
   async function onClick(e) {
     if (userProfile._id) {
+      const newModChara = await modCharacterAPI.createModCharaFromBase(userProfile._id, e.target.id)
+
       const { favorites } = await userAPI.addFavorite(
         userProfile._id,
-        e.target.id
+        newModChara._id
       );
 
       userProfile.favorites = favorites;

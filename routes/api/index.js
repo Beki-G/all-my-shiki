@@ -7,6 +7,6 @@ const modCharaRoutes = require('./modCharacter');
 router.use('/tag', tagRoutes);
 router.use('/character', characterRoutes);
 router.use('/user', userRoutes);
-router.use('/modChara', modCharaRoutes);
+router.use('/modchara', modCharaRoutes);
 
 module.exports = router;

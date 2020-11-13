@@ -3,5 +3,7 @@ const modCharacterController = require('../../controllers/ModifiedCharacterContr
 
 router.route('/')
     .post(modCharacterController.addModCharacter);
+router.route('/base')
+    .post(modCharacterController.addModCharacterFromBase);
 
 module.exports = router;

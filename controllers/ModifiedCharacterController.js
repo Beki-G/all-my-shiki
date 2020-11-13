@@ -13,4 +13,13 @@ module.exports = {
             res.json(err);
         }
     },
+    async addModCharacterFromBase(req, res) {
+        try {
+            const newModChara = await db.ModCharacter.create(req.body);
+            res.json(newModChara);
+        } catch (err) {
+            console.log('Error in AddModCharacterFromBase: ModifiedCharacterController, ', err);
+            res.json(err);
+        }
+    },
 };
