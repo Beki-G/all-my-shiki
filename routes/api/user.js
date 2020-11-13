@@ -14,5 +14,7 @@ router.route('/username/:username')
 router.route('/favorites')
     .post(userController.addFavorite)
     .put(userController.removeFavorite);
+router.route('/favorites/:id')
+    .get(userController.getPopulatedFavorites);
 
 module.exports = router;

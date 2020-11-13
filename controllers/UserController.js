@@ -76,4 +76,13 @@ module.exports = {
             res.json(err);
         }
     },
+    async getPopulatedFavorites(req, res) {
+        try {
+            const favorites = await db.User.findOne({ _id: req.params.id }, { favorites: 1, _id: 0 }).populate({ path: 'favorites', populate: { path: 'character', populate: { path: 'tags' } } });
+            res.json(favorites);
+        } catch (err) {
+            console.log('Error in getPopluatedFavorites: UserControler: ', err);
+            res.json(err);
+        }
+    },
 };
