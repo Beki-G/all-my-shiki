@@ -74,6 +74,12 @@ function Navbar() {
             >
               Profile
             </Link>
+            <Link
+              to="/dashboard"
+              className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
+            >
+              Dashboard
+            </Link>
             <button
               onClick={() => logoutMethod()}
               className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
