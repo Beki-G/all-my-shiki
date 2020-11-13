@@ -1,4 +1,7 @@
 import React from 'react'
+import DashboardFavorites from '../components/DashboardFavorites/DashboardFavorites';
+import DashboardModChara from '../components/DashboardModChara/DashboardModChara';
+import DashboardTeamsTable from '../components/DashboardTeamsTable/DashboardTeamsTable';
 import Navbar from '../components/Navbar/Navbar';
 
 export const Dashboard = () => {
@@ -7,7 +10,12 @@ export const Dashboard = () => {
             <div className="bg-black">
                 <Navbar />
             </div>
-
+            <br />
+            <DashboardFavorites />
+            <br/>
+            <DashboardModChara />
+            <br />
+            <DashboardTeamsTable />
         </div>
     )
 }
