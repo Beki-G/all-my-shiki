@@ -6,6 +6,7 @@ import Modal from "../../Modal/Modal";
 const AddFavorite = ({ characterId }) => {
   const { userProfile } = UseUserSession();
   const [isOpen, setIsOpen] = useState(false);
+  const [modalText, setModalText] = useState({modalTxt:"Please Sign In!"});
 
   async function onClick(e) {
     if (userProfile._id) {
@@ -15,7 +16,12 @@ const AddFavorite = ({ characterId }) => {
       );
 
       userProfile.favorites = favorites;
+
+      setModalText({modalTxt:"It's been added!"})
+      setIsOpen(true);
+
     } else {
+      setModalText({modalTxt:"Please Sign in!"})
       setIsOpen(true);
     }
   }
@@ -30,7 +36,7 @@ const AddFavorite = ({ characterId }) => {
         Add to Favorites
       </button>
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        Please Sign In!
+        {modalText.modalTxt}
       </Modal>
     </>
   );
