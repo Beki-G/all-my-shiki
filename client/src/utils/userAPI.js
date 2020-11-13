@@ -43,4 +43,8 @@ export default {
         const { data } =await axios.get("/api/user/username/"+userName)
         return data;
     },
+    getFavoritesInfo: async function(userId) {
+        const { data } = await axios.get('/api/user/favorites/'+userId)
+        return data;
+    }
 }

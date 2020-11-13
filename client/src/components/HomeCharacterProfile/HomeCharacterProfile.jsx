@@ -29,7 +29,7 @@ function HomeCharacterProfile({ characterProfile }) {
           : ""}
       </div>
       <br />
-      <AddFavorite characterId={characterProfile._id} />
+      <AddFavorite characterId={characterProfile._id} characterName={characterProfile.name}/>
     </div>
   );
 }

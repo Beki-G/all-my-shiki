@@ -4,14 +4,14 @@ import userAPI from "../../../utils/userAPI";
 import { UseUserSession } from "../../../utils/UserContext";
 import Modal from "../../Modal/Modal";
 
-const AddFavorite = ({ characterId }) => {
+const AddFavorite = ({ characterId, characterName }) => {
   const { userProfile } = UseUserSession();
   const [isOpen, setIsOpen] = useState(false);
   const [modalText, setModalText] = useState({modalTxt:"Please Sign In!"});
 
   async function onClick(e) {
     if (userProfile._id) {
-      const newModChara = await modCharacterAPI.createModCharaFromBase(userProfile._id, e.target.id)
+      const newModChara = await modCharacterAPI.createModCharaFromBase(userProfile._id, e.target.id, characterName)
 
       const { favorites } = await userAPI.addFavorite(
         userProfile._id,

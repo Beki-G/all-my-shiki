@@ -2,10 +2,11 @@
 import axios from 'axios';
 
 export default { 
-    createModCharaFromBase:async function(userId, characterId) {
+    createModCharaFromBase:async function(userId, characterId, characterName) {
         const obj = {
             creatorId: userId,
             character: characterId,
+            name: characterName,
         }
         const { data } = await axios.post('/api/modchara/base', obj)
         return data;

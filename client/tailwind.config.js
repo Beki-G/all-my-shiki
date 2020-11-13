@@ -28,6 +28,9 @@ module.exports = {
       }, 
       zIndex: {
         '100': 100,
+      },
+      minWidth: {
+        '40':"10rem"
       }
     },
   },
