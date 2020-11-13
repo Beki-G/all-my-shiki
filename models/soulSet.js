@@ -12,6 +12,9 @@ const soulSchema = Schema({
     twoSet: {
         type: String,
     },
+    type: {
+        type: String,
+    },
 
 });
 
