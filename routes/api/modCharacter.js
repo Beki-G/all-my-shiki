@@ -3,6 +3,8 @@ const modCharacterController = require('../../controllers/ModifiedCharacterContr
 
 router.route('/')
     .post(modCharacterController.addModCharacter);
+router.route('/:id')
+    .get(modCharacterController.getAllModCharaByUserId);
 router.route('/base')
     .post(modCharacterController.addModCharacterFromBase);
 

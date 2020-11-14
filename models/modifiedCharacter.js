@@ -6,18 +6,18 @@ const modifiedCharacter = Schema({
     name: {
         type: String,
     },
-    character: [{
+    character: {
         type: Schema.Types.ObjectId,
         ref: 'Character',
-    }],
-    soulsetMain: [{
+    },
+    soulsetMain: {
         type: Schema.Types.ObjectId,
-        ref: 'Soulset',
-    }],
-    soulsetSub: [{
+        ref: 'SoulSet',
+    },
+    soulsetSub: {
         type: Schema.Types.ObjectId,
-        ref: 'Soulset',
-    }],
+        ref: 'SoulSet',
+    },
     soulsetSlotTwo: {
         type: String,
     },
@@ -32,6 +32,7 @@ const modifiedCharacter = Schema({
     },
     creatorId: {
         type: Schema.Types.ObjectId,
+        ref: 'User',
     },
     likes: [{
         type: Schema.Types.ObjectId,

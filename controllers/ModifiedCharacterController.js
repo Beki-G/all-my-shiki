@@ -22,4 +22,13 @@ module.exports = {
             res.json(err);
         }
     },
+    async getAllModCharaByUserId(req, res) {
+        try {
+            const allModChara = await db.ModCharacter.find({ creatorId: req.params.id }).populate(' soulsetMain soulsetSub').populate('creatorId', 'userName guild').populate({ path: 'character', populate: { path: 'tags', select: '-_id' } });
+            res.json(allModChara);
+        } catch (err) {
+            console.log('Error in getAllModCharaByUserId: ModifiedCharacterController, ', err);
+            res.json(err);
+        }
+    },
 };
