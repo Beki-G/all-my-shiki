@@ -11,4 +11,8 @@ export default {
         const { data } = await axios.post('/api/modchara/base', obj)
         return data;
     },
+    getAllUserModChara: async function(userId) {
+        const { data }  = await axios.get('/api/modchara/'+userId)
+        return data;
+    }
 }
