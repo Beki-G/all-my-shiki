@@ -24,7 +24,7 @@ const DashboardModChara = () => {
         <div className="flex flex-col mx-auto m-0 w-3/4 bg-teal-200 p-4 rounded-md">
             <h1 className="mt-2 mb-4 text-2xl font-semibold">My Shikigami</h1>
             <div className="overflow-y-auto flex flex-wrap -mx-1 overflow-hidden md:-mx-1 h-64">
-                {userModCharacter &&userModCharacter.length>0? (
+                {userModCharacter && userModCharacter.length>0? (
                     userModCharacter.map((character)=>{
                         return <DashboardModCharaCard key={character._id} name={character.name} dateCreated={character.dateCreated} userNotes={character.userNotes} characterId={character._id}/>
                     })

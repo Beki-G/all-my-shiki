@@ -10,7 +10,18 @@ const UserSessionContext = createContext({
   logoutMethod: null,
 });
 
-const UserSessionProfileUpdateContext = createContext();
+const UserSessionProfileUpdateContext = createContext({updateUser:null});
+
+
+export function UseUserSession() {
+  const { userProfile, loginMethod, logoutMethod } = useContext(UserSessionContext);
+  return { userProfile, loginMethod, logoutMethod };
+}
+
+export function UpdateUserSession() {
+  const {updateUser} =  useContext(UserSessionProfileUpdateContext);
+  return updateUser
+}
 
 export function UserSessionProvider({ children }) {
   const [userProfile, setUserProfile] = useState({
@@ -62,20 +73,10 @@ export function UserSessionProvider({ children }) {
         logoutMethod: logout,
       }}
     >
-      <UserSessionProfileUpdateContext.Provider value={fetchUserData}>
+      <UserSessionProfileUpdateContext.Provider value={{updateUser:fetchUserData}}>
         {children}
       </UserSessionProfileUpdateContext.Provider>
     </UserSessionContext.Provider>
   );
 }
 
-export function UseUserSession() {
-  const { userProfile, loginMethod, logoutMethod } = useContext(
-    UserSessionContext
-  );
-  return { userProfile, loginMethod, logoutMethod };
-}
-
-export function UpdateUserSession() {
-  return useContext(UserSessionProfileUpdateContext);
-}
