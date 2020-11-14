@@ -4,7 +4,8 @@ const modCharacterController = require('../../controllers/ModifiedCharacterContr
 router.route('/')
     .post(modCharacterController.addModCharacter);
 router.route('/:id')
-    .get(modCharacterController.getAllModCharaByUserId);
+    .get(modCharacterController.getAllModCharaByUserId)
+    .delete(modCharacterController.deleteModCharacter);
 router.route('/base')
     .post(modCharacterController.addModCharacterFromBase);
 
