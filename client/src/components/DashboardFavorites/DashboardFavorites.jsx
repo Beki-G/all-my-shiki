@@ -29,7 +29,7 @@ const DashboardFavorites = () => {
       <div className="overflow-x-scroll overflow-auto text-center  flex">
         {userFavorites && userFavorites.length > 0 ? (
           userFavorites.map((favored) => {
-            return <DashboardFavoritesCard key={favored._id} name={favored.name} />;
+            return <DashboardFavoritesCard key={favored._id} name={favored.name} characterId={favored._id}/>;
           })
         ) : (
           <p>You will see all your favorites here</p>
