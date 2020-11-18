@@ -18,5 +18,9 @@ export default {
     deleteModifiedCharacter: async function(modifiedCharacterId) {
         const { data } = await axios.delete('/api/modchara/'+modifiedCharacterId)
         return data;
+    }, 
+    getModCharacterById: async function(modifiedCharacterId) {
+        const { data } = await axios.get('/api/modchara/character/'+modifiedCharacterId);
+        return data;
     }
 }

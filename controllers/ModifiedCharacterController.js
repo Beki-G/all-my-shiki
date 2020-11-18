@@ -45,4 +45,19 @@ module.exports = {
             res.json(err);
         }
     },
+    // eslint-disable-next-line consistent-return
+    async getModCharacterById(req, res) {
+        try {
+            if (!ObjectId.isValid(req.params.id)) return res.json({ error: 'Invalid Id' });
+            const isCharacter = await db.ModCharacter.find({ _id: req.params.id }).countDocuments() > 0;
+
+            if (!isCharacter) return res.json(isCharacter);
+
+            const character = await db.ModCharacter.findOne({ _id: req.params.id }).populate(' soulsetMain soulsetSub').populate('creatorId', 'userName guild').populate({ path: 'character', populate: { path: 'tags', select: '-_id' } });
+            res.json(character);
+        } catch (err) {
+            console.error('Error in getModCharacterById, ModifiedCharacterController:  ', err);
+            res.json(err);
+        }
+    },
 };

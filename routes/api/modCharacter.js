@@ -6,6 +6,8 @@ router.route('/')
 router.route('/:id')
     .get(modCharacterController.getAllModCharaByUserId)
     .delete(modCharacterController.deleteModCharacter);
+router.route('/character/:id')
+    .get(modCharacterController.getModCharacterById);
 router.route('/base')
     .post(modCharacterController.addModCharacterFromBase);
 
