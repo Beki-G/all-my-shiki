@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { CharacterProfileCreatorEditBtn } from "../Buttons/CharacterProfileCreatorEditBtn/CharacterProfileCreatorEditBtn";
 import LoginButton from "../Buttons/LoginButton/LoginButton";
+import SoulSetDropDown from "../SoulSetDropDown/SoulSetDropDown";
 
 export const CharacterProfileCard = ({ character, userType }) => {
-//   console.log("character", character);
+  // console.log("character", character);
+
+  const [soulSets, setSoulSets] = useState({
+    mainSet: character.soulsetMain?._id || "N/A",
+    subSet: character.soulsetSub?._id || "N/A",
+  });
+  const [isEdit, setIsEdit] = useState(false);
+
+  const mainSoulSetOnChange = (e) => {
+    e.preventDefault();
+    setSoulSets({
+      ...soulSets,
+      mainSet: e.target.value,
+    });
+  };
+  const subSoulSetOnChange = (e) => {
+    e.preventDefault();
+    setSoulSets({
+      ...soulSets,
+      subSet: e.target.value,
+    });
+  };
+
   return (
     <div>
       {userType === "creator" ? (
@@ -16,9 +39,7 @@ export const CharacterProfileCard = ({ character, userType }) => {
 
       <br />
       <p className="text-3xl font-semibold">{character.name}</p>
-      <p className=" text-gray-700">
-        Shikigami: {character.character.name}
-      </p>
+      <p className=" text-gray-700">Shikigami: {character.character.name}</p>
       <br />
 
       <div>
@@ -38,19 +59,19 @@ export const CharacterProfileCard = ({ character, userType }) => {
       <div>
         <div className="text-2xl">Soul Sets</div>
 
-        <label>
-          Main Set:
-          <select value={"N/A"} disabled>
-            <option>N/A</option>
-          </select>
-        </label>
+        <SoulSetDropDown
+          title="Four set: "
+          soulSetValue={soulSets.mainSet}
+          onChange={mainSoulSetOnChange}
+          isEdit={isEdit}
+        />
         <br />
-        <label>
-          Sub Set:
-          <select value={"N/A"} disabled>
-            <option>N/A</option>
-          </select>
-        </label>
+        <SoulSetDropDown
+          title="Two set: "
+          soulSetValue={soulSets.subSet}
+          onChange={subSoulSetOnChange}
+          isEdit={isEdit}
+        />
       </div>
       <br />
 
