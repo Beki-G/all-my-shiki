@@ -9,7 +9,7 @@ const tagSchema = Schema({
     definition: {
         type: String,
     },
-    parent: {
+    groups: {
         type: String,
     },
 });
