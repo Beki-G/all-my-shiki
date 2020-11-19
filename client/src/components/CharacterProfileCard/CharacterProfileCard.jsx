@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CharacterProfileCreatorEditBtn } from "../Buttons/CharacterProfileCreatorEditBtn/CharacterProfileCreatorEditBtn";
 import LoginButton from "../Buttons/LoginButton/LoginButton";
 import CharacterProfileSouls from "../CharacterProfileSouls/CharacterProfileSouls";
+import TogglePrivate from "../TogglePrivate/TogglePrivate";
 
 export const CharacterProfileCard = ({ character, userType }) => {
   // console.log("character", character);
@@ -73,6 +74,7 @@ export const CharacterProfileCard = ({ character, userType }) => {
       <p className=" text-gray-700">Shikigami: {character.character.name}</p>
       <hr />
       <br />
+      <TogglePrivate />
       <div>
         <div className="text-2xl">Onmoyji</div>
         <p>Username: {character.creatorId.userName}</p>
