@@ -38,7 +38,10 @@ const DashboardModCharaCard = ({
                   </div> */}
 
         <div className="text-left">
-          <Link className="mb-2 text-lg font-semibold text-gray-800 dark:text-gray-400" to={`/shiki/${characterId}`}>
+          <Link
+            className="mb-2 text-lg font-semibold text-gray-800 dark:text-gray-400"
+            to={`/shiki/${characterId}`}
+          >
             {name}
           </Link>
           <p className="text-sm font-medium text-gray-600 dark:text-gray-200">
