@@ -10,7 +10,7 @@ export const SoulSetDropDown = ({ title, soulSetValue, onChange, isEdit }) => {
 
   const getSoulSetNames = async () => {
     const soulSetInfo = await soulSetAPI.getAllSoulSets();
-    console.log("SoulSetInfo: ", soulSetInfo);
+    // console.log("SoulSetInfo: ", soulSetInfo);
     setSoulSetData(soulSetInfo);
   };
 

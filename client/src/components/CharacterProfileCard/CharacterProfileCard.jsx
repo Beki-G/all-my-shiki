@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CharacterProfileCreatorEditBtn } from "../Buttons/CharacterProfileCreatorEditBtn/CharacterProfileCreatorEditBtn";
 import LoginButton from "../Buttons/LoginButton/LoginButton";
-import SoulSetDropDown from "../SoulSetDropDown/SoulSetDropDown";
+import CharacterProfileSouls from "../CharacterProfileSouls/CharacterProfileSouls";
 
 export const CharacterProfileCard = ({ character, userType }) => {
   // console.log("character", character);
@@ -10,7 +10,12 @@ export const CharacterProfileCard = ({ character, userType }) => {
     mainSet: character.soulsetMain?._id || "N/A",
     subSet: character.soulsetSub?._id || "N/A",
   });
-  const [isEdit, setIsEdit] = useState(false);
+  const [soulStats, setSoulStats] = useState({
+    slotTwo: character?.soulsetSlotTwo || "N/A",
+    slotFour: character?.soulsetSlotFour || "N/A",
+    slotSix: character?.soulsetSlotSix || "N/A",
+  });
+  const [isEdit, setIsEdit] = useState(true);
 
   const mainSoulSetOnChange = (e) => {
     e.preventDefault();
@@ -27,6 +32,32 @@ export const CharacterProfileCard = ({ character, userType }) => {
     });
   };
 
+  const soulStatsOnChange = (e) => {
+    e.preventDefault();
+    const slot = e.target.selectedOptions[0].getAttribute("slot");
+    let slotName;
+
+    switch (slot) {
+      case "2":
+        slotName = "slotTwo";
+        break;
+      case "4":
+        slotName = "slotFour";
+        break;
+      case "6":
+        slotName = "slotSix";
+        break;
+
+      default:
+        break;
+    }
+
+    setSoulStats({
+      ...soulStats,
+      [slotName]: e.target.value,
+    });
+  };
+
   return (
     <div>
       {userType === "creator" ? (
@@ -40,8 +71,8 @@ export const CharacterProfileCard = ({ character, userType }) => {
       <br />
       <p className="text-3xl font-semibold">{character.name}</p>
       <p className=" text-gray-700">Shikigami: {character.character.name}</p>
+      <hr />
       <br />
-
       <div>
         <div className="text-2xl">Onmoyji</div>
         <p>Username: {character.creatorId.userName}</p>
@@ -51,28 +82,22 @@ export const CharacterProfileCard = ({ character, userType }) => {
         </label>
         <textarea
           id="userNotes"
-          value={character.userNotes ? character.userNotes : "N/A"}
-          disabled
+          placeholder={character.userNotes ? character.userNotes : "N/A"}
+          disabled={!isEdit}
+          className="border focus:border-blue-500 border-blue-300"
         ></textarea>
       </div>
       <br />
-      <div>
-        <div className="text-2xl">Soul Sets</div>
 
-        <SoulSetDropDown
-          title="Four set: "
-          soulSetValue={soulSets.mainSet}
-          onChange={mainSoulSetOnChange}
-          isEdit={isEdit}
-        />
-        <br />
-        <SoulSetDropDown
-          title="Two set: "
-          soulSetValue={soulSets.subSet}
-          onChange={subSoulSetOnChange}
-          isEdit={isEdit}
-        />
-      </div>
+      <CharacterProfileSouls
+        soulSets={soulSets}
+        isEdit={isEdit}
+        mainSoulSetOnChange={mainSoulSetOnChange}
+        soulStats={soulStats}
+        subSoulSetOnChange={subSoulSetOnChange}
+        soulStatsOnChange={soulStatsOnChange}
+      />
+      
       <br />
 
       <div className="text-2xl">Traits</div>
@@ -82,6 +107,7 @@ export const CharacterProfileCard = ({ character, userType }) => {
           return <li key={index}>{trait.tag}</li>;
         })}
       </ul>
+      <br />
     </div>
   );
 };
