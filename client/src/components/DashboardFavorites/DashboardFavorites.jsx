@@ -14,13 +14,11 @@ const DashboardFavorites = () => {
   }, [userProfile]);
 
   async function getFavoritesInfo() {
-
-    if(userProfile._id){
-        const { favorites } = await userAPI.getFavoritesInfo(userProfile._id);
-        // console.log("this is the users Favorites: ", favorites);
-        setUserFavorites(favorites);
+    if (userProfile._id) {
+      const { favorites } = await userAPI.getFavoritesInfo(userProfile._id);
+      // console.log("this is the users Favorites: ", favorites);
+      setUserFavorites(favorites);
     }
-    
   }
 
   return (
@@ -29,7 +27,15 @@ const DashboardFavorites = () => {
       <div className="overflow-x-scroll overflow-auto text-center  flex">
         {userFavorites && userFavorites.length > 0 ? (
           userFavorites.map((favored) => {
-            return <DashboardFavoritesCard key={favored._id} name={favored.name} characterId={favored._id}/>;
+            return (
+              <DashboardFavoritesCard
+                key={favored._id}
+                name={favored.name}
+                characterId={favored._id}
+                soulSetMain={favored.soulsetMain?.name}
+                soulSetSub={favored.soulsetSub?.name}
+              />
+            );
           })
         ) : (
           <p>You will see all your favorites here</p>

@@ -27,10 +27,10 @@ const DashboardFavoritesCard = ({
             {name}
           </Link>
           <p className="text-sm font-medium text-gray-600 dark:text-gray-200">
-            Soul Set Main: {soulSetMain ? { soulSetMain } : "N/A"}
+            Soul Set Main: {soulSetMain ?  soulSetMain  : "N/A"}
           </p>
           <p className="text-sm font-medium text-gray-600 dark:text-gray-200">
-            Soul Set Sub: {soulSetSub ? { soulSetSub } : "N/A"}
+            Soul Set Sub: {soulSetSub ?  soulSetSub  : "N/A"}
           </p>
         </div>
       </div>
