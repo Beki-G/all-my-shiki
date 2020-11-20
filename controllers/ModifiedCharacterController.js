@@ -60,4 +60,13 @@ module.exports = {
             res.json(err);
         }
     },
+    async updateModCharacterById(req, res) {
+        try {
+            const character = await db.ModCharacter.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true });
+            res.json(character);
+        } catch (err) {
+            console.error('Error in updateModCharacterById, ModifiedCharacterController:  ', err);
+            res.json(err);
+        }
+    },
 };

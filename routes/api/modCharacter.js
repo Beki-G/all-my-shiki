@@ -5,7 +5,8 @@ router.route('/')
     .post(modCharacterController.addModCharacter);
 router.route('/:id')
     .get(modCharacterController.getAllModCharaByUserId)
-    .delete(modCharacterController.deleteModCharacter);
+    .delete(modCharacterController.deleteModCharacter)
+    .put(modCharacterController.updateModCharacterById);
 router.route('/character/:id')
     .get(modCharacterController.getModCharacterById);
 router.route('/base')

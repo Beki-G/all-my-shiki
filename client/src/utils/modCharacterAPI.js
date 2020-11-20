@@ -22,5 +22,9 @@ export default {
     getModCharacterById: async function(modifiedCharacterId) {
         const { data } = await axios.get('/api/modchara/character/'+modifiedCharacterId);
         return data;
+    },
+    updateModCharacterById: async function(modCharacterId, update) {
+        const { data } = await axios.get('/api/modchara/'+modCharacterId, update)
+        return data;
     }
 }
