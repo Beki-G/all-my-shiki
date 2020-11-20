@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import LoginButton from "../Buttons/LoginButton/LoginButton";
 import CharacterProfileCreatorButtons from "../CharacterProfileCreatorButtons/CharacterProfileCreatorButtons";
+import CharacterProfileName from "../CharacterProfileName/CharacterProfileName";
+import CharacterProfileOnmoyjiSection from "../CharacterProfileOnmoyjiSection/CharacterProfileOnmoyjiSection";
 import CharacterProfileSouls from "../CharacterProfileSouls/CharacterProfileSouls";
+import CharacterProfileTraits from "../CharacterProfileTraits/CharacterProfileTraits";
 
 export const CharacterProfileCard = ({ character, userType }) => {
   // console.log("character", character);
@@ -16,24 +19,23 @@ export const CharacterProfileCard = ({ character, userType }) => {
     slotSix: character?.soulsetSlotSix || "N/A",
   });
   const [isEdit, setIsEdit] = useState(false);
-  const [characterName, setCharacterName] =useState({name:null})
-  const [creatorNotes, setCreatorNotes]=useState({notes:character.userNotes|| null})
+  const [characterName, setCharacterName] = useState({
+    name: character?.name || character.character.name,
+  });
+  const [creatorNotes, setCreatorNotes] = useState({
+    notes: character.userNotes || null,
+  });
   const [isCharacterPrivate, setIsCharacterPrivate] = useState(
     character.isPrivate
   );
 
-  const mainSoulSetOnChange = (e) => {
+  const soulSetOnChange = (e) => {
     e.preventDefault();
+    const setType = e.target.selectedOptions[0].getAttribute("settype");
+
     setSoulSets({
       ...soulSets,
-      mainSet: e.target.value,
-    });
-  };
-  const subSoulSetOnChange = (e) => {
-    e.preventDefault();
-    setSoulSets({
-      ...soulSets,
-      subSet: e.target.value,
+      [setType]: e.target.value,
     });
   };
 
@@ -73,67 +75,42 @@ export const CharacterProfileCard = ({ character, userType }) => {
           setIsCharacterPrivate={setIsCharacterPrivate}
         />
       ) : userType === "user" ? (
-        <div>You are not the creator</div>
+        <div>Future like button</div>
       ) : (
         <LoginButton />
       )}
 
       <br />
-      {!isEdit ? (
-        <p className="text-3xl font-semibold">{character.name}</p>
-      ) : (
-        <input
-        
-          className="text-3xl font-semibold focus:border-blue-500"
-          placeholder={character.name}
-          onChange={(e)=>{setCharacterName({name:e.target.value})}}
-        />
-      )}
 
-      {/* <p className="text-3xl font-semibold">{character.name}</p> */}
-      <p className=" text-gray-700 mb-2">
-        Shikigami: {character.character.name}
-      </p>
+      <CharacterProfileName
+        isEdit={isEdit}
+        character={character}
+        setCharacterName={setCharacterName}
+      />
+
       <hr />
       <br />
-
-      <div>
-        <div className="text-2xl">Onmoyji</div>
-        <p>Username: {character.creatorId.userName}</p>
-        <p>Guild: {character.creatorId.guild}</p>
-        <label className="align-top" htmlFor="userNotes">
-          Shikigami Notes:{" "}
-        </label>
-        <textarea
-          id="userNotes"
-          placeholder={creatorNotes.notes? creatorNotes.notes : "N/A"}
-          onChange={(e)=>{setCreatorNotes({notes:e.target.value})}}
-          disabled={!isEdit}
-          className="border focus:border-blue-500 border-blue-300"
-        ></textarea>
-      </div>
+      
+      <CharacterProfileOnmoyjiSection
+        character={character}
+        creatorNotes={creatorNotes}
+        setCreatorNotes={setCreatorNotes}
+        isEdit={isEdit}
+      />
 
       <br />
 
       <CharacterProfileSouls
         soulSets={soulSets}
         isEdit={isEdit}
-        mainSoulSetOnChange={mainSoulSetOnChange}
+        soulSetOnChange={soulSetOnChange}
         soulStats={soulStats}
-        subSoulSetOnChange={subSoulSetOnChange}
         soulStatsOnChange={soulStatsOnChange}
       />
 
       <br />
 
-      <div className="text-2xl">Traits</div>
-
-      <ul className="list-disc list-inside">
-        {character.character.tags.map((trait, index) => {
-          return <li key={index}>{trait.tag}</li>;
-        })}
-      </ul>
-      <br />
+      <CharacterProfileTraits tags={character.character.tags} />
     </div>
   );
 };

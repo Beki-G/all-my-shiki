@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import soulSetAPI from "../../utils/soulSetAPI";
 
-export const SoulSetDropDown = ({ title, soulSetValue, onChange, isEdit }) => {
+export const SoulSetDropDown = ({ title, soulSetValue, onChange, isEdit, setType }) => {
   const [soulSetData, setSoulSetData] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const SoulSetDropDown = ({ title, soulSetValue, onChange, isEdit }) => {
         <option value="N/A">N/A</option>
         {soulSetData.map((soulSet) => {
           return (
-            <option value={soulSet._id} key={soulSet._id}>
+            <option value={soulSet._id} key={soulSet._id} settype={setType}>
               {soulSet.name}
             </option>
           );

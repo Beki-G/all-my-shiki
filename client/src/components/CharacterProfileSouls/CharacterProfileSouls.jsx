@@ -6,8 +6,7 @@ const CharacterProfileSouls = ({
   soulSets,
   soulStats,
   isEdit,
-  subSoulSetOnChange,
-  mainSoulSetOnChange,
+  soulSetOnChange,
   soulStatsOnChange,
 }) => {
   return (
@@ -18,15 +17,17 @@ const CharacterProfileSouls = ({
         <SoulSetDropDown
           title="Four set: "
           soulSetValue={soulSets.mainSet}
-          onChange={mainSoulSetOnChange}
+          onChange={soulSetOnChange}
           isEdit={isEdit}
+          setType={"mainSet"}
         />
 
         <SoulSetDropDown
           title="Two set: "
           soulSetValue={soulSets.subSet}
-          onChange={subSoulSetOnChange}
+          onChange={soulSetOnChange}
           isEdit={isEdit}
+          setType={"subSet"}
         />
         <br />
         <SoulSetStatDropDown
