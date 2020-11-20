@@ -1,4 +1,6 @@
+/* eslint-disable no-restricted-globals */
 import React, { useState } from "react";
+import modCharacterAPI from "../../utils/modCharacterAPI";
 import LoginButton from "../Buttons/LoginButton/LoginButton";
 import CharacterProfileCreatorButtons from "../CharacterProfileCreatorButtons/CharacterProfileCreatorButtons";
 import CharacterProfileName from "../CharacterProfileName/CharacterProfileName";
@@ -28,6 +30,24 @@ export const CharacterProfileCard = ({ character, userType }) => {
   const [isCharacterPrivate, setIsCharacterPrivate] = useState(
     character.isPrivate
   );
+
+  const onUpdate = async (e)=> {
+    e.preventDefault();
+    const updates = {
+      name: characterName.name,
+      soulsetMain: soulSets.mainSet,
+      soulsetSub: soulSets.subSet,
+      soulsetSlotTwo: soulStats.slotTwo,
+      soulsetSlotFour: soulStats.slotFour,
+      soulsetSlotSix: soulStats.slotSix,
+      userNotes:creatorNotes.notes,
+      dateModified:new Date(),
+      isPrivate:isCharacterPrivate
+    }
+
+    await modCharacterAPI.updateModCharacterById(character._id, updates)
+    location.reload();
+  }
 
   const soulSetOnChange = (e) => {
     e.preventDefault();
@@ -73,6 +93,7 @@ export const CharacterProfileCard = ({ character, userType }) => {
           setIsEdit={setIsEdit}
           isCharacterPrivate={isCharacterPrivate}
           setIsCharacterPrivate={setIsCharacterPrivate}
+          onUpdate={onUpdate}
         />
       ) : userType === "user" ? (
         <div>Future like button</div>

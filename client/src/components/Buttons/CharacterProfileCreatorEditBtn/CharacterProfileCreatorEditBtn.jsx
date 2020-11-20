@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 
-export const CharacterProfileCreatorEditBtn = ({ setIsEdit, isEdit }) => {
+export const CharacterProfileCreatorEditBtn = ({
+  setIsEdit,
+  isEdit,
+  onUpdate,
+}) => {
   const [btnMsg, setBtnMsg] = useState("Edit");
 
-  const onClick = () => {
+  const onClick = (e) => {
     setIsEdit(!isEdit);
-    if (isEdit) setBtnMsg("Edit");
-    else setBtnMsg("Save");
+    if (isEdit) {
+      setBtnMsg("Edit");
+      onUpdate(e);
+      
+    } else setBtnMsg("Save");
   };
 
   return (

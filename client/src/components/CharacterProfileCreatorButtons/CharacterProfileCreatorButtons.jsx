@@ -7,10 +7,11 @@ const CharacterProfileCreatorButtons = ({
   setIsEdit,
   isCharacterPrivate,
   setIsCharacterPrivate,
+  onUpdate
 }) => {
   return (
     <div className="sm:float-right justify-end">
-      <CharacterProfileCreatorEditBtn isEdit={isEdit} setIsEdit={setIsEdit} />
+      <CharacterProfileCreatorEditBtn isEdit={isEdit} setIsEdit={setIsEdit} onUpdate={onUpdate} />
       <TogglePrivate
         isEdit={isEdit}
         isCharacterPrivate={isCharacterPrivate}
