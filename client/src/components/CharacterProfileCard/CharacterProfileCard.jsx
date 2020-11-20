@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { CharacterProfileCreatorEditBtn } from "../Buttons/CharacterProfileCreatorEditBtn/CharacterProfileCreatorEditBtn";
 import LoginButton from "../Buttons/LoginButton/LoginButton";
+import CharacterProfileCreatorButtons from "../CharacterProfileCreatorButtons/CharacterProfileCreatorButtons";
 import CharacterProfileSouls from "../CharacterProfileSouls/CharacterProfileSouls";
-import TogglePrivate from "../TogglePrivate/TogglePrivate";
 
 export const CharacterProfileCard = ({ character, userType }) => {
   // console.log("character", character);
@@ -16,7 +15,12 @@ export const CharacterProfileCard = ({ character, userType }) => {
     slotFour: character?.soulsetSlotFour || "N/A",
     slotSix: character?.soulsetSlotSix || "N/A",
   });
-  const [isEdit, setIsEdit] = useState(true);
+  const [isEdit, setIsEdit] = useState(false);
+  const [characterName, setCharacterName] =useState({name:null})
+  const [creatorNotes, setCreatorNotes]=useState({notes:character.userNotes|| null})
+  const [isCharacterPrivate, setIsCharacterPrivate] = useState(
+    character.isPrivate
+  );
 
   const mainSoulSetOnChange = (e) => {
     e.preventDefault();
@@ -62,7 +66,12 @@ export const CharacterProfileCard = ({ character, userType }) => {
   return (
     <div>
       {userType === "creator" ? (
-        <CharacterProfileCreatorEditBtn />
+        <CharacterProfileCreatorButtons
+          isEdit={isEdit}
+          setIsEdit={setIsEdit}
+          isCharacterPrivate={isCharacterPrivate}
+          setIsCharacterPrivate={setIsCharacterPrivate}
+        />
       ) : userType === "user" ? (
         <div>You are not the creator</div>
       ) : (
@@ -70,11 +79,24 @@ export const CharacterProfileCard = ({ character, userType }) => {
       )}
 
       <br />
-      <p className="text-3xl font-semibold">{character.name}</p>
-      <p className=" text-gray-700">Shikigami: {character.character.name}</p>
+      {!isEdit ? (
+        <p className="text-3xl font-semibold">{character.name}</p>
+      ) : (
+        <input
+        
+          className="text-3xl font-semibold focus:border-blue-500"
+          placeholder={character.name}
+          onChange={(e)=>{setCharacterName({name:e.target.value})}}
+        />
+      )}
+
+      {/* <p className="text-3xl font-semibold">{character.name}</p> */}
+      <p className=" text-gray-700 mb-2">
+        Shikigami: {character.character.name}
+      </p>
       <hr />
       <br />
-      <TogglePrivate />
+
       <div>
         <div className="text-2xl">Onmoyji</div>
         <p>Username: {character.creatorId.userName}</p>
@@ -84,11 +106,13 @@ export const CharacterProfileCard = ({ character, userType }) => {
         </label>
         <textarea
           id="userNotes"
-          placeholder={character.userNotes ? character.userNotes : "N/A"}
+          placeholder={creatorNotes.notes? creatorNotes.notes : "N/A"}
+          onChange={(e)=>{setCreatorNotes({notes:e.target.value})}}
           disabled={!isEdit}
           className="border focus:border-blue-500 border-blue-300"
         ></textarea>
       </div>
+
       <br />
 
       <CharacterProfileSouls
@@ -99,7 +123,7 @@ export const CharacterProfileCard = ({ character, userType }) => {
         subSoulSetOnChange={subSoulSetOnChange}
         soulStatsOnChange={soulStatsOnChange}
       />
-      
+
       <br />
 
       <div className="text-2xl">Traits</div>
