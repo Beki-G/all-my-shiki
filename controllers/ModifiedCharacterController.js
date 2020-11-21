@@ -69,4 +69,16 @@ module.exports = {
             res.json(err);
         }
     },
+    async getAllPublicModChara(req, res) {
+        try {
+            const allPublicCharacters = await db.ModCharacter.find({ isPrivate: false })
+                .populate(' soulsetMain soulsetSub').populate('creatorId', 'userName guild')
+                .populate({ path: 'character', populate: { path: 'tags', select: '-_id' } })
+                .sort({ dateCreated: -1 });
+            res.json(allPublicCharacters);
+        } catch (err) {
+            console.error('Error in getAllPublicModChara, ModifiedCharacterController:  ', err);
+            res.json(err);
+        }
+    },
 };

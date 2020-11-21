@@ -2,7 +2,8 @@ const router = require('express').Router();
 const modCharacterController = require('../../controllers/ModifiedCharacterController');
 
 router.route('/')
-    .post(modCharacterController.addModCharacter);
+    .post(modCharacterController.addModCharacter)
+    .get(modCharacterController.getAllPublicModChara);
 router.route('/:id')
     .get(modCharacterController.getAllModCharaByUserId)
     .delete(modCharacterController.deleteModCharacter)
