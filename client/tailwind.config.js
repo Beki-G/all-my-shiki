@@ -24,7 +24,8 @@ module.exports = {
         sans: ['"Open Sans"', ...defaultTheme.fontFamily.sans]
       },
       inset: {
-        '1/2': '50%'
+        '1/2': '50%',
+        '1': '0.5rem'
       }, 
       zIndex: {
         '100': 100,
@@ -34,6 +35,8 @@ module.exports = {
       }
     },
   },
-  variants: {},
+  variants: {
+    display: ['responsive', 'group-hover', 'group-focus']
+  },
   plugins: [],
 }

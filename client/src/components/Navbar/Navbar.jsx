@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { UseUserSession } from "../../utils/UserContext";
+import NavbarUserLink from "../NavbarUserLink/NavbarUserLink";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isUser, setIsUser] = useState(false);
-  const { loginMethod, logoutMethod, userProfile } = UseUserSession();
+  const { loginMethod, userProfile } = UseUserSession();
 
   useEffect(() => {
     getIsUser();
@@ -17,14 +18,19 @@ function Navbar() {
     setIsOpen(!isOpen);
   }
 
+  function toggleDropdown(e) {
+    e.preventDefault();
+    setIsDropdownOpen(!isDropdownOpen);
+  }
+
   function getIsUser() {
     if (!userProfile.auth0Id) setIsUser(false);
     else setIsUser(true);
   }
 
   return (
-    <nav className="bg-transparent sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3">
-      <div className="flex items-center justify-between px-4 py-3 sm:p-0">
+    <nav className=" bg-transparent sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3 sm:h-12">
+      <div className="flex items-center justify-between px-4 py-6 sm:p-0 ">
         {/* <div>
           <Link to="/">
             <img
@@ -55,46 +61,67 @@ function Navbar() {
       </div>
 
       <div
-        className={` px-2 pt-2 pb-4 sm:flex sm:p-0 sm:justify-end ${
+        className={`absolute bg-black sm:bg-transparent sm:top-1 sm:right-0 px-2 pt-2 pb-4  sm:flex sm:p-0 sm:justify-end  ${
           isOpen ? "block" : "hidden"
         }`}
       >
-        <Link
-          to="/"
-          className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
-        >
-          Home
-        </Link>
         {/* If user is logged in show logout, vice versa */}
         {isUser ? (
-          <>
-            <Link
-              to="/profile"
-              className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
-            >
-              Profile
-            </Link>
-            <Link
-              to="/dashboard"
-              className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
-            >
-              Dashboard
-            </Link>
-            <button
-              onClick={() => logoutMethod()}
-              className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
-            >
-              Log Out
-            </button>
-          </>
+          <div className="">
+            <NavbarUserLink />
+          </div>
         ) : (
-          <button
-            onClick={() => loginMethod()}
-            className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
-          >
-            Log In
-          </button>
+          <div>
+            <button
+              onClick={() => loginMethod()}
+              className="block py-1  px-2 text-white font-extrabold rounded hover:bg-lgCyan hover:text-midGreen font-sans relative  top-0"
+            >
+              Log In
+            </button>
+          </div>
         )}
+        <div className=" relative right-0 py-1 px-2">
+          <button className="text-white right-0" onClick={toggleDropdown}>
+            <span>Explore</span>
+            <svg
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              className="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </button>
+          <div
+            className={` pt-2 pb-4 flex  ${
+              isDropdownOpen ? "block" : "hidden"
+            }`}
+          >
+            <div className="shadow-md bg-black">
+              <a
+                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                href="/"
+              >
+                Shikigami
+              </a>
+              <a
+                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                href="/"
+              >
+                Teams
+              </a>
+              <a
+                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                href="/"
+              >
+                Traits
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
   );
