@@ -8,6 +8,7 @@ import Test from "./pages/Test";
 import Profile from "./pages/Profile"
 import { Dashboard } from "./pages/Dashboard";
 import CharacterProfile from "./pages/CharacterProfile";
+import Shikigami from "./pages/Shikigami"
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
             <ProtectedRoute path="/test" component={Test} />
             <ProtectedRoute path="/profile" component={Profile} />
             <ProtectedRoute path="/dashboard" component={Dashboard} />
+            <ProtectedRoute path="/shikigami" component={Shikigami} />
             <Route path="/shiki/:id" component={CharacterProfile} />
           </Switch>
         </Router>
