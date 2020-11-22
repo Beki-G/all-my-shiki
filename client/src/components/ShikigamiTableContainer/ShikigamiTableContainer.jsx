@@ -2,7 +2,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import modCharacterAPI from "../../utils/modCharacterAPI";
-import ShikigamiTable from "../ShikigamiTable/ShikigamiTable";
+import Table from "../Table/Table";
 import ShikigamiTableRowCard from "../ShikigamiTableRowCard/ShikigamiTableRowCard";
 import TableColumnCheckboxContainer from "../TableColumnCheckboxContainer/TableColumnCheckboxContainer";
 
@@ -172,7 +172,7 @@ const ShikigamiTableContainer = () => {
         hideColumns={hideColumns}
       />
       <br />
-      <ShikigamiTable
+      <Table
         columns={columns}
         data={data}
         ShikigamiTableRowCard={ShikigamiTableRowCard}

@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useSortBy, useTable, useExpanded, usePagination } from "react-table";
 
-const ShikigamiTable = ({ columns, data, ShikigamiTableRowCard, columnsHidden }) => {
+const Table = ({ columns, data, ShikigamiTableRowCard, columnsHidden }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -123,4 +123,4 @@ const ShikigamiTable = ({ columns, data, ShikigamiTableRowCard, columnsHidden })
   );
 };
 
-export default ShikigamiTable;
+export default Table;
