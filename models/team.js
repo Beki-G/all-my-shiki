@@ -7,22 +7,12 @@ const teamSchema = Schema({
         type: String,
         required: true,
     },
-    soulsetMain: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Soulset',
-    }],
-    soulsetSub: [{
-        type: Schema.Types.ObjectId,
-        refL: 'Soulset',
-    }],
-    primarySoulStats: {
-        type: String,
-    },
     userNotes: {
         type: String,
     },
     creatorId: {
         type: Schema.Types.ObjectId,
+        ref: 'User',
     },
     likes: {
         type: Array,
@@ -44,6 +34,7 @@ const teamSchema = Schema({
     }],
     teamFormat: {
         type: String,
+        default: '5 shikigami + Onmyoji',
     },
 });
 
