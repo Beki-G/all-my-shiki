@@ -21,7 +21,7 @@ function App() {
             <ProtectedRoute path="/test" component={Test} />
             <ProtectedRoute path="/profile" component={Profile} />
             <ProtectedRoute path="/dashboard" component={Dashboard} />
-            <ProtectedRoute path="/shikigami" component={Shikigami} />
+            <Route path="/shikigami" component={Shikigami} />
             <Route path="/shiki/:id" component={CharacterProfile} />
           </Switch>
         </Router>

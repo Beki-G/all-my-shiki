@@ -1,22 +1,46 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useMemo, useEffect } from "react";
+import { Link } from "react-router-dom";
 import modCharacterAPI from "../../utils/modCharacterAPI";
 import ShikigamiTable from "../ShikigamiTable/ShikigamiTable";
+import ShikigamiTableRowCard from "../ShikigamiTableRowCard/ShikigamiTableRowCard";
+import TableColumnCheckboxContainer from "../TableColumnCheckboxContainer/TableColumnCheckboxContainer";
 
 const ShikigamiTableContainer = () => {
   const [data, setData] = useState([]);
+  const [hideColumns, setHideColumns] = useState([
+    "dateCreated",
+    "userNotes",
+    "creatorId.guild",
+    "name"
+  ]);
 
   useEffect(() => {
     getAllPublicCharacters();
 
-    return ()=>{setData([])}
-  }, []);
+    return () => {
+      setData([]);
+    };
+  }, [hideColumns]);
 
   const getAllPublicCharacters = async () => {
     // console.log("pinged");
     const characters = await modCharacterAPI.getAllPublicModCharacter();
     setData(characters);
     // console.log(characters);
+  };
+
+  const formatDate = (date) => {
+    let newFormat =
+      date.getMonth() +
+      1 +
+      "/" +
+      date.getDate() +
+      "/" +
+      date.getFullYear().toString().substr(-2);
+
+    if (newFormat === "NaN/NaN/aN") newFormat = "N/A";
+    return newFormat;
   };
 
   const columns = useMemo(
@@ -28,13 +52,19 @@ const ShikigamiTableContainer = () => {
             Header: "Name",
             accessor: "name",
             Cell: ({ cell }) => {
+              // console.log(cell.row.original._id)
               const { value } = cell;
-              return <div className="">{value}</div>;
+              return <Link to={`/shiki/${cell.row.original._id}`}>{value}</Link>
             },
           },
           {
             Header: "Base",
             accessor: "character.name",
+            Cell: ({ cell }) => {
+              // console.log(cell.row.original._id)
+              const { value } = cell;
+              return <Link to={`/shiki/${cell.row.original._id}`}>{value}</Link>
+            },
           },
         ],
       },
@@ -42,12 +72,16 @@ const ShikigamiTableContainer = () => {
         Header: "User",
         columns: [
           {
-            Header: "UserName",
+            Header: "Username",
             accessor: "creatorId.userName",
           },
           {
             Header: "Notes",
             accessor: "userNotes",
+          },
+          {
+            Header: "Guild",
+            accessor: "creatorId.guild",
           },
         ],
       },
@@ -74,16 +108,8 @@ const ShikigamiTableContainer = () => {
               //   console.log("Cell is: ", cell);
               const { value } = cell;
               const unformatted = new Date(value);
-              let newFormat =
-                unformatted.getMonth() +
-                1 +
-                "/" +
-                unformatted.getDate() +
-                "/" +
-                unformatted.getFullYear();
-
-              if (newFormat === "NaN/NaN/NaN") newFormat = "N/A";
-              return <div className="">{newFormat}</div>;
+              const formattedDate = formatDate(unformatted);
+              return <div className="">{formattedDate}</div>;
             },
           },
           {
@@ -93,14 +119,31 @@ const ShikigamiTableContainer = () => {
               //   console.log("Cell is: ", cell);
               const { value } = cell;
               const unformatted = new Date(value);
-              const newFormat =
-                unformatted.getMonth() +
-                1 +
-                "/" +
-                unformatted.getDate() +
-                "/" +
-                unformatted.getFullYear();
-              return <div className="">{newFormat}</div>;
+              const formattedDate = formatDate(unformatted);
+              return <div className="">{formattedDate}</div>;
+            },
+          },
+        ],
+      },
+      {
+        Header: "Expand",
+        columns: [
+          {
+            expander: true,
+            Header: () => <strong>More</strong>,
+            width: 65,
+            id: "expander",
+            Cell: ({ isExpanded, row, ...rest }) => (
+              <span {...row.getToggleRowExpandedProps()}>
+                {row.isExpanded ? <span>&#x2299;</span> : <span>&#x2295;</span>}
+              </span>
+            ),
+            style: {
+              cursor: "pointer",
+              fontSize: 25,
+              padding: "0",
+              textAlign: "center",
+              userSelect: "none",
             },
           },
         ],
@@ -109,11 +152,32 @@ const ShikigamiTableContainer = () => {
     []
   );
 
-  // console.log(data)
+  const columnAccessors = [
+    { name: "Date Created", accessor: "dateCreated" },
+    { name: "Notes", accessor: "userNotes" },
+    { name: "User Guild", accessor: "creatorId.guild" },
+    { name: "Shiki Name", accessor: "name" },
+    { name: "Username", accessor: "creatorId.userName"},
+    { name: "Shiki Base",  accessor: "character.name"},
+    { name: "SoulSet Main", accessor: "soulsetMain.name"},
+    { name: "SoulSet Sub", accessor: "soulsetSub.name"},
+    { name: "Date Modified",accessor: "dateModified"},
+  ];
+
   return (
-    <div className="overflow-x-scroll lg:overflow-auto mx-4">
+    <div className="overflow-x-scroll lg:overflow-auto">
+      <TableColumnCheckboxContainer
+        columns={columnAccessors}
+        setHideColumns={setHideColumns}
+        hideColumns={hideColumns}
+      />
       <br />
-      <ShikigamiTable columns={columns} data={data} />
+      <ShikigamiTable
+        columns={columns}
+        data={data}
+        ShikigamiTableRowCard={ShikigamiTableRowCard}
+        columnsHidden={hideColumns}
+      />
       <br />
     </div>
   );
