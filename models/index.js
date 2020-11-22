@@ -5,4 +5,5 @@ module.exports = {
     User: require('./user'),
     ModCharacter: require('./modifiedCharacter'),
     SoulSet: require('./soulSet'),
+    Team: require('./team'),
 };
