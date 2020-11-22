@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import DashboardModCharaCard from "../DashboardModCharaCard/DashboardModCharaCard";
 import { UseUserSession } from "../../utils/UserContext";
 import modCharacterAPI from "../../utils/modCharacterAPI";
+import AddButton from "../Buttons/AddButton/AddButton";
 
 const DashboardModChara = () => {
   const { userProfile } = UseUserSession();
@@ -23,8 +24,13 @@ const DashboardModChara = () => {
   }
 
   return (
-    <div className="flex flex-col mx-auto m-0 w-3/4 bg-teal-200 p-4 rounded-md">
-      <h1 className="mt-2 mb-4 text-2xl font-semibold">My Shikigami</h1>
+    <div className="mx-auto m-0 w-3/4 bg-teal-200 p-4 rounded-md">
+      <div className=" flex items-center">
+        <h1 className=" mt-2 mb-4 text-2xl mr-2 font-semibold">
+          My Shikigami 
+        </h1>
+        <AddButton type={"modChara"}/>
+      </div>
       <div className="overflow-y-auto flex flex-wrap -mx-1 overflow-hidden md:-mx-1 h-64">
         {userModCharacter && userModCharacter.length > 0 ? (
           userModCharacter.map((character) => {
