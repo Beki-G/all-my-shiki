@@ -67,6 +67,12 @@ function Navbar() {
         }`}
       >
         {/* If user is logged in show logout, vice versa */}
+        <Link
+          to="/"
+          className="block py-1  px-2 text-white font-semibold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
+        >
+          Home
+        </Link>
         {isUser ? (
           <div className="">
             <NavbarUserLink />

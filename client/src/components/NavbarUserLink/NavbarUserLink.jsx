@@ -9,12 +9,6 @@ const NavbarUserLink = () => {
     <div className=" bg-black sm:bg-transparent">
       <div className="sm:flex">
         <Link
-          to="/"
-          className="block py-1  px-2 text-white font-semibold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
-        >
-          Home
-        </Link>
-        <Link
           to="/profile"
           className="block py-1  px-2 text-white font-semibold rounded font-sans"
         >
