@@ -9,6 +9,7 @@ import Profile from "./pages/Profile"
 import { Dashboard } from "./pages/Dashboard";
 import CharacterProfile from "./pages/CharacterProfile";
 import Shikigami from "./pages/Shikigami"
+import TeamProfile from './pages/TeamProfile'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             <ProtectedRoute path="/dashboard" component={Dashboard} />
             <Route path="/shikigami" component={Shikigami} />
             <Route path="/shiki/:id" component={CharacterProfile} />
+            <Route path="/team/:id" component={TeamProfile} />
           </Switch>
         </Router>
       </div>

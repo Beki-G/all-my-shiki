@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-console */
 // eslint-disable-next-line prefer-destructuring
-// const ObjectId = require('mongoose').Types.ObjectId;
+const ObjectId = require('mongoose').Types.ObjectId;
 const db = require('../models');
 
 module.exports = {
@@ -29,6 +29,29 @@ module.exports = {
             res.json(teams);
         } catch (err) {
             console.log('Error in getUserTeams, TeamController: ', err);
+            res.json(err);
+        }
+    },
+    // eslint-disable-next-line consistent-return
+    async getTeamById(req, res) {
+        try {
+            if (!ObjectId.isValid(req.params.id)) return res.json({ error: 'Invalid Id' });
+            const isTeam = await db.Team.find({ _id: req.params.id }).countDocuments() > 0;
+
+            if (!isTeam) return res.json(isTeam);
+
+            const team = await db.Team.findOne({ _id: req.params.id }).populate({
+                path: 'teammates creatorId',
+                populate: {
+                    path: 'character soulsetMain soulsetSub',
+                    populate: { path: 'tags', select: '-_id -definition' },
+                    select: '-fourSet -twoSet -type -__v -skills -skillsEvo',
+                },
+                select: '-__v -auth0Id -favorites -privileges -teams -dateCreated',
+            });
+            res.json(team);
+        } catch (err) {
+            console.log('Error in getTeamById, TeamController: ', err);
             res.json(err);
         }
     },
