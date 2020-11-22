@@ -109,19 +109,19 @@ function Navbar() {
           >
             <div className="shadow-md bg-black">
               <Link
-                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
                 to="/shikigami"
               >
                 Shikigami
               </Link>
               <a
-                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
                 href="/"
               >
                 Teams
               </a>
               <a
-                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
                 href="/"
               >
                 Traits

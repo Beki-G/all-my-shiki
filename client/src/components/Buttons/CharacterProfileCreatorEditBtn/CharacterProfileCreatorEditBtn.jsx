@@ -19,7 +19,7 @@ export const CharacterProfileCreatorEditBtn = ({
   return (
     <button
       onClick={onClick}
-      className="  sm:mt-6 uppercase mx-auto shadow bg-indigo-800 hover:bg-indigo-700 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded"
+      className="  sm:mt-6 uppercase mx-auto shadow bg-indigo-800 hover:bg-indigo-700 focus:ring focus:outline-none text-white text-xs py-3 px-10 rounded"
     >
       {btnMsg}
     </button>

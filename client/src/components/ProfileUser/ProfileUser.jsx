@@ -112,7 +112,7 @@ export const ProfileUser = () => {
         <div className="mt-6">
           {isEdit ? (
             <input
-              className="block uppercase mx-auto shadow bg-indigo-800 hover:bg-indigo-700 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded"
+              className="block uppercase mx-auto shadow bg-indigo-800 hover:bg-indigo-700 focus:ring focus:outline-none text-white text-xs py-3 px-10 rounded"
               type="submit"
               value="Submit"
             />

@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar/Navbar';
 
 export const Dashboard = () => {
     return (
-        <div className="justify-end rounded bg-gray-50 font-sans">
+        <div className="justify-end rounded bg-gray-50 min-h-screen font-sans">
             <div className="bg-black">
                 <Navbar />
             </div>

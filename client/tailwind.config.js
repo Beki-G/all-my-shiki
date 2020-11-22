@@ -1,10 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
+
   purge: [
     'src/**/*.js',
     'src/**/*.jsx',
@@ -36,7 +33,8 @@ module.exports = {
     },
   },
   variants: {
-    display: ['responsive', 'group-hover', 'group-focus']
+    display: ['responsive', 'group-hover', 'group-focus'],
+    fontweight: ['hover', 'focus'],
   },
   plugins: [],
 }
