@@ -32,4 +32,13 @@ module.exports = {
             res.json(error);
         }
     },
+    async getAllCharacterNames(req, res) {
+        try {
+            const allCharacters = await db.Character.find({}).select('-skills -__v -skillsEvo -baseStats -evoBaseStats -tags').sort({ name: 1 });
+            res.json(allCharacters);
+        } catch (err) {
+            console.error('Error in getCharacterProfile Character Profile: ', err);
+            res.json(err);
+        }
+    },
 };

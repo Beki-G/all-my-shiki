@@ -30,5 +30,9 @@ export default {
     getAllPublicModCharacter: async function() {
         const { data } = await axios.get('/api/modchara');
         return data;
+    },
+    createModCharacter: async function(newChara){
+        const { data } = await axios.post('/api/modchara', newChara)
+        return data;
     }
 }

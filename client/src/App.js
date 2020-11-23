@@ -10,6 +10,7 @@ import { Dashboard } from "./pages/Dashboard";
 import CharacterProfile from "./pages/CharacterProfile";
 import Shikigami from "./pages/Shikigami"
 import TeamProfile from './pages/TeamProfile'
+import CreateModChara from "./pages/CreateModChara";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
             <ProtectedRoute path="/test" component={Test} />
             <ProtectedRoute path="/profile" component={Profile} />
             <ProtectedRoute path="/dashboard" component={Dashboard} />
+            <ProtectedRoute path="/createshiki" component={CreateModChara} />
             <Route path="/shikigami" component={Shikigami} />
             <Route path="/shiki/:id" component={CharacterProfile} />
             <Route path="/team/:id" component={TeamProfile} />

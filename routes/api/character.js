@@ -3,7 +3,8 @@ const router = require('express').Router();
 const characterController = require('../../controllers/CharacterController');
 
 router.route('/')
-    .post(characterController.addNewCharacter);
+    .post(characterController.addNewCharacter)
+    .get(characterController.getAllCharacterNames);
 
 router.route('/:id')
     .get(characterController.getCharacterProfile);

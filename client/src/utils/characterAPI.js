@@ -9,5 +9,9 @@ export default {
     getCharacterProfile: async function(id) {
         const { data } = await axios.get("/api/character/"+id);
         return data;
+    },
+    getCharacterNames: async function() {
+        const { data } = await axios.get('/api/character');
+        return data;
     }
 }
