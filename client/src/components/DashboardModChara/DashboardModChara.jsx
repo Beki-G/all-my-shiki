@@ -26,7 +26,7 @@ const DashboardModChara = () => {
   return (
     <div className="mx-auto m-0 w-3/4 bg-blue-400 p-4 rounded-md">
       <div className=" flex items-center">
-        <h1 className=" mt-2 mb-4 text-2xl mr-2 font-semibold">
+        <h1 className=" mt-4 mb-4 text-2xl mr-2 font-semibold">
           My Shikigami 
         </h1>
         <AddButton type={"modChara"}/>
