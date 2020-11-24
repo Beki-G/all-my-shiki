@@ -36,6 +36,9 @@ const teamSchema = Schema({
         type: String,
         default: '5 shikigami + Onmyoji',
     },
+    onmyoji: {
+        type: String,
+    },
 });
 
 const Team = mongoose.model('Team', teamSchema);

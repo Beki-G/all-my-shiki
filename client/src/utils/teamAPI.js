@@ -6,8 +6,8 @@ export default {
         const { data } = await axios.get('/api/team/user/'+userId);
         return data;
     },
-    createTeam: async function () {
-        const { data } = await axios.post('/api/team')
+    createTeam: async function (team) {
+        const { data } = await axios.post('/api/team', team)
         return data;
     },
     getTeamByID: async function(teamId){

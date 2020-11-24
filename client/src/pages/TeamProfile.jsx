@@ -13,22 +13,23 @@ const TeamProfile = () => {
 
   const [isInDatabase, setIsInDatabase] = useState("checking");
   const [team, setTeam] = useState();
+  // eslint-disable-next-line no-unused-vars
   const [isPrivate, setIsPrivate] = useState(true);
 
   useEffect(() => {
-      checkDatabase();
+    checkDatabase();
   }, [userProfile]);
 
   async function checkDatabase() {
-      const teamProfile = await teamAPI.getTeamByID(id);
-      
-      if(teamProfile.error) setIsInDatabase(false);
+    const teamProfile = await teamAPI.getTeamByID(id);
 
-      if(teamProfile.title) {
-        setTeam(teamProfile);
-        setIsPrivate(teamProfile.isPrivate);
-        setIsInDatabase(true);
-      }
+    if (teamProfile.error) setIsInDatabase(false);
+
+    if (teamProfile.title) {
+      setTeam(teamProfile);
+      setIsPrivate(teamProfile.isPrivate);
+      setIsInDatabase(true);
+    }
   }
 
   return (
@@ -36,18 +37,16 @@ const TeamProfile = () => {
       <div className="bg-black">
         <Navbar />
       </div>
-      <br/>
+      <br />
       <div className="w-3/4 m-auto">
-          
-      {isInDatabase ==="checking" ? (
+        {isInDatabase === "checking" ? (
           <Loading />
-      ): isInDatabase ? (
+        ) : isInDatabase ? (
           <TeamProfileContainer team={team} isPrivate={team.isPrivate} />
-      ): (
+        ) : (
           "Invalid Link, please try a different link."
-      )}
+        )}
       </div>
-      
     </div>
   );
 };
