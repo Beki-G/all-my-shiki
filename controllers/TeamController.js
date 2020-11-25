@@ -55,4 +55,13 @@ module.exports = {
             res.json(err);
         }
     },
+    async updateTeambyTeamId(req, res) {
+        try {
+            const updatedTeam = await db.Team.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true });
+            res.json(updatedTeam);
+        } catch (err) {
+            console.log('Error in updateTeambyTeamId, TeamController: ', err);
+            res.json(err);
+        }
+    },
 };

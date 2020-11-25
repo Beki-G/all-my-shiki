@@ -7,11 +7,15 @@ export default {
         return data;
     },
     createTeam: async function (team) {
-        const { data } = await axios.post('/api/team', team)
+        const { data } = await axios.post('/api/team', team);
         return data;
     },
     getTeamByID: async function(teamId){
-        const { data } = await axios.get('/api/team/'+teamId)
+        const { data } = await axios.get('/api/team/'+teamId);
+        return data;
+    },
+    updateTeamById: async function(teamId){
+        const {data} = await axios.put('/api/team/'+teamId);
         return data;
     }
 }

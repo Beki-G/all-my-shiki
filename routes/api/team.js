@@ -7,6 +7,7 @@ router.route('/')
 router.route('/user/:id')
     .get(teamController.getUserTeams);
 router.route('/:id')
-    .get(teamController.getTeamById);
+    .get(teamController.getTeamById)
+    .put(teamController.updateTeambyTeamId);
 
 module.exports = router;
