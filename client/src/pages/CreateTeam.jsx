@@ -105,6 +105,7 @@ const CreateTeam = () => {
             label="Onmyoji: "
             host={teamFormat.onmyoji}
             onChange={onOnmyojiChange}
+            isEdit={true}
           />
         ) : (
           ""
@@ -119,6 +120,7 @@ const CreateTeam = () => {
                 index={index}
                 onChange={onTeammatesChange}
                 defaultValue={teammate.id}
+                isEdit={true}
               />
             );
           })}

@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { UseUserSession } from "../../utils/UserContext";
+import TeamProfileCard from "../TeamProfileCard/TeamProfileCard";
 
 const TeamProfileContainer = ({team, isPrivate}) => {
     const { userProfile } = UseUserSession();
@@ -24,7 +25,7 @@ const TeamProfileContainer = ({team, isPrivate}) => {
     return (
         <div>
             {userType==="creator" ||!isPrivate ? (
-                team.title
+                <TeamProfileCard team={team} />
             ) : (
                 <div className="text-2xl">Sorry Team is set to private</div>
             )}

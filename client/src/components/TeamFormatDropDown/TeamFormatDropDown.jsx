@@ -1,6 +1,6 @@
 import React from "react";
 
-const TeamFormatDropDown = ({ onChange, isEdit, teammates }) => {
+const TeamFormatDropDown = ({ onChange, isEdit, teammates, teamValue }) => {
   const options = [
     { name: "6 Shiki + Onmyoji", teammates: 6, onmyoji: "onmyoji" },
     { name: "5 Shiki + Onmyoji", teammates: 5, onmyoji: "onmyoji" },
@@ -10,11 +10,13 @@ const TeamFormatDropDown = ({ onChange, isEdit, teammates }) => {
     { name: "3 Shiki + Event Shiki", teammates: 3, onmyoji: "event" },
     { name: "6 Shiki (Draft)", teammates: 6, onmyoji: "none" },
   ];
+
+  console.log("teamValue: ", teamValue? teamValue: 5)
   return (
     <label>
       Team Format:
       <select
-        defaultValue={5}
+        value={teamValue? teamValue: 5}
         className="ml-2 focus:outline-none focus:ring-2 focus:ring-purple-700"
         disabled={!isEdit}
         onChange={onChange}

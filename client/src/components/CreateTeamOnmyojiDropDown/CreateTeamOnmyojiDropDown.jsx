@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from "react";
 import CharacterAPI from "../../utils/characterAPI";
 
-const OnmyojiDropDown = ({ host, label, onChange }) => {
+const OnmyojiDropDown = ({ host, label, onChange, isEdit, defaultVal}) => {
   const [dropdownOptions, setDropdownOptions] = useState([]);
+
+  console.log("defaultVal is: ", defaultVal)
 
   useEffect(() => {
     setOptions();
@@ -30,6 +32,8 @@ const OnmyojiDropDown = ({ host, label, onChange }) => {
         <select
           onChange={onChange}
           className="focus:outline-none focus:ring-2 focus:ring-purple-700"
+          disabled={!isEdit }
+          value={defaultVal}
         >
           {dropdownOptions.map((onmyoji) => {
             return (

@@ -33,7 +33,7 @@ const TeamProfile = () => {
   }
 
   return (
-    <div className="justify-end rounded bg-gray-50 font-sans ">
+    <div className="justify-end rounded bg-gray-50 font-sans min-h-screen">
       <div className="bg-black">
         <Navbar />
       </div>

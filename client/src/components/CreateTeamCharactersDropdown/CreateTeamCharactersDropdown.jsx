@@ -5,6 +5,7 @@ const CreateTeamCharactersDropdown = ({
   index,
   defaultValue,
   onChange,
+  isEdit
 }) => {
   return (
     <div className="flex mx-auto md:flex-non">
@@ -14,6 +15,7 @@ const CreateTeamCharactersDropdown = ({
           className="ml-2 my-2 focus:outline-none focus:ring-2 focus:ring-purple-700"
           value={defaultValue}
           onChange={onChange}
+          disabled={!isEdit}
         >
           {characters.map((character) => {
             return (
