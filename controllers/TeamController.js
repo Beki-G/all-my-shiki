@@ -64,4 +64,17 @@ module.exports = {
             res.json(err);
         }
     },
+    async getAllPublicTeams(req, res) {
+        try {
+            const allPublicTeams = await db.Team.find({ isPrivate: false })
+                .populate('creatorId', 'userName guild')
+                .populate({ path: 'teammates', populate: { path: 'character', select: 'name -_id' } })
+                .sort({ dateCreated: -1 });
+
+            res.json(allPublicTeams);
+        } catch (err) {
+            console.log('Error in getAllPublicTeams, TeamController: ', err);
+            res.json(err);
+        }
+    },
 };

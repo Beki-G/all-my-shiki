@@ -17,5 +17,9 @@ export default {
     updateTeamById: async function(teamId, updatedTeam){
         const {data} = await axios.put('/api/team/'+teamId, updatedTeam);
         return data;
+    },
+    getAllPublicTeams: async function() {
+        const { data } = await axios.get('/api/team');
+        return data;
     }
 }

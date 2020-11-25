@@ -3,7 +3,8 @@ const router = require('express').Router();
 const teamController = require('../../controllers/TeamController');
 
 router.route('/')
-    .post(teamController.createTeam);
+    .post(teamController.createTeam)
+    .get(teamController.getAllPublicTeams);
 router.route('/user/:id')
     .get(teamController.getUserTeams);
 router.route('/:id')
