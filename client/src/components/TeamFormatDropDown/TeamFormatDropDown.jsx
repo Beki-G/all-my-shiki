@@ -15,7 +15,7 @@ const TeamFormatDropDown = ({ onChange, isEdit, teammates, teamValue }) => {
     <label>
       Team Format:
       <select
-        value={teamValue? teamValue: 5}
+        defaultValue={teamValue? teamValue: 5}
         className="ml-2 focus:outline-none focus:ring-2 focus:ring-purple-700"
         disabled={!isEdit}
         onChange={onChange}
