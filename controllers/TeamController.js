@@ -32,6 +32,18 @@ module.exports = {
             res.json(err);
         }
     },
+
+    async getUserTeamsBasicInfo(req, res) {
+        try {
+            const teams = await db.Team.find({ creatorId: req.params.id })
+                .populate({ path: 'teammates', populate: { path: ' soulsetMain soulsetSub', select: 'name -_id' } })
+                .sort({ dateCreated: -1 });
+            res.json(teams);
+        } catch (err) {
+            console.log('Error in getUserTeams, TeamController: ', err);
+            res.json(err);
+        }
+    },
     // eslint-disable-next-line consistent-return
     async getTeamById(req, res) {
         try {
