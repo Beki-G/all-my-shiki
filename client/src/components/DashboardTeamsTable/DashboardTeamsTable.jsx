@@ -9,16 +9,17 @@ import { Link } from "react-router-dom";
 const DashboardTeamsTable = () => {
   const { userProfile } = UseUserSession();
   const [data, setData] = useState([]);
-  const [hideColumns, setHideColumns] = useState([]);
 
   useEffect(() => {
     getUserTeamInfo();
-  }, []);
+  }, [userProfile]);
 
   const getUserTeamInfo = async () => {
-    const teams = await teamAPI.getUserTeamBasicInfo(userProfile._id);
-    console.log("teams", teams);
-    setData(teams);
+    if (userProfile._id) {
+      const teams = await teamAPI.getUserTeamBasicInfo(userProfile._id);
+      console.log("teams", teams);
+      setData(teams);
+    }
   };
   const formatDate = (date) => {
     let newFormat =
@@ -98,17 +99,15 @@ const DashboardTeamsTable = () => {
     []
   );
   return (
-    <div className=" mx-auto m-0 w-3/4">
+    <div className=" mx-auto m-0 md:w-3/4 w-5/6">
       <div className="flex items-center">
         <h1 className="mt-2 mb-2 text-2xl mr-2 font-semibold">Teams Table </h1>
         <AddButton type={"team"} />
       </div>
 
-      <div className="w-full">
-        <Table columns={columns} data={data} columnsHidden={hideColumns} />
+      <div className="w-full overflow-x-scroll">
+        <Table columns={columns} data={data} columnsHidden={[]} />
       </div>
-
-      <div className="overflow-x-scroll">To be teams table</div>
     </div>
   );
 };
