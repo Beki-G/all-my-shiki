@@ -12,6 +12,7 @@ import Shikigami from "./pages/Shikigami"
 import TeamProfile from './pages/TeamProfile'
 import CreateModChara from "./pages/CreateModChara";
 import CreateTeam from "./pages/CreateTeam";
+import Team from "./pages/Team";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <ProtectedRoute path="/createshiki" component={CreateModChara} />
             <ProtectedRoute path="/createteam" component={CreateTeam} />
             <Route path="/shikigami" component={Shikigami} />
+            <Route path="/teams" component={Team} />
             <Route path="/shiki/:id" component={CharacterProfile} />
             <Route path="/team/:id" component={TeamProfile} />
           </Switch>
