@@ -21,11 +21,12 @@ const UpdateTeamBtn = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const onClick = (e) => {
-    setIsEdit(!isEdit);
+    
     if (isEdit) {
       setBtnMsg("Edit");
       onSave(e);
     } else setBtnMsg("Save");
+    setIsEdit(!isEdit);
   };
   const onSave = async (e) => {
     e.preventDefault();
@@ -43,6 +44,7 @@ const UpdateTeamBtn = ({
       creatorId: userProfile._id,
       isPrivate: isPrivate,
       teamFormat: format.teammates + " shiki + " + format.onmyoji,
+      dateModified: new Date()
     };
 
 
