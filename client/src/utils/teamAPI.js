@@ -21,5 +21,9 @@ export default {
     getAllPublicTeams: async function() {
         const { data } = await axios.get('/api/team');
         return data;
+    }, 
+    getUserTeamBasicInfo: async function(userId) {
+        const { data } = await axios.get('/api/userbasic'+userId)
+        return data;
     }
 }
