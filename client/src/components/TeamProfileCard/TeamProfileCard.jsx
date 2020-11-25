@@ -8,8 +8,9 @@ import UpdateTeamBtn from "../Buttons/UpdateTeamBtn/UpdateTeamBtn";
 import { Link } from "react-router-dom";
 import CreateTeamOnmyojiDropdown from "../CreateTeamOnmyojiDropDown/CreateTeamOnmyojiDropDown";
 import { useParams } from "react-router-dom";
+import LoginButton from "../Buttons/LoginButton/LoginButton";
 
-const TeamProfileCard = ({ team }) => {
+const TeamProfileCard = ({ team, userType }) => {
   const { userProfile } = UseUserSession();
   const { id } = useParams();
 
@@ -158,7 +159,7 @@ const TeamProfileCard = ({ team }) => {
       </div>
 
       <div className="my-4 block text-center">
-        <UpdateTeamBtn
+        {userType==="creator"? <UpdateTeamBtn
           setIsEdit={setIsUserEdit}
           isEdit={isUserEdit}
           teammates={teammates}
@@ -168,7 +169,12 @@ const TeamProfileCard = ({ team }) => {
           format={teamFormat}
           notes={userNotes.notes}
           teamId={id}
-        />
+        />: userType==="user"? (
+          <div>Future like button</div>
+        ): (
+          <LoginButton />
+        )}
+        
       </div>
     </div>
   );

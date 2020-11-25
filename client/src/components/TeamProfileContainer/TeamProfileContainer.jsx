@@ -25,7 +25,7 @@ const TeamProfileContainer = ({team, isPrivate}) => {
     return (
         <div>
             {userType==="creator" ||!isPrivate ? (
-                <TeamProfileCard team={team} />
+                <TeamProfileCard team={team} userType={userType}/>
             ) : (
                 <div className="text-2xl">Sorry Team is set to private</div>
             )}
