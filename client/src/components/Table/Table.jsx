@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useSortBy, useTable, useExpanded, usePagination } from "react-table";
 
-const Table = ({ columns, data, ShikigamiTableRowCard, columnsHidden }) => {
+const Table = ({ columns, data, TableRowCard, columnsHidden }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -81,7 +81,7 @@ const Table = ({ columns, data, ShikigamiTableRowCard, columnsHidden }) => {
                 {row.isExpanded && (
                   <tr>
                     <td colSpan={visibleColumns.length}>
-                      {ShikigamiTableRowCard(row)}
+                      {TableRowCard(row)}
                     </td>
                   </tr>
                 )}
