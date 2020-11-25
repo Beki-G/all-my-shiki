@@ -49,21 +49,21 @@ const TeamsTableContainer = () => {
             Header: "Team name",
             accessor: "title",
             Cell: ({ cell }) => {
-                // console.log(cell.row.original._id)
-                const { value } = cell;
-                return <Link to={`/team/${cell.row.original._id}`}>{value}</Link>
-              },
+              // console.log(cell.row.original._id)
+              const { value } = cell;
+              return <Link to={`/team/${cell.row.original._id}`}>{value}</Link>;
+            },
           },
           {
             Header: "Format",
             accessor: "teamFormat",
-            Cell: ({cell})=>{
-                const{value} = cell
-                const teamForm = value.trim().split(" ");
-                let form = teamForm[teamForm.length -1]
+            Cell: ({ cell }) => {
+              const { value } = cell;
+              const teamForm = value.trim().split(" ");
+              let form = teamForm[teamForm.length - 1];
 
-            return <div>{form==="none"? "6 Shiki (Draft)": value}</div>
-            }
+              return <div>{form === "none" ? "6 Shiki (Draft)" : value}</div>;
+            },
           },
           {
             Header: "Onmyoji",
@@ -181,12 +181,14 @@ const TeamsTableContainer = () => {
         hideColumns={hideColumns}
       />
       <br />
-      <Table
-        columns={columns}
-        data={data}
-        columnsHidden={hideColumns}
-        tableRowCard={TeamsTableRowCard}
-      />
+      <div className="w-5/6 mx-auto">
+        <Table
+          columns={columns}
+          data={data}
+          columnsHidden={hideColumns}
+          tableRowCard={TeamsTableRowCard}
+        />
+      </div>
     </div>
   );
 };

@@ -172,12 +172,15 @@ const ShikigamiTableContainer = () => {
         hideColumns={hideColumns}
       />
       <br />
+      <div className="w-5/6 mx-auto">
       <Table
         columns={columns}
         data={data}
         tableRowCard={ShikigamiTableRowCard}
         columnsHidden={hideColumns}
       />
+      </div>
+      
       <br />
     </div>
   );
