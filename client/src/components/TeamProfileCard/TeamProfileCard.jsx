@@ -6,11 +6,12 @@ import { UseUserSession } from "../../utils/UserContext";
 import TogglePrivate from "../TogglePrivate/TogglePrivate";
 import UpdateTeamBtn from "../Buttons/UpdateTeamBtn/UpdateTeamBtn";
 import { Link } from "react-router-dom";
-import TeamFormatDropDown from "../TeamFormatDropDown/TeamFormatDropDown";
-import CreateTeamOnmyojiDropdown from "../CreateTeamOnmyojiDropDown/CreateTeamOnmyojiDropDown"
+import CreateTeamOnmyojiDropdown from "../CreateTeamOnmyojiDropDown/CreateTeamOnmyojiDropDown";
+import { useParams } from "react-router-dom";
 
 const TeamProfileCard = ({ team }) => {
   const { userProfile } = UseUserSession();
+  const { id } = useParams();
 
   const [teamFormat, setTeamFormat] = useState({
     teammates: 5,
@@ -18,10 +19,9 @@ const TeamProfileCard = ({ team }) => {
   });
   const [teammates, setTeammates] = useState([]);
   const [allCharacters, setAllCharacters] = useState([]);
-  const [isReady, setIsReady] = useState(true);
   const [onmyojiBase, setOnmyojiBase] = useState({ onmyoji: team.onmyoji });
-  const [userNotes, setUserNotes] = useState({ notes: null });
-  const [isPrivate, setIsPrivate] = useState(true);
+  const [userNotes, setUserNotes] = useState({ notes: team.userNotes });
+  const [isPrivate, setIsPrivate] = useState(team.isPrivate);
   const [teamName, setTeamName] = useState({ teamName: team.title });
   const [isUserEdit, setIsUserEdit] = useState(false);
   const [toggle, setToggle] = useState(true);
@@ -41,8 +41,6 @@ const TeamProfileCard = ({ team }) => {
       const names = await modCharacterAPI.getAllUserModChara(userProfile._id);
 
       setAllCharacters(names);
-
-      setIsReady(true);
     }
   };
 
@@ -62,9 +60,9 @@ const TeamProfileCard = ({ team }) => {
     setTeammates(newTeammates);
   };
 
-  const onOnmyojiChange = (e) =>{
-      setOnmyojiBase({onmyoji:e.target.value})
-  }
+  const onOnmyojiChange = (e) => {
+    setOnmyojiBase({ onmyoji: e.target.value });
+  };
 
   return (
     <div>
@@ -85,9 +83,18 @@ const TeamProfileCard = ({ team }) => {
           />
         </div>
       </div>
-      
-        <div className="mb-4 font-semibold">Team Format: {teamFormat.onmyoji==="none"? "6 shiki (Draft)": team.teamFormat}</div>
-       <CreateTeamOnmyojiDropdown host={teamFormat.onmyoji} label={"Onmyoji: "} isEdit={isUserEdit} defaultVal={onmyojiBase.onmyoji} onChange={onOnmyojiChange}/>
+
+      <div className="mb-4 font-semibold">
+        Team Format:{" "}
+        {teamFormat.onmyoji === "none" ? "6 shiki (Draft)" : team.teamFormat}
+      </div>
+      <CreateTeamOnmyojiDropdown
+        host={teamFormat.onmyoji}
+        label={"Onmyoji: "}
+        isEdit={isUserEdit}
+        defaultVal={onmyojiBase.onmyoji}
+        onChange={onOnmyojiChange}
+      />
 
       <div className="flex flex-row flex-wrap bg-gray-300 rounded-md">
         {teammates.map((teammate, index) => {
@@ -151,7 +158,17 @@ const TeamProfileCard = ({ team }) => {
       </div>
 
       <div className="my-4 block text-center">
-        <UpdateTeamBtn setIsEdit={setIsUserEdit} isEdit={isUserEdit} />
+        <UpdateTeamBtn
+          setIsEdit={setIsUserEdit}
+          isEdit={isUserEdit}
+          teammates={teammates}
+          isPrivate={isPrivate}
+          teamName={teamName.teamName}
+          onmyoji={onmyojiBase.onmyoji}
+          format={teamFormat}
+          notes={userNotes.notes}
+          teamId={id}
+        />
       </div>
     </div>
   );

@@ -11,7 +11,6 @@ const TeamFormatDropDown = ({ onChange, isEdit, teammates, teamValue }) => {
     { name: "6 Shiki (Draft)", teammates: 6, onmyoji: "none" },
   ];
 
-  console.log("teamValue: ", teamValue? teamValue: 5)
   return (
     <label>
       Team Format:

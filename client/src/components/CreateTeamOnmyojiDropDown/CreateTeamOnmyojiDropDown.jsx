@@ -5,8 +5,6 @@ import CharacterAPI from "../../utils/characterAPI";
 const OnmyojiDropDown = ({ host, label, onChange, isEdit, defaultVal}) => {
   const [dropdownOptions, setDropdownOptions] = useState([]);
 
-  console.log("defaultVal is: ", defaultVal)
-
   useEffect(() => {
     setOptions();
   }, [host]);
