@@ -68,7 +68,7 @@ module.exports = {
         try {
             const allPublicTeams = await db.Team.find({ isPrivate: false })
                 .populate('creatorId', 'userName guild')
-                .populate({ path: 'teammates', populate: { path: 'character', select: 'name -_id' } })
+                .populate({ path: 'teammates', populate: { path: 'character soulsetMain soulsetSub', select: 'name -_id' } })
                 .sort({ dateCreated: -1 });
 
             res.json(allPublicTeams);

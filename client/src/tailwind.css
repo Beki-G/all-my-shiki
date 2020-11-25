@@ -14,5 +14,17 @@
 .dataTable tbody tr:nth-child(even){
     @apply bg-gray-200;
 }
+
+.childTable thead tr:nth-child(odd){
+    @apply bg-purple-700;
+    @apply text-white;
+}
+
+.childTable tbody tr:nth-child(even){
+    @apply bg-purple-300;
+}
+.childTable tbody tr:nth-child(odd){
+    @apply bg-purple-200;
+}
 @tailwind utilities;
 
