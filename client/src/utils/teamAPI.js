@@ -23,7 +23,7 @@ export default {
         return data;
     }, 
     getUserTeamBasicInfo: async function(userId) {
-        const { data } = await axios.get('/api/userbasic'+userId)
+        const { data } = await axios.get('/api/team/userbasic/'+userId)
         return data;
     }
 }

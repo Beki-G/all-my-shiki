@@ -48,7 +48,7 @@ const Table = ({ columns, data, tableRowCard, columnsHidden }) => {
     <>
       <table
         {...getTableProps()}
-        className="table-auto w-5/6 dataTable mx-auto text-center text-sm rounded-md"
+        className="table-auto w-full dataTable mx-auto text-center text-sm rounded-md"
       >
         <thead>
           {headerGroups.map((headerGroup) => (
