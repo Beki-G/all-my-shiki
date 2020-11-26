@@ -27,7 +27,7 @@ const ShikigamiTableContainer = () => {
     // console.log("pinged");
     const characters = await modCharacterAPI.getAllPublicModCharacter();
     setData(characters);
-    console.log(characters);
+    // console.log(characters);
   };
 
   const formatDate = (date) => {

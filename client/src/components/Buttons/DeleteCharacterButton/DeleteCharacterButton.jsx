@@ -19,8 +19,8 @@ export const DeleteCharacterButton = ({ characterId, characterType }) => {
         break;
 
       default:
-          console.log(characterType)
-          console.log(characterId)
+          // console.log(characterType)
+          // console.log(characterId)
         break;
     }
 

@@ -12,14 +12,14 @@ const CreateModChara = () => {
     if (baseCharacter.base !== null) {
       getCharacterProfile(baseCharacter.base);
     }
-    console.log();
+    
   }, [baseCharacter]);
 
   const getCharacterProfile = async (characterId) => {
     const profile = await characterAPI.getCharacterProfile(characterId);
-    console.log("profile: ", profile);
+    // console.log("profile: ", profile);
     setCharacterProfile(profile);
-    console.log("profile.tags", profile.tags);
+    // console.log("profile.tags", profile.tags);
   };
 
   return (
