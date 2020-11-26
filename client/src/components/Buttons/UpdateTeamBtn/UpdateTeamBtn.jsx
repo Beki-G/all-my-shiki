@@ -12,7 +12,7 @@ const UpdateTeamBtn = ({
   format,
   notes,
   onmyoji,
-  teamId
+  teamId,
 }) => {
   const { userProfile } = UseUserSession();
   const [modalText, setModalText] = useState({ text: "" });
@@ -21,16 +21,16 @@ const UpdateTeamBtn = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const onClick = (e) => {
-    
     if (isEdit) {
       setBtnMsg("Edit");
       onSave(e);
-    } else setBtnMsg("Save");
-    setIsEdit(!isEdit);
+    } else {
+      setBtnMsg("Save");
+      setIsEdit(!isEdit);
+    }
   };
   const onSave = async (e) => {
     e.preventDefault();
-
 
     const newTeammates = teammates.map((teammate) => {
       return teammate._id;
@@ -44,16 +44,14 @@ const UpdateTeamBtn = ({
       creatorId: userProfile._id,
       isPrivate: isPrivate,
       teamFormat: format.teammates + " shiki + " + format.onmyoji,
-      dateModified: new Date()
+      dateModified: new Date(),
     };
-
 
     const isValid = checkIsValidTeam(newTeam);
     if (isValid) {
       const inDBTeam = await teamAPI.updateTeamById(teamId, newTeam);
-
+      setIsEdit(!isEdit);
       setModalText({ text: `${inDBTeam.title} was updated in the database!` });
-      
     }
 
     setIsOpen(true);
@@ -78,12 +76,12 @@ const UpdateTeamBtn = ({
     setIsValidTeam(true);
     return true;
   };
-  
+
   const onClose = () => {
     setIsOpen(false);
-    if (isValidTeam) {
-      setIsEdit(!isEdit);
-    }
+    // if (isValidTeam) {
+    //   setIsEdit(!isEdit);
+    // }
   };
 
   return (

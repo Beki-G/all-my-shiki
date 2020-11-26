@@ -169,6 +169,7 @@ const TeamProfileCard = ({ team, userType }) => {
           format={teamFormat}
           notes={userNotes.notes}
           teamId={id}
+          
         />: userType==="user"? (
           <div>Future like button</div>
         ): (
