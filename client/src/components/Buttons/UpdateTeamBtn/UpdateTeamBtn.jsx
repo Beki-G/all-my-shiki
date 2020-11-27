@@ -17,7 +17,6 @@ const UpdateTeamBtn = ({
   const { userProfile } = UseUserSession();
   const [modalText, setModalText] = useState({ text: "" });
   const [btnMsg, setBtnMsg] = useState("Edit");
-  const [isValidTeam, setIsValidTeam] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const onClick = (e) => {
@@ -73,15 +72,13 @@ const UpdateTeamBtn = ({
       return false;
     }
 
-    setIsValidTeam(true);
+    
     return true;
   };
 
   const onClose = () => {
     setIsOpen(false);
-    // if (isValidTeam) {
-    //   setIsEdit(!isEdit);
-    // }
+
   };
 
   return (
