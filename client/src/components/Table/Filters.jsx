@@ -2,7 +2,7 @@ import React from "react";
 
 export const Filter = ({ column }) => {
   return (
-    <div className="mt-2">{column.canFilter && column.render("Filter")}</div>
+    <div className="mt-2" hidden>{column.canFilter && column.render("Filter")}</div>
   );
 };
 

@@ -5,6 +5,7 @@ import Table from "../Table/Table";
 import teamAPI from "../../utils/teamAPI";
 import TeamsTableRowCard from "../TeamsTableRowCard/TeamsTableRowCard";
 import { Link } from "react-router-dom";
+import {SelectColumnFilter} from "../Table/Filters"
 
 const TeamsTableContainer = () => {
   const [data, setData] = useState([]);
@@ -21,7 +22,7 @@ const TeamsTableContainer = () => {
     return () => {
       setData([]);
     };
-  }, [hideColumns]);
+  }, []);
 
   const getAllPublicTeams = async () => {
     const teams = await teamAPI.getAllPublicTeams();
@@ -64,6 +65,8 @@ const TeamsTableContainer = () => {
 
               return <div>{form === "none" ? "6 Shiki (Draft)" : value}</div>;
             },
+            Filter: SelectColumnFilter,
+            filter: "equals",
           },
           {
             Header: "Onmyoji",
@@ -93,6 +96,7 @@ const TeamsTableContainer = () => {
 
               return <div>{value ? teammateNames.join(", ") : ""}</div>;
             },
+            disableFilters: true,
           },
           {
             Header: "Date Created",
@@ -104,6 +108,7 @@ const TeamsTableContainer = () => {
               const formattedDate = formatDate(unformatted);
               return <div className="">{formattedDate}</div>;
             },
+            disableFilters: true,
           },
           {
             Header: "Date Modified",
@@ -115,6 +120,7 @@ const TeamsTableContainer = () => {
               const formattedDate = formatDate(unformatted);
               return <div className="">{formattedDate}</div>;
             },
+            disableFilters: true,
           },
         ],
       },

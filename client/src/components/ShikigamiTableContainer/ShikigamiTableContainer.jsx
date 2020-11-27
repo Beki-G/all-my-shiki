@@ -95,10 +95,14 @@ const ShikigamiTableContainer = () => {
           {
             Header: "Main",
             accessor: "soulsetMain.name",
+            Filter: SelectColumnFilter,
+            filter: "equals",
           },
           {
             Header: "Sub",
             accessor: "soulsetSub.name",
+            Filter: SelectColumnFilter,
+            filter: "equals",
           },
         ],
       },
