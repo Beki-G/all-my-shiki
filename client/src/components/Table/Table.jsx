@@ -1,6 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import { useSortBy, useTable, useExpanded, usePagination } from "react-table";
+import { Filter, DefaultColumnFilter }from "./Filters"
+import {
+  useSortBy,
+  useTable,
+  useExpanded,
+  usePagination,
+  useFilters,
+} from "react-table";
 
 const Table = ({ columns, data, tableRowCard, columnsHidden }) => {
   const {
@@ -24,17 +31,19 @@ const Table = ({ columns, data, tableRowCard, columnsHidden }) => {
     {
       columns,
       data,
+      defaultColumn: {Filter: DefaultColumnFilter},
       initialState: { hiddenColumns: columnsHidden },
     },
+    useFilters,
     useSortBy,
     useExpanded,
     usePagination
     //   useFilters
   );
 
-  useEffect(()=>{
-    setHiddenColumns(columnsHidden)
-  }, [columnsHidden])
+  useEffect(() => {
+    setHiddenColumns(columnsHidden);
+  }, [columnsHidden]);
 
   const generateSortingIndicator = (column) => {
     return column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : "";
@@ -57,9 +66,12 @@ const Table = ({ columns, data, tableRowCard, columnsHidden }) => {
               className=" border-red-600"
             >
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render("Header")}
-                  {generateSortingIndicator(column)}
+                <th {...column.getHeaderProps()}>
+                  <div {...column.getSortByToggleProps()}>
+                    {column.render("Header")}
+                    {generateSortingIndicator(column)}
+                  </div>
+                  <Filter column={column} />
                 </th>
               ))}
             </tr>
@@ -80,7 +92,10 @@ const Table = ({ columns, data, tableRowCard, columnsHidden }) => {
                 </tr>
                 {row.isExpanded && (
                   <tr>
-                    <td className="text-center items-center justify-center content-center " colSpan={visibleColumns.length}>
+                    <td
+                      className="text-center items-center justify-center content-center "
+                      colSpan={visibleColumns.length}
+                    >
                       {tableRowCard(row)}
                     </td>
                   </tr>
