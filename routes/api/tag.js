@@ -6,6 +6,9 @@ router.route('/')
     .get(tagController.getAllTagNames)
     .post(tagController.addNewTag);
 
+router.route('/all')
+    .get(tagController.getAllTags);
+
 router.route('/:id')
     .get(tagController.getTagById);
 

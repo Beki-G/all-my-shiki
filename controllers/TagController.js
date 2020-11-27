@@ -33,4 +33,13 @@ module.exports = {
             res.json(error);
         }
     },
+    async getAllTags(req, res) {
+        try {
+            const tags = await db.Tag.find({});
+            res.json(tags);
+        } catch (err) {
+            console.error('Error in getTagbyID: tagController: ', err);
+            res.json(err);
+        }
+    },
 };
