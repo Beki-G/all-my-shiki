@@ -6,6 +6,8 @@ import Table from "../Table/Table";
 import ShikigamiTableRowCard from "../ShikigamiTableRowCard/ShikigamiTableRowCard";
 import TableColumnCheckboxContainer from "../TableColumnCheckboxContainer/TableColumnCheckboxContainer";
 
+import {SelectColumnFilter} from "../Table/Filters"
+
 const ShikigamiTableContainer = () => {
   const [data, setData] = useState([]);
   const [hideColumns, setHideColumns] = useState([
@@ -65,6 +67,8 @@ const ShikigamiTableContainer = () => {
               const { value } = cell;
               return <Link to={`/shiki/${cell.row.original._id}`}>{value}</Link>
             },
+            Filter: SelectColumnFilter,
+            filter: "equals",
           },
         ],
       },

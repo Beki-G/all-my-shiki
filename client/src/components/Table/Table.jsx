@@ -63,10 +63,10 @@ const Table = ({ columns, data, tableRowCard, columnsHidden }) => {
           {headerGroups.map((headerGroup) => (
             <tr
               {...headerGroup.getHeaderGroupProps()}
-              className=" border-red-600"
+              className=""
             >
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>
+                <th className="justify-center" {...column.getHeaderProps()}>
                   <div {...column.getSortByToggleProps()}>
                     {column.render("Header")}
                     {generateSortingIndicator(column)}
