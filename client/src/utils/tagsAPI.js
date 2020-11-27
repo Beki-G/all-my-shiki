@@ -10,5 +10,9 @@ export default {
     getTagById: async function(id){
         const { data } = await axios.get('/api/tag/'+id);
         return data;
-    }
+    },
+    getAllTags: async function(){
+        const { data } = await axios.get('/api/tag/all');
+        return data;
+    },
 }
