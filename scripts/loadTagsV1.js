@@ -6,17 +6,36 @@ const tagsData = require('./tags');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shikidata', { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true });
 
+async function getGroupsData(groupArr) {
+    if (groupArr) {
+        const newGroupArr = await Promise.all(groupArr.map((groupName) => {
+            const newGroupName = _.startCase(groupName);
+            return newGroupName;
+        }));
+
+        // console.log('newGroup Arr', newGroupArr);
+        return newGroupArr;
+    }
+
+    return [];
+}
+
 async function getTagData() {
-    const tags = await Promise.all(tagsData.map((tag) => {
+    // console.log('Ping 1');
+    const tags = await Promise.all(tagsData.map(async (tag) => {
         const newTagName = _.startCase(tag.tag);
+        // console.log('Ping 2');
+
+        const newGroupArr = await getGroupsData(tag.groups);
 
         const newTagObj = {
             tag: newTagName,
             definition: tag.definition,
+            groups: newGroupArr,
         };
         return newTagObj;
     }));
-    console.log(tags);
+    // console.log(tags);
     return tags;
 }
 
