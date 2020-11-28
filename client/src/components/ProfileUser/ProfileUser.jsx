@@ -4,6 +4,7 @@ import { UseUserSession, UpdateUserSession } from "../../utils/UserContext";
 import { EditProfileBtn } from "../Buttons/EditProfileBtn/EditProfileBtn";
 import Modal from "../Modal/Modal";
 import userAPI from "../../utils/userAPI";
+import LogOutButton from "../Buttons/LogoutButton/LogoutButton";
 
 export const ProfileUser = () => {
   let { userProfile } = UseUserSession();
@@ -17,8 +18,8 @@ export const ProfileUser = () => {
     guild: userProfile.guild,
   });
   const [modalText, setModalText] = useState({ modalTxt: "" });
-  
-  const { dateCreated,  _id } = userProfile;
+
+  const { dateCreated, _id } = userProfile;
 
   useEffect(() => {
     if (dateCreated) {
@@ -48,7 +49,9 @@ export const ProfileUser = () => {
       setModalText({ modalTxt: "Thank you for updating!" });
       setIsOpen(true);
     } else {
-      setModalText({ modalTxt: "Username is already taken, please choose another." });
+      setModalText({
+        modalTxt: "Username is already taken, please choose another.",
+      });
       setIsOpen(true);
     }
   };
@@ -62,7 +65,6 @@ export const ProfileUser = () => {
       ...userEdits,
       [name]: value,
     });
-
   };
 
   return (
@@ -111,13 +113,19 @@ export const ProfileUser = () => {
         <br />
         <div className="mt-6">
           {isEdit ? (
-            <input
-              className="block uppercase mx-auto shadow bg-indigo-800 hover:bg-indigo-700 focus:ring focus:outline-none text-white text-xs py-3 px-10 rounded"
-              type="submit"
-              value="Submit"
-            />
+            <div className="flex flex-col sm:flex-row justify-center">
+              <input
+                className="block uppercase mx-auto sm:mx-0 shadow mb-3 sm:mb-0 bg-indigo-800 hover:bg-indigo-700 focus:ring focus:outline-none text-white text-xs py-3 px-10 rounded"
+                type="submit"
+                value="Submit"
+              />
+              <button onClick={()=>{setIsEdit(!isEdit)}} className="block uppercase mx-auto sm:mx-0 sm:ml-3 shadow bg-indigo-800 hover:bg-indigo-700 focus:ring focus:outline-none text-white text-xs py-3 px-10 rounded">Cancel</button>
+            </div>
           ) : (
-            <EditProfileBtn setIsEdit={setIsEdit} />
+            <div className="flex flex-col sm:flex-row justify-center">
+              <EditProfileBtn setIsEdit={setIsEdit} />
+              <LogOutButton />
+            </div>
           )}
         </div>
       </form>
