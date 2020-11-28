@@ -18,11 +18,11 @@ export const SoulSetDropDown = ({ title, soulSetValue, onChange, isEdit, setType
     <label>
       {title}
       <select
-        value={soulSetValue ? soulSetValue : "N/A"}
+        value={soulSetValue ? soulSetValue : ""}
         onChange={onChange}
         disabled={!isEdit}
       >
-        <option value="N/A">N/A</option>
+        
         {soulSetData.map((soulSet) => {
           return (
             <option value={soulSet._id} key={soulSet._id} settype={setType}>

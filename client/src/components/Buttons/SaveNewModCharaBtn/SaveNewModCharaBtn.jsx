@@ -19,8 +19,22 @@ const SaveNewModCharaBtn = ({
     id: null,
   });
 
+  const isValidModChara = (character) => {
+    console.log("character: ", character)
+    
+    if (character.soulsetMain ==="N/A") {
+      setModalText({ text: "Please add a 4 soul set to your shiki" });
+      return false;
+    }
+    if (character.soulsetSub ==="N/A") {
+      setModalText({ text: "Please add a 2 soul set to your shiki" });
+      return false;
+    }
+    return true;
+  };
   const onClick = async (e) => {
     e.preventDefault();
+
     const newChara = {
       name: name,
       character: characterId,
@@ -34,18 +48,27 @@ const SaveNewModCharaBtn = ({
       userNotes: userNotes,
     };
 
-    const newProfile = await modCharacterAPI.createModCharacter(newChara);
-    setModalText({ text: `${newProfile.name} was added to the database!` });
-    setRedirectLink({
-      ...redirectLink,
-      id: newProfile._id,
-    });
+    const isValid = isValidModChara(newChara);
+
+    console.log("isValid is: ", isValid)
+
+    if (isValid) {
+      const newProfile = await modCharacterAPI.createModCharacter(newChara);
+      setModalText({ text: `${newProfile.name} was added to the database!` });
+      setRedirectLink({
+        ...redirectLink,
+        id: newProfile._id,
+      });
+    }
+
     setIsOpen(true);
   };
 
   const onClose = () => {
     setIsOpen(false);
-    setRedirectLink({ redirect: "/shiki/" + redirectLink.id });
+    if (redirectLink.id) {
+      setRedirectLink({ redirect: "/shiki/" + redirectLink.id });
+    }
   };
 
   return (
