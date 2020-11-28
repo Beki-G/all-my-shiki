@@ -13,7 +13,7 @@ module.exports = {
     },
     async getDefaultSetId(req, res) {
         try {
-            const brokenSetId = await db.SoulSet.find({ name: 'Broken' });
+            const brokenSetId = await db.SoulSet.findOne({ name: 'Broken' });
             res.json(brokenSetId);
         } catch (err) {
             console.log('Error in getBrokenSetId: SoulSetController: ', err);

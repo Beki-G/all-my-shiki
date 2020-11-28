@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import modCharacterAPI from "../../../utils/modCharacterAPI";
+import soulSetAPI from "../../../utils/soulSetAPI";
 import userAPI from "../../../utils/userAPI";
 import { UseUserSession } from "../../../utils/UserContext";
 import Modal from "../../Modal/Modal";
@@ -11,7 +12,9 @@ const AddFavorite = ({ characterId, characterName }) => {
 
   async function onClick(e) {
     if (userProfile._id) {
-      const newModChara = await modCharacterAPI.createModCharaFromBase(userProfile._id, e.target.id, characterName)
+      const { _id } = await soulSetAPI.getDefaultSoulSet()
+
+      const newModChara = await modCharacterAPI.createModCharaFromBase(userProfile._id, e.target.id, characterName, _id)
 
       const { favorites } = await userAPI.addFavorite(
         userProfile._id,
