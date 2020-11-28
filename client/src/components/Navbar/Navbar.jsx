@@ -88,7 +88,7 @@ function Navbar() {
           </div>
         )}
         <div className=" relative right-0 py-1 px-2">
-          <button className="text-white right-0" onClick={toggleDropdown}>
+          <button className="text-white right-4 mr-12" onClick={toggleDropdown}>
             <span>Explore</span>
             <svg
               fill="currentColor"
@@ -120,12 +120,18 @@ function Navbar() {
               >
                 Teams
               </Link>
-              <a
+              <Link
                 className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
-                href="/traits"
+                to="/traits"
               >
                 Traits
-              </a>
+              </Link>
+              <Link
+                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
+                to="/advancedsearch"
+              >
+                Advanced Search
+              </Link>
             </div>
           </div>
         </div>
