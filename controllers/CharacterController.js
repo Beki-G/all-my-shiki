@@ -41,4 +41,16 @@ module.exports = {
             res.json(err);
         }
     },
+    async getAllCharactersTagsPopulated(req, res) {
+        try {
+            const allCharacters = await db.Character.find()
+                .select('-skills -skillsEvo')
+                .populate({ path: 'tags', select: ' -definition -_id -groups' })
+                .sort('name');
+            res.json(allCharacters);
+        } catch (err) {
+            console.error('Error in getAllCharactersTagsPopulated, CharacterController: ', err);
+            res.json(err);
+        }
+    },
 };
