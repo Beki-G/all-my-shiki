@@ -9,6 +9,7 @@ import {SelectColumnFilter} from "../Table/Filters"
 
 const TeamsTableContainer = () => {
   const [data, setData] = useState([]);
+  const [isShowFilter, setIsShowFilter] = useState(false)
   const [hideColumns, setHideColumns] = useState([
     "teamFormat",
     "userNotes",
@@ -185,6 +186,8 @@ const TeamsTableContainer = () => {
         columns={columnAccessors}
         setHideColumns={setHideColumns}
         hideColumns={hideColumns}
+        isShowFilter={isShowFilter}
+        setIsShowFilter={setIsShowFilter}
       />
       <br />
       <div className="w-5/6 mx-auto">
@@ -193,6 +196,7 @@ const TeamsTableContainer = () => {
           data={data}
           columnsHidden={hideColumns}
           tableRowCard={TeamsTableRowCard}
+          isShowFilter={isShowFilter}
         />
       </div>
     </div>

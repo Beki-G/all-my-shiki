@@ -9,7 +9,7 @@ import {
   useFilters,
 } from "react-table";
 
-const Table = ({ columns, data, tableRowCard, columnsHidden }) => {
+const Table = ({ columns, data, tableRowCard, columnsHidden, isShowFilter }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -71,7 +71,7 @@ const Table = ({ columns, data, tableRowCard, columnsHidden }) => {
                     {column.render("Header")}
                     {generateSortingIndicator(column)}
                   </div>
-                  <Filter column={column} />
+                  <Filter column={column} isShowFilter={isShowFilter}/>
                 </th>
               ))}
             </tr>

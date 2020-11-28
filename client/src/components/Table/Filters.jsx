@@ -1,8 +1,8 @@
 import React from "react";
 
-export const Filter = ({ column }) => {
+export const Filter = ({ column, isShowFilter }) => {
   return (
-    <div className="mt-2" hidden>{column.canFilter && column.render("Filter")}</div>
+    <div className="mt-2" hidden={!isShowFilter}>{column.canFilter && column.render("Filter")}</div>
   );
 };
 
@@ -44,8 +44,8 @@ export const SelectColumnFilter = ({
       }}
     >
       <option value="">All</option>
-      {options.map((option) => (
-        <option key={option} value={option}>
+      {options.map((option, index) => (
+        <option key={index} value={option}>
           {option}
         </option>
       ))}

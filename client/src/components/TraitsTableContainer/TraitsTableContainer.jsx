@@ -15,7 +15,7 @@ const TraitsTableContainer = () => {
 
     const getAllTraits = async () =>{
         const traits = await tagsAPI.getAllTags()
-        console.log("tags: ", traits)
+        // console.log("tags: ", traits)
         setData(traits)
     }
 
@@ -36,6 +36,7 @@ const TraitsTableContainer = () => {
                 columns={columns}
                 data={data}
                 columnsHidden={[]}
+                isShowFilter={true}
             />
         </div>
     )

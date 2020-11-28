@@ -6,7 +6,7 @@ import Table from "../Table/Table";
 import ShikigamiTableRowCard from "../ShikigamiTableRowCard/ShikigamiTableRowCard";
 import TableColumnCheckboxContainer from "../TableColumnCheckboxContainer/TableColumnCheckboxContainer";
 
-import {SelectColumnFilter} from "../Table/Filters"
+import { SelectColumnFilter } from "../Table/Filters";
 
 const ShikigamiTableContainer = () => {
   const [data, setData] = useState([]);
@@ -14,8 +14,9 @@ const ShikigamiTableContainer = () => {
     "dateCreated",
     "userNotes",
     "creatorId.guild",
-    "name"
+    "name",
   ]);
+  const [isShowFilter, setIsShowFilter] = useState(false);
 
   useEffect(() => {
     getAllPublicCharacters();
@@ -56,7 +57,9 @@ const ShikigamiTableContainer = () => {
             Cell: ({ cell }) => {
               // console.log(cell.row.original._id)
               const { value } = cell;
-              return <Link to={`/shiki/${cell.row.original._id}`}>{value}</Link>
+              return (
+                <Link to={`/shiki/${cell.row.original._id}`}>{value}</Link>
+              );
             },
           },
           {
@@ -65,7 +68,9 @@ const ShikigamiTableContainer = () => {
             Cell: ({ cell }) => {
               // console.log(cell.row.original._id)
               const { value } = cell;
-              return <Link to={`/shiki/${cell.row.original._id}`}>{value}</Link>
+              return (
+                <Link to={`/shiki/${cell.row.original._id}`}>{value}</Link>
+              );
             },
             Filter: SelectColumnFilter,
             filter: "equals",
@@ -165,11 +170,11 @@ const ShikigamiTableContainer = () => {
     { name: "Notes", accessor: "userNotes" },
     { name: "User Guild", accessor: "creatorId.guild" },
     { name: "Shiki Name", accessor: "name" },
-    { name: "Username", accessor: "creatorId.userName"},
-    { name: "Shiki Base",  accessor: "character.name"},
-    { name: "SoulSet Main", accessor: "soulsetMain.name"},
-    { name: "SoulSet Sub", accessor: "soulsetSub.name"},
-    { name: "Date Modified",accessor: "dateModified"},
+    { name: "Username", accessor: "creatorId.userName" },
+    { name: "Shiki Base", accessor: "character.name" },
+    { name: "SoulSet Main", accessor: "soulsetMain.name" },
+    { name: "SoulSet Sub", accessor: "soulsetSub.name" },
+    { name: "Date Modified", accessor: "dateModified" },
   ];
 
   return (
@@ -178,17 +183,21 @@ const ShikigamiTableContainer = () => {
         columns={columnAccessors}
         setHideColumns={setHideColumns}
         hideColumns={hideColumns}
+        isShowFilter={isShowFilter}
+        setIsShowFilter={setIsShowFilter}
       />
+
       <br />
       <div className="w-5/6 mx-auto">
-      <Table
-        columns={columns}
-        data={data}
-        tableRowCard={ShikigamiTableRowCard}
-        columnsHidden={hideColumns}
-      />
+        <Table
+          columns={columns}
+          data={data}
+          tableRowCard={ShikigamiTableRowCard}
+          columnsHidden={hideColumns}
+          isShowFilter={isShowFilter}
+        />
       </div>
-      
+
       <br />
     </div>
   );
