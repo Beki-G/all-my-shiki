@@ -10,7 +10,7 @@ const tagSchema = Schema({
         type: String,
     },
     groups: {
-        type: String,
+        type: Array,
     },
 });
 
