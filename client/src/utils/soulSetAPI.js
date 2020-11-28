@@ -3,7 +3,11 @@ import axios from 'axios';
 
 export default { 
     getAllSoulSets: async function() {
-        const { data } = await axios.get('/api/soulset')
+        const { data } = await axios.get('/api/soulset');
+        return data;
+    },
+    getDefaultSoulSet: async function(){
+        const { data } = await axios.get('/api/soulset/default');
         return data;
     }
 }
