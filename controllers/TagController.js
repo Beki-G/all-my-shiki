@@ -42,4 +42,13 @@ module.exports = {
             res.json(err);
         }
     },
+    async getAllTagGroups(req, res) {
+        try {
+            const groups = await db.Tag.distinct('groups');
+            res.json(groups);
+        } catch (err) {
+            console.error('Error in getAllTagGroups: tagController: ', err);
+            res.json(err);
+        }
+    },
 };

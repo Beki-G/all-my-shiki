@@ -47,7 +47,13 @@ module.exports = {
                 .select('-skills -skillsEvo')
                 .populate({ path: 'tags', select: ' -definition -_id -groups' })
                 .sort('name');
-            res.json(allCharacters);
+            const mappedCharacters = allCharacters.map((character) => {
+                const newTagsArr = character.tags.map((tags) => tags.tag);
+                // eslint-disable-next-line no-underscore-dangle
+                return { name: character.name, _id: character._id, tags: newTagsArr };
+            });
+
+            res.json(mappedCharacters);
         } catch (err) {
             console.error('Error in getAllCharactersTagsPopulated, CharacterController: ', err);
             res.json(err);

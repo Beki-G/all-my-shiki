@@ -8,6 +8,8 @@ router.route('/')
 
 router.route('/all')
     .get(tagController.getAllTags);
+router.route('/groups')
+    .get(tagController.getAllTagGroups);
 
 router.route('/:id')
     .get(tagController.getTagById);
