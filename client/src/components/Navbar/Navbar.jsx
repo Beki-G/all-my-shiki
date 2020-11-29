@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { UseUserSession } from "../../utils/UserContext";
 import NavbarUserLink from "../NavbarUserLink/NavbarUserLink";
 import { Link } from "react-router-dom";
+import GuildCrest from "../../assets/GuildCrest.jpg"
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,15 +33,15 @@ function Navbar() {
   return (
     <nav className=" bg-transparent sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3 sm:h-12">
       <div className="flex items-center justify-between px-4 py-6 sm:p-0 ">
-        {/* <div>
+        <div>
           <Link to="/">
             <img
-              className="h-10"
-              src="https://via.placeholder.com/150"
-              alt="BG initials"
+              className="h-10 rounded-full"
+              src={GuildCrest}
+              alt="SemiCasual Guild Crest"
             />
           </Link>
-        </div> */}
+        </div>
         <div className="sm:hidden">
           <button
             onClick={toggleSideMenu}
@@ -69,7 +70,7 @@ function Navbar() {
         {/* If user is logged in show logout, vice versa */}
         <Link
           to="/"
-          className="block py-1  px-2 text-white font-semibold rounded hover:bg-lgCyan hover:text-midGreen font-sans"
+          className="block py-1  px-2 text-white rounded hover:bg-lgCyan hover:text-midGreen font-sans"
         >
           Home
         </Link>
@@ -103,31 +104,31 @@ function Navbar() {
             </svg>
           </button>
           <div
-            className={` pt-2 pb-4 flex  ${
+            className={` pt-2 pb-4 flex rounded  ${
               isDropdownOpen ? "block" : "hidden"
             }`}
           >
-            <div className="shadow-md bg-black">
+            <div className="shadow-md bg-old-mauve rounded-md">
               <Link
-                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
+                className="block py-2 px-1 mt-2 text-sm bg-transparent  text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
                 to="/shikigami"
               >
                 Shikigami
               </Link>
               <Link
-                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
+                className="block py-2 px-1 mt-2 text-sm bg-transparent  text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
                 to="/teams"
               >
                 Teams
               </Link>
               <Link
-                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
+                className="block py-2 px-1 mt-2 text-sm bg-transparent  text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
                 to="/traits"
               >
                 Traits
               </Link>
               <Link
-                className="block py-2 px-1 mt-2 text-sm font-semibold bg-transparent rounded-lg text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
+                className="block py-2 px-1 mt-2 text-sm bg-transparent  text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
                 to="/advancedsearch"
               >
                 Advanced Search

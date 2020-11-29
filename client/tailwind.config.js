@@ -1,7 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-
+  darkMode:'media',
   purge: [
     'src/**/*.js',
     'src/**/*.jsx',
@@ -29,6 +29,14 @@ module.exports = {
       },
       minWidth: {
         '40':"10rem"
+      },
+      colors:{
+        'papaya': '#FFF1DA',
+        'sky-blue': '#6BD0DF',
+        'cinnabar': '#E44C46',
+        'chestnut': '#BD574E',
+        'old-mauve': '#4F2631',
+        'cream': '#FCFAB8'
       },
     },
   },
