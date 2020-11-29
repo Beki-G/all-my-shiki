@@ -15,4 +15,8 @@ export default {
         const { data } = await axios.get('/api/tag/all');
         return data;
     },
+    getTagGroups: async function(){
+        const { data } = await axios.get('/api/tag/groups')
+        return data;
+    }
 }

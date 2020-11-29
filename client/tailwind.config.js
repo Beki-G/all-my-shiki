@@ -29,12 +29,15 @@ module.exports = {
       },
       minWidth: {
         '40':"10rem"
-      }
+      },
     },
   },
   variants: {
     display: ['responsive', 'group-hover', 'group-focus'],
     fontweight: ['hover', 'focus'],
+    extend: {
+      opacity: ['disabled'],
+    }
   },
   plugins: [],
 }

@@ -13,5 +13,10 @@ export default {
     getCharacterNames: async function() {
         const { data } = await axios.get('/api/character');
         return data;
+    }, 
+    getAllCharactersWithTags: async function(){
+        const { data } = await axios.get('/api/character/tags')
+        return data;
     }
+
 }
