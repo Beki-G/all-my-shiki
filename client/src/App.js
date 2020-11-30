@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { UserSessionProvider } from "./utils/UserContext";
