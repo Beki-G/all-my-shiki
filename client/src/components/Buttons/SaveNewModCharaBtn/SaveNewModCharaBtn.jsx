@@ -20,7 +20,7 @@ const SaveNewModCharaBtn = ({
   });
 
   const isValidModChara = (character) => {
-    console.log("character: ", character)
+    // console.log("character: ", character)
     
     if (character.soulsetMain ==="N/A") {
       setModalText({ text: "Please add a 4 soul set to your shiki" });
@@ -50,7 +50,7 @@ const SaveNewModCharaBtn = ({
 
     const isValid = isValidModChara(newChara);
 
-    console.log("isValid is: ", isValid)
+    // console.log("isValid is: ", isValid)
 
     if (isValid) {
       const newProfile = await modCharacterAPI.createModCharacter(newChara);
