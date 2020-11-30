@@ -96,8 +96,8 @@ const AdvancedSearch = () => {
                        {character.name}
                       </p>
                       <ul className="text-sm text-gray-700 dark:text-gray-200">
-                        {character.tags.map((tag, index)=>{
-                          return <li key="index" className="">{tag}</li>
+                        {character.tags.map((tag, index2)=>{
+                          return <li key={index2} className="">{tag}</li>
                         })}
                       </ul>
                     </div>

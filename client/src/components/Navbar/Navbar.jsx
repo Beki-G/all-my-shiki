@@ -63,7 +63,7 @@ function Navbar() {
       </div>
 
       <div
-        className={`absolute bg-black sm:bg-transparent sm:top-1 sm:right-0 px-2 pt-2 pb-4  sm:flex sm:p-0 sm:justify-end  ${
+        className={`absolute rounded-b-md bg-black sm:bg-transparent sm:top-1 sm:right-0 px-2 pt-2 sm:pb-4 right-0 sm:flex sm:p-0 justify-end  ${
           isOpen ? "block" : "hidden"
         }`}
       >
@@ -89,7 +89,7 @@ function Navbar() {
           </div>
         )}
         <div className=" relative right-0 py-1 px-2">
-          <button className="text-white right-4 mr-12" onClick={toggleDropdown}>
+          <button className="text-white right-4 mr-12 mb-4 sm:mb-0" onClick={toggleDropdown}>
             <span>Explore</span>
             <svg
               fill="currentColor"
@@ -104,11 +104,11 @@ function Navbar() {
             </svg>
           </button>
           <div
-            className={` pt-2 pb-4 flex rounded  ${
+            className={` sm:pt-2 pb-4 flex rounded  ${
               isDropdownOpen ? "block" : "hidden"
             }`}
           >
-            <div className="shadow-md bg-old-mauve rounded-md">
+            <div className="shadow-md sm:bg-old-mauve rounded-md">
               <Link
                 className="block py-2 px-1 mt-2 text-sm bg-transparent  text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
                 to="/shikigami"
