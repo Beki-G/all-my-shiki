@@ -13,7 +13,7 @@ import CreateTeam from "./pages/CreateTeam";
 import Team from "./pages/Team";
 import Traits from "./pages/Traits";
 import AdvancedSearch from "./pages/AdvancedSearch";
-import { UserSessionProvider } from "./utils/UserContext";
+import { UserSessionProvider } from "./utils/UserContext.js";
 
 
 function App() {
