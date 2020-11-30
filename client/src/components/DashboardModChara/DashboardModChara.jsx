@@ -29,8 +29,11 @@ const DashboardModChara = () => {
         <h1 className=" mt-4 mb-4 text-2xl mr-2 font-semibold">
           My Shikigami 
         </h1>
+
         <AddButton type={"modChara"}/>
       </div>
+      <p className="italic mb-2">If you delete a shiki you will delete the team they are in too</p>
+
       <div className="overflow-y-auto flex flex-wrap -mx-1 overflow-hidden md:-mx-1 h-64">
         {userModCharacter && userModCharacter.length > 0 ? (
           userModCharacter.map((character) => {
@@ -47,7 +50,7 @@ const DashboardModChara = () => {
             );
           })
         ) : (
-          <p className="text-white">You will see all your personal Shikigami here</p>
+          <p className="text-white">You will see all your personal Shikigami here. Use the plus button to start building one!</p>
         )}
       </div>
     </div>

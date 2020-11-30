@@ -106,7 +106,7 @@ const DashboardTeamsTable = () => {
       </div>
 
       <div className="w-full overflow-x-auto mb-6">
-        <Table columns={columns} data={data} columnsHidden={[]} />
+        {data.length>0? <Table columns={columns} data={data} columnsHidden={[]}/> : <div>Use the plus button to start building your team</div>}
       </div>
     </div>
   );
