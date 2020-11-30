@@ -69,7 +69,7 @@ const TeamProfileCard = ({ team, userType }) => {
     <div>
       <div className="flex flex-col-reverse mt-6 sm:flex-row sm:justify-between">
         <input
-          className="text-3xl rounded-md bg-gray-200 focus:bg-white font-semibold focus:border-blue-500 focus:outline-none sm:w-1/2 my-4 "
+          className="text-3xl rounded-md bg-gray-100 focus:bg-white font-semibold focus:ring-2 focus:ring-sky-blue focus:outline-none sm:w-1/2 mb-4 ring-chestnut ring-1"
           placeholder={team.title}
           onChange={(e) => {
             setTeamName({ teamName: e.target.value });
@@ -97,7 +97,7 @@ const TeamProfileCard = ({ team, userType }) => {
         onChange={onOnmyojiChange}
       />
 
-      <div className="flex flex-row flex-wrap bg-gray-300 rounded-md">
+      <div className=" bg-middle-red rounded-md sm:mt-3 py-2 flex flex-wrap flex-initial font-semibold">
         {teammates.map((teammate, index) => {
           return (
             <CreateTeamCharactersDropdown
@@ -136,8 +136,8 @@ const TeamProfileCard = ({ team, userType }) => {
                     </div>
                     <div className="mx-4 mt-2 mb-4">
                       <Link
-                        className="tracking-wider font-bold text-purple-700 hover:bg-purple-100 rounded p-2 inline-block"
-                        to={"/shiki/" + teammate._id}
+                        className="tracking-wider font-bold mb-2 text-cinnabar hover:bg-opacity-10  hover:bg-cinnabar rounded p-2 inline-block"
+                        to={"/shiki/" + teammate._id} target="_blank"
                       >
                         Profile
                       </Link>
@@ -151,8 +151,8 @@ const TeamProfileCard = ({ team, userType }) => {
 
       <div>
         <textarea
-          className="focus:outline-none focus:ring-2 focus:ring-purple-700 w-full bg-gray-200 rounded-md"
-          placeholder={team.userNotes}
+          className="focus:outline-none focus:ring-2 focus:ring-sky-blue w-full bg-gray-100 rounded-md placeholder-black ring-chestnut ring-1 focus:bg-white"
+          placeholder={team.userNotes || "N/A"}
           onChange={(e) => setUserNotes({ notes: e.target.value })}
           disabled={!isUserEdit}
         ></textarea>

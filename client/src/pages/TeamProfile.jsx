@@ -13,8 +13,6 @@ const TeamProfile = () => {
 
   const [isInDatabase, setIsInDatabase] = useState("checking");
   const [team, setTeam] = useState();
-  // eslint-disable-next-line no-unused-vars
-  const [isPrivate, setIsPrivate] = useState(true);
 
   useEffect(() => {
     checkDatabase();
@@ -23,17 +21,16 @@ const TeamProfile = () => {
   async function checkDatabase() {
     const teamProfile = await teamAPI.getTeamByID(id);
 
-    if (teamProfile.error) setIsInDatabase(false);
-
     if (teamProfile.title) {
       setTeam(teamProfile);
-      setIsPrivate(teamProfile.isPrivate);
       setIsInDatabase(true);
+    } else {
+      setIsInDatabase(false);
     }
   }
 
   return (
-    <div className="justify-end rounded bg-gray-50 font-sans min-h-screen">
+    <div className="justify-end rounded ">
       <div className="bg-black">
         <Navbar />
       </div>

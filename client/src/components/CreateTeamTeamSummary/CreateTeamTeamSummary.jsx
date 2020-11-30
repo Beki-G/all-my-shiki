@@ -40,8 +40,8 @@ const CreateTeamTeamSummary = ({ teammates, allCharacters, isReady }) => {
               </div>
               <div className="mx-4 mt-2 mb-4">
                 <Link
-                  className="tracking-wider font-bold text-purple-700 hover:bg-purple-100 rounded p-2 inline-block"
-                  to={"/shiki/" + teammate._id}
+                  className="tracking-wider font-bold mb-2 text-cinnabar hover:bg-opacity-10  hover:bg-cinnabar rounded p-2 inline-block"
+                  to={"/shiki/" + teammate._id} target="_blank"
                 >
                   Profile
                 </Link>

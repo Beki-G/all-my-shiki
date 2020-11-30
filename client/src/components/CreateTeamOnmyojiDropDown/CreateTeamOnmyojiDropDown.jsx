@@ -24,12 +24,12 @@ const OnmyojiDropDown = ({ host, label, onChange, isEdit, defaultVal}) => {
   };
 
   return (
-    <div className="my-2 py-2 bg-gray-200 rounded-md ">
+    <div className="my-2 py-2  rounded-md ">
       <label>
         {label}
         <select
           onChange={onChange}
-          className="focus:outline-none focus:ring-2 focus:ring-purple-700"
+          className="focus:outline-none focus:ring-2 focus:ring-sky-blue rounded-md bg-gray-100 focus:bg-white ring-1 ring-grey-50"
           disabled={!isEdit }
           value={defaultVal}
         >

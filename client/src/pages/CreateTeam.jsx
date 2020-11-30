@@ -83,7 +83,7 @@ const CreateTeam = () => {
 
         <div className="flex flex-col-reverse sm:flex-row sm:justify-between">
           <input
-            className="text-3xl rounded-md bg-gray-200 focus:bg-white font-semibold focus:border-blue-500 focus:outline-none sm:w-1/2 mb-4 "
+            className="text-3xl rounded-md bg-gray-100 focus:bg-white font-semibold focus:ring-2 focus:ring-sky-blue focus:outline-none sm:w-1/2 mb-4 ring-chestnut ring-1"
             placeholder={teamName.teamName}
             onChange={(e) => {
               setTeamName({ teamName: e.target.value });
@@ -111,7 +111,7 @@ const CreateTeam = () => {
           ""
         )}
 
-        <div className=" bg-gray-300 rounded-md sm:mt-3 py-2 flex flex-wrap  flex-initial ">
+        <div className=" bg-middle-red rounded-md sm:mt-3 py-2 flex flex-wrap flex-initial font-semibold">
           {teammates.map((teammate, index) => {
             return (
               <CreateTeamCharactersDropdown
@@ -134,7 +134,7 @@ const CreateTeam = () => {
         </div>
         <div>
           <textarea
-            className="focus:outline-none focus:ring-2 focus:ring-purple-700 w-full bg-gray-200 rounded-md"
+            className="focus:outline-none focus:ring-2 focus:ring-sky-blue w-full bg-gray-100 rounded-md placeholder-black ring-chestnut ring-1 focus:bg-white"
             placeholder="Write your notes here"
             onChange={(e) => setUserNotes({ notes: e.target.value })}
           ></textarea>
