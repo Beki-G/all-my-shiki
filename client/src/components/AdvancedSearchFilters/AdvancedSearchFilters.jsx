@@ -35,7 +35,7 @@ const AdvancedSearchFilters = ({ dispatch }) => {
     return newTagArr
   }
   return (
-    <div className="bg-gray-100">
+    <div className="bg-middle-red rounded-lg">
 
       {isDataLoading.isReady && (
         <AdvancedSearchCollapse

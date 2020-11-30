@@ -29,7 +29,7 @@ function Block({ isOpen, title, onToggle, children }) {
   return (
     <div className="">
       <button
-        className="toggle flex justify-between text-purple-700 bg-transparent shadow-none w-full m-0 text-left p-2"
+        className="toggle flex justify-between text-white bg-transparent shadow-none w-full m-0 text-left p-2"
         onClick={onToggle}
       >
         <span>{title}</span>
@@ -49,14 +49,14 @@ const AdvancedSearchCollapse = ({ initialState, tagData, dispatch2 }) => {
     <div className="mx-auto flex flex-col mb-4">
       <div className="mx-auto ">
         <button
-          className="bg-transparent mr-4  disabled:opacity-70"
+          className="bg-transparent mr-4 text-white disabled:text-old-mauve disabled:opacity-90"
           onClick={() => dispatch({ type: "expand-all" })}
           disabled={state.every((s) => s === true)}
         >
           Expand all
         </button>
         <button
-          className="bg-transparent mr-4 p-3 disabled:opacity-70 transition-opacity duration-300"
+          className="bg-transparent mr-4 p-3 text-white disabled:text-old-mauve disabled:opacity-90 transition-opacity duration-300"
           onClick={() => dispatch({ type: "collapse-all" })}
           disabled={state.every((s) => s === false)}
         >

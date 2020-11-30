@@ -45,7 +45,8 @@ module.exports = {
     fontweight: ['hover', 'focus'],
     extend: {
       opacity: ['disabled'],
-    }
+      textColor: ['disabled']
+    },
   },
   plugins: [],
 }

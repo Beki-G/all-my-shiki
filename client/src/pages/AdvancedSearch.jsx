@@ -14,21 +14,29 @@ const reducer = (filters, action) => {
     case ACTIONS.ADD_TO_INCLUDES:
       const newFilter = filters.includeFilter;
       newFilter.push(action.payload.name);
-      const newFilteredChara = filters.filteredChara.filter(chara=>{
-        return chara.tags.includes(action.payload.name)
-      })
+      const newFilteredChara = filters.filteredChara.filter((chara) => {
+        return chara.tags.includes(action.payload.name);
+      });
       // console.log('newFilteredChara: ', newFilteredChara)
-      return { ...filters, includeFilter: newFilter, filteredChara: newFilteredChara };
+      return {
+        ...filters,
+        includeFilter: newFilter,
+        filteredChara: newFilteredChara,
+      };
 
     case ACTIONS.REMOVE_FROM_INCLUDES:
-      const tempFilter = filters.includeFilter
-      tempFilter.splice(tempFilter.indexOf(action.payload.name), 1)
+      const tempFilter = filters.includeFilter;
+      tempFilter.splice(tempFilter.indexOf(action.payload.name), 1);
       // console.log('tempFilter: ', tempFilter)
-      const resetFiltered = filters.allCharacters.filter( character=>{
-        return tempFilter.every(filt=> character.tags.includes(filt))
-      })
+      const resetFiltered = filters.allCharacters.filter((character) => {
+        return tempFilter.every((filt) => character.tags.includes(filt));
+      });
       // console.log('resetFiltered: ', resetFiltered)
-      return {...filters, includeFilter:tempFilter, filteredChara: resetFiltered};
+      return {
+        ...filters,
+        includeFilter: tempFilter,
+        filteredChara: resetFiltered,
+      };
 
     case ACTIONS.ALL_CHARACTERS_READY:
       return {
@@ -50,7 +58,7 @@ const AdvancedSearch = () => {
     includeFilter: [],
     allCharacters: [],
     filteredChara: [],
-    isDataReady: false
+    isDataReady: false,
   });
 
   useEffect(() => {
@@ -74,11 +82,30 @@ const AdvancedSearch = () => {
         <AdvancedSearchFilters dispatch={dispatch} />
 
         <div className="flex flex-wrap -mx-1 overflow-hidden">
-        {filtered.isDataReady && filtered.filteredChara.map((character) => {
-          return <div key={character._id} className="my-1 px-1 w-full overflow-hidden sm:w-1/2 lg:w-1/3">{character.name}</div>;
-        })}
+          {filtered.isDataReady &&
+            filtered.filteredChara.map((character) => {
+              return (
+                <div
+                  key={character._id}
+                  className="my-1 px-1 w-full overflow-hidden sm:w-1/2 lg:w-1/3"
+                >
+                  
+                  <div className="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                    <div>
+                      <p className="mb-2 text-lg dark:text-gray-400">
+                       {character.name}
+                      </p>
+                      <ul className="text-sm text-gray-700 dark:text-gray-200">
+                        {character.tags.map((tag, index)=>{
+                          return <li key="index" className="">{tag}</li>
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
         </div>
-        
       </div>
     </div>
   );
