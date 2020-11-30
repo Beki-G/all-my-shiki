@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { UserSessionProvider } from "./utils/UserContext";
 import ProtectedRoute from "./components/Auth/protected-route";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
@@ -14,6 +13,8 @@ import CreateTeam from "./pages/CreateTeam";
 import Team from "./pages/Team";
 import Traits from "./pages/Traits";
 import AdvancedSearch from "./pages/AdvancedSearch";
+import { UserSessionProvider } from "./utils/UserContext";
+
 
 function App() {
   return (
