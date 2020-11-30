@@ -4,7 +4,7 @@ import TeamsTableContainer from "../components/TeamsTableContainer/TeamsTableCon
 
 const Team = () => {
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="">
       <div className="bg-black">
         <Navbar />
       </div>

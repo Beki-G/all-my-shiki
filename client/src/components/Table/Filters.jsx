@@ -19,6 +19,7 @@ export const DefaultColumnFilter = ({
       onChange={(e) => {
         setFilter(e.target.value || undefined);
       }}
+      className="rounded-md"
       placeholder={`Search (${length})...`}
     />
   );
@@ -39,6 +40,7 @@ export const SelectColumnFilter = ({
     <select
       id="custom-select"
       value={filterValue}
+      className="text-black rounded-md"
       onChange={(e) => {
         setFilter(e.target.value || undefined);
       }}

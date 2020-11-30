@@ -1,26 +1,26 @@
 @tailwind base;
 
 @tailwind components;
-
+/* 
 .dataTable {
     @apply bg-middle-red;
-}
+} */
 .dataTable thead tr:nth-child(even){
-    @apply bg-gray-400;
-    @apply text-black;
+    @apply bg-chestnut;
+    @apply text-white;
 }
 
 .dataTable thead input {
     @apply text-black;
 }
 .dataTable thead tr:nth-child(Odd){
-    @apply bg-black; 
+    @apply bg-old-mauve; 
     @apply text-white;
 }
 
 .dataTable tbody tr:nth-child(even){
     @apply bg-chestnut;
-    @apply text-white
+    @apply bg-opacity-30;
 }
 
 .childTable thead tr:nth-child(odd){

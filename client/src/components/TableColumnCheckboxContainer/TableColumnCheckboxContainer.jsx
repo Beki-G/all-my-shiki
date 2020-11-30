@@ -12,7 +12,7 @@ const TableColumnCheckboxContainer = ({
   // console.log("columns: ", columns);
 
   return (
-    <div className=" w-5/6 mx-auto bg-gray-200 p-4 rounded-md">
+    <div className=" w-5/6 mx-auto bg-middle-red p-4 rounded-md">
       <div className="text-lg font-semibold">Check to hide columns</div>
       <div className="flex flex-wrap -mx-1 overflow-hidden sm:-mx-1">
       {columns.map((col, index) => {

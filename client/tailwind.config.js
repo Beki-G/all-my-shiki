@@ -35,7 +35,7 @@ module.exports = {
         'cinnabar': '#E44C46',
         'chestnut': '#BD574E',
         'old-mauve': '#4F2631',
-        'cream': '#FCFAB8', 
+        'cream': '#FFFED1', 
         'middle-red':'#D59282',
       },
     },

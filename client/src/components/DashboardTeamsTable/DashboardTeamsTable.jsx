@@ -105,7 +105,7 @@ const DashboardTeamsTable = () => {
         <AddButton type={"team"} />
       </div>
 
-      <div className="w-full overflow-x-scroll mb-6">
+      <div className="w-full overflow-x-auto mb-6">
         <Table columns={columns} data={data} columnsHidden={[]} />
       </div>
     </div>

@@ -24,7 +24,7 @@ const DashboardFavorites = () => {
   return (
     <div className="  mx-auto m-0 w-3/4 bg-chestnut p-4 rounded">
       <h1 className="mt-2 mb-2 text-2xl font-semibold ">Favorites</h1>
-      <div className="overflow-x-scroll overflow-auto text-center  flex">
+      <div className="overflow-x-auto overflow-auto text-center  flex">
         {userFavorites && userFavorites.length > 0 ? (
           userFavorites.map((favored) => {
             return (
