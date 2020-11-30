@@ -182,6 +182,10 @@ const TeamsTableContainer = () => {
 
   return (
     <div className="overflow-x-scroll lg:overflow-auto mb-4">
+      <div className="w-5/6 mx-auto bg-old-mauve text-white text-xl mb-2 rounded-md text-center p-2">
+        Teams
+        <p className="text-base opacity-80 my-2">Check out the teams made from other players. Tap on any of the sub-headings to sort and toggle the filters to search for more specific info. </p>
+      </div>
       <TableColumnCheckboxContainer
         columns={columnAccessors}
         setHideColumns={setHideColumns}
