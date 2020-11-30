@@ -24,15 +24,17 @@
 }
 
 .childTable thead tr:nth-child(odd){
-    @apply bg-purple-700;
+    @apply bg-old-mauve;
     @apply text-white;
 }
 
 .childTable tbody tr:nth-child(even){
-    @apply bg-purple-300;
+    @apply bg-cinnabar;
+    @apply text-gray-200;
 }
 .childTable tbody tr:nth-child(odd){
-    @apply bg-purple-200;
+    @apply bg-cinnabar;
+    @apply bg-opacity-30;
 }
 
 @tailwind utilities;
