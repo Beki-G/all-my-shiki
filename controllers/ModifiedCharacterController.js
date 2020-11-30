@@ -36,6 +36,9 @@ module.exports = {
         try {
             // first delete the id from all users favorites
             await db.User.updateMany({ favorites: req.params.id }, { $pull: { favorites: new ObjectId(req.params.id) } });
+
+            await db.Team.deleteMany({ teammates: req.params.id });
+
             // Then delete the actual document from the database
             const modDeleted = await db.ModCharacter.findByIdAndDelete({ _id: req.params.id });
             // may need to delete from teams as well!!!!
