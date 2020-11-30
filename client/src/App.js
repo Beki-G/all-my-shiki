@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import {  UserSessionProvider } from "./utils/UserContext";
+import { UserSessionProvider } from "./utils/UserContext";
 import ProtectedRoute from "./components/Auth/protected-route";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
-import Profile from "./pages/Profile"
+import Profile from "./pages/Profile";
 import { Dashboard } from "./pages/Dashboard";
 import CharacterProfile from "./pages/CharacterProfile";
-import Shikigami from "./pages/Shikigami"
-import TeamProfile from './pages/TeamProfile'
+import Shikigami from "./pages/Shikigami";
+import TeamProfile from "./pages/TeamProfile";
 import CreateModChara from "./pages/CreateModChara";
 import CreateTeam from "./pages/CreateTeam";
 import Team from "./pages/Team";
@@ -17,7 +17,6 @@ import Traits from "./pages/Traits";
 import AdvancedSearch from "./pages/AdvancedSearch";
 
 function App() {
-
   return (
     <UserSessionProvider>
       <div>
