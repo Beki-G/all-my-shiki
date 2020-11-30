@@ -28,7 +28,7 @@ const AddButton = ({ type }) => {
         <Redirect to={redirectLink.redirect} />
       ) : (
         <button
-          className=" rounded-full px-2 h-6 bg-purple-600 font-bold text-white "
+          className=" rounded-full px-2 h-6 bg-old-mauve hover:bg-cinnabar font-bold text-white focus:outline-none focus:ring-2 ring-chestnut "
           onClick={onClick}
         >
           +

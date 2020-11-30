@@ -22,8 +22,8 @@ const DashboardFavorites = () => {
   }
 
   return (
-    <div className="  mx-auto m-0 w-3/4 bg-gray-200 p-4 rounded">
-      <h1 className="mt-4 mb-2 text-2xl font-semibold ">Favorites</h1>
+    <div className="  mx-auto m-0 w-3/4 bg-chestnut p-4 rounded">
+      <h1 className="mt-2 mb-2 text-2xl font-semibold ">Favorites</h1>
       <div className="overflow-x-scroll overflow-auto text-center  flex">
         {userFavorites && userFavorites.length > 0 ? (
           userFavorites.map((favored) => {
@@ -38,7 +38,7 @@ const DashboardFavorites = () => {
             );
           })
         ) : (
-          <p>You will see all your favorites here</p>
+          <p className="text-white">You will see all your favorites here</p>
         )}
       </div>
     </div>

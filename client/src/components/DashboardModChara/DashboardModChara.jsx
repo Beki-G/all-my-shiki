@@ -24,7 +24,7 @@ const DashboardModChara = () => {
   }
 
   return (
-    <div className="mx-auto m-0 w-3/4 bg-blue-400 p-4 rounded-md">
+    <div className="mx-auto m-0 w-3/4 bg-middle-red p-4 rounded-md">
       <div className=" flex items-center">
         <h1 className=" mt-4 mb-4 text-2xl mr-2 font-semibold">
           My Shikigami 
@@ -47,7 +47,7 @@ const DashboardModChara = () => {
             );
           })
         ) : (
-          <p>You will see all your personal Shikigami here</p>
+          <p className="text-white">You will see all your personal Shikigami here</p>
         )}
       </div>
     </div>
