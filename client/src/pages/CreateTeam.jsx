@@ -24,6 +24,9 @@ const CreateTeam = () => {
   const [userNotes, setUserNotes] = useState({ notes: null });
   const [isPrivate, setIsPrivate] = useState(true);
   const [teamName, setTeamName] = useState({ teamName: "Please name!" });
+  const [userHasCharacters, setUserHasCharacters] = useState({
+    isCharacters: false,
+  });
 
   useEffect(() => {
     getAllCharacterNames();
@@ -32,10 +35,14 @@ const CreateTeam = () => {
   const getAllCharacterNames = async () => {
     if (userProfile._id) {
       const names = await modCharacterAPI.getAllUserModChara(userProfile._id);
-      setAllCharacters(names);
-      const team = setTeamArr(5, names[0]);
-      setTeammates(team);
-      setIsReady(true);
+      if (names.length <= 0) setUserHasCharacters({ isCharacters: false });
+      else {
+        setAllCharacters(names);
+        const team = setTeamArr(5, names[0]);
+        setTeammates(team);
+        setIsReady(true);
+        setUserHasCharacters({ isCharacters: true });
+      }
     }
   };
 
@@ -78,78 +85,85 @@ const CreateTeam = () => {
         <Navbar />
       </div>
 
-      <div className=" mx-auto w-4/5">
-        <h1 className="text-2xl mb-4  mt-6">Create Team</h1>
+      {!userHasCharacters.isCharacters ? (
+        <div className="w-5/6 mx-auto text-xl pt-6">
+          Please build your own shiki first
+        </div>
+      ) : (
+        <div className=" mx-auto w-4/5">
+          <h1 className="text-2xl mb-4  mt-6">Create Team</h1>
 
-        <div className="flex flex-col-reverse sm:flex-row sm:justify-between">
-          <input
-            className="text-3xl rounded-md bg-gray-100 focus:bg-white font-semibold focus:ring-2 focus:ring-sky-blue focus:outline-none sm:w-1/2 mb-4 ring-chestnut ring-1"
-            placeholder={teamName.teamName}
-            onChange={(e) => {
-              setTeamName({ teamName: e.target.value });
-            }}
-          />
-          <div className="mb-4">
-            <TogglePrivate
+          <div className="flex flex-col-reverse sm:flex-row sm:justify-between">
+            <input
+              className="text-3xl rounded-md bg-gray-100 focus:bg-white font-semibold focus:ring-2 focus:ring-sky-blue focus:outline-none sm:w-1/2 mb-4 ring-chestnut ring-1"
+              placeholder={teamName.teamName}
+              onChange={(e) => {
+                setTeamName({ teamName: e.target.value });
+              }}
+            />
+            <div className="mb-4">
+              <TogglePrivate
+                isEdit={true}
+                isCharacterPrivate={isPrivate}
+                setIsCharacterPrivate={setIsPrivate}
+              />
+            </div>
+          </div>
+
+          <TeamFormatDropDown onChange={onTeamFormatChange} isEdit={true} />
+
+          {teamFormat.onmyoji === "onmyoji" ||
+          teamFormat.onmyoji === "event" ? (
+            <CreateTeamOnmyojiDropDown
+              label="Onmyoji: "
+              host={teamFormat.onmyoji}
+              onChange={onOnmyojiChange}
               isEdit={true}
-              isCharacterPrivate={isPrivate}
-              setIsCharacterPrivate={setIsPrivate}
+            />
+          ) : (
+            ""
+          )}
+
+          <div className=" bg-middle-red rounded-md sm:mt-3 py-2 flex flex-wrap flex-initial font-semibold">
+            {teammates.map((teammate, index) => {
+              return (
+                <CreateTeamCharactersDropdown
+                  key={index}
+                  characters={allCharacters}
+                  index={index}
+                  onChange={onTeammatesChange}
+                  defaultValue={teammate.id}
+                  isEdit={true}
+                />
+              );
+            })}
+          </div>
+          <div className="md:mt-6 mt-3 mx-auto">
+            <CreateTeamTeamSummary
+              teammates={teammates}
+              allCharacters={allCharacters}
+              isReady={isReady}
+            />
+          </div>
+          <div>
+            <textarea
+              className="focus:outline-none focus:ring-2 focus:ring-sky-blue w-full bg-gray-100 rounded-md placeholder-black ring-chestnut ring-1 focus:bg-white"
+              placeholder="Write your notes here"
+              onChange={(e) => setUserNotes({ notes: e.target.value })}
+            ></textarea>
+          </div>
+          <div className="my-4">
+            <SaveNewTeamBtn
+              teamName={teamName.teamName}
+              format={teamFormat}
+              teammates={teammates}
+              notes={userNotes.notes}
+              onmyoji={onmyojiBase.onmyoji}
+              isPrivate={isPrivate}
             />
           </div>
         </div>
-
-        <TeamFormatDropDown onChange={onTeamFormatChange} isEdit={true} />
-
-        {teamFormat.onmyoji === "onmyoji" || teamFormat.onmyoji === "event" ? (
-          <CreateTeamOnmyojiDropDown
-            label="Onmyoji: "
-            host={teamFormat.onmyoji}
-            onChange={onOnmyojiChange}
-            isEdit={true}
-          />
-        ) : (
-          ""
-        )}
-
-        <div className=" bg-middle-red rounded-md sm:mt-3 py-2 flex flex-wrap flex-initial font-semibold">
-          {teammates.map((teammate, index) => {
-            return (
-              <CreateTeamCharactersDropdown
-                key={index}
-                characters={allCharacters}
-                index={index}
-                onChange={onTeammatesChange}
-                defaultValue={teammate.id}
-                isEdit={true}
-              />
-            );
-          })}
-        </div>
-        <div className="md:mt-6 mt-3 mx-auto">
-          <CreateTeamTeamSummary
-            teammates={teammates}
-            allCharacters={allCharacters}
-            isReady={isReady}
-          />
-        </div>
-        <div>
-          <textarea
-            className="focus:outline-none focus:ring-2 focus:ring-sky-blue w-full bg-gray-100 rounded-md placeholder-black ring-chestnut ring-1 focus:bg-white"
-            placeholder="Write your notes here"
-            onChange={(e) => setUserNotes({ notes: e.target.value })}
-          ></textarea>
-        </div>
-        <div className="my-4">
-          <SaveNewTeamBtn
-            teamName={teamName.teamName}
-            format={teamFormat}
-            teammates={teammates}
-            notes={userNotes.notes}
-            onmyoji={onmyojiBase.onmyoji}
-            isPrivate={isPrivate}
-          />
-        </div>
-      </div>
+      )}
     </div>
   );
 };
