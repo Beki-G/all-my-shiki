@@ -11,9 +11,9 @@ function HomeCharacterProfile({ characterProfile }) {
   };
 
   return (
-    <div className="bg-pink-200 rounded text-center w-3/4 m-0 mx-auto mt-4 mb-4 pb-3 pt-3" id={snakeCase(characterProfile.name)}>
-      <h3 className="text-lg font-semibold">{characterProfile.name}</h3>
-      <p>{characterProfile.name} has the following traits:</p>
+    <div className="bg-middle-red rounded text-center w-3/4 m-0 mx-auto mt-4 mb-4 pb-3 pt-3" id={snakeCase(characterProfile.name)}>
+      {/* <h3 className="text-lg font-semibold">{characterProfile.name}</h3> */}
+      <p className="text-white font-semibold text-lg pb-4">{characterProfile.name} has the following traits:</p>
       <div className="flex flex-wrap -mx-1 overflow-hidden">
         {characterProfile.tags.length > 0
           ? characterProfile.tags.map((tag) => {

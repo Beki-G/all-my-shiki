@@ -40,11 +40,10 @@ function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag, setIsCharacter 
 
   return (
     <div className="flex flex-col w-3/4 m-0 mx-auto mt-10 ">
-      <div className="text-center">Welcome back {userProfile.userName===""?"NamelessMaster":userProfile.userName}!</div>
-      <p className="bg-pink-200 rounded text-center p-2">
-        How to Search Blurb to go here soon. But first want to work on dynamic
-        dropdown.
-        <select onChange={onSelectChange}>
+      <div className="text-center text-xl mb-4">Welcome back {userProfile.userName===""?"NamelessMaster":userProfile.userName}!</div>
+      <div className=" bg-middle-red rounded text-center p-2 ">
+        <p className="text-white font-medium">Hello</p>
+        <select onChange={onSelectChange} className="rounded-md ">
           <option className="font-sans" value={false}>
             ---Choose a trait---
           </option>
@@ -52,7 +51,7 @@ function SearchBlurb({ setIsTag, setTagId, setCharactersWithTag, setIsCharacter 
             return <Options tag={tag} key={tag._id} />;
           })}
         </select>
-      </p>
+      </div>
     </div>
   );
 }

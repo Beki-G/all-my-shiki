@@ -13,7 +13,7 @@ function Home() {
   const [characterProfile, setCharacterProfile] = useState({});
 
   return (
-    <div className="bg-gray-50 font-sans h-screen">
+    <div className="bg-papaya font-sans min-h-screen">
       {/* <Navbar /> */}
       <Hero />
       <SearchBlurb

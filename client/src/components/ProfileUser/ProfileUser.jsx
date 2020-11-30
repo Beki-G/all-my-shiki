@@ -83,6 +83,7 @@ export const ProfileUser = () => {
             placeholder={` ${userProfile.userName}`}
             disabled={!isEdit}
             onChange={handleInputChanges}
+            className="placeholder-black"
           />
         </label>
         <br />
@@ -94,6 +95,7 @@ export const ProfileUser = () => {
             type="text"
             name="dateJoined"
             placeholder={` ${dateJoined}`}
+            className="placeholder-black"
             disabled
           />
         </label>
@@ -108,6 +110,7 @@ export const ProfileUser = () => {
             placeholder={userProfile.guild}
             disabled={!isEdit}
             onChange={handleInputChanges}
+            className="placeholder-black"
           />
         </label>
         <br />
@@ -115,11 +118,11 @@ export const ProfileUser = () => {
           {isEdit ? (
             <div className="flex flex-col sm:flex-row justify-center">
               <input
-                className="block uppercase mx-auto sm:mx-0 shadow mb-3 sm:mb-0 bg-indigo-800 hover:bg-indigo-700 focus:ring focus:outline-none text-white text-xs py-3 px-10 rounded"
+                className="block uppercase mx-auto sm:mx-0 shadow mb-3 sm:mb-0 bg-old-mauve hover:bg-cinnabar focus:ring focus:outline-none text-white text-xs py-3 px-10 rounded ring-papaya"
                 type="submit"
                 value="Submit"
               />
-              <button onClick={()=>{setIsEdit(!isEdit)}} className="block uppercase mx-auto sm:mx-0 sm:ml-3 shadow bg-indigo-800 hover:bg-indigo-700 focus:ring focus:outline-none text-white text-xs py-3 px-10 rounded">Cancel</button>
+              <button onClick={()=>{setIsEdit(!isEdit)}} className="block uppercase mx-auto sm:mx-0 sm:ml-3 shadow bg-old-mauve hover:bg-cinnabar focus:ring focus:outline-none text-white text-xs py-3 px-10 rounded ring-papaya">Cancel</button>
             </div>
           ) : (
             <div className="flex flex-col sm:flex-row justify-center">
