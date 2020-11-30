@@ -23,7 +23,7 @@ export function UpdateUserSession() {
   return updateUser
 }
 
-export function UserSessionProvider({ children }) {
+export default function UserSessionProvider({ children }) {
   const [userProfile, setUserProfile] = useState({
     userName: "Wandering Onmyoji",
   });
