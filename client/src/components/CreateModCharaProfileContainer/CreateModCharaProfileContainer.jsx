@@ -63,7 +63,7 @@ const CreateModCharaProfileContainer = ({ characterProfile }) => {
       <br />
       <div className="flex flex-col-reverse sm:flex-row sm:justify-between">
         <input
-          className="text-3xl rounded-md bg-gray-200 focus:bg-white font-semibold focus:border-blue-500 focus:outline-none sm:w-1/2"
+          className="text-3xl rounded-md bg-gray-200 focus:bg-white font-semibold focus:ring-2 ring-sky-blue focus:outline-none sm:w-1/2"
           placeholder={characterProfile.name}
           onChange={(e) => {
             setModCharaName({ name: e.target.value });
@@ -86,7 +86,7 @@ const CreateModCharaProfileContainer = ({ characterProfile }) => {
         onChange={(e) => {
           setUserNotes({ notes: e.target.value });
         }}
-        className="border focus:border-blue-500 focus:outline-none bg-gray-200 focus:bg-white "
+        className="border focus:border-blue-500 focus:outline-none bg-gray-200 focus:bg-white  rounded-md"
       ></textarea>
       <br />
       <CreateModCharaSouls

@@ -23,7 +23,7 @@ const CreateModCharaBaseDropDown = ({ setBaseCharacter }) => {
       <label>
         Choose a Shikigami to build
         <br />
-        <select onChange={onChange}>
+        <select onChange={onChange} className="rounded-md focus:outline-none focus:ring-2 ring-sky-blue">
           {allCharacters.map((character) => {
             return (
               <option key={character._id} value={character._id}>

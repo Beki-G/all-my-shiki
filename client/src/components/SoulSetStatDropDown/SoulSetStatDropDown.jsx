@@ -42,6 +42,7 @@ const SoulSetStatDropDown = ({
         value={subSetValue ? subSetValue : "N/A"}
         disabled={!isEdit}
         onChange={onChange}
+        className="rounded-md focus:outline-none focus:ring-2 ring-sky-blue mt-1 mr-2"
       >
         {slotOptions?.map((option, index) => {
           return (

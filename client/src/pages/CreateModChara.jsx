@@ -23,7 +23,7 @@ const CreateModChara = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div >
       <div className="bg-black">
         <Navbar />
       </div>

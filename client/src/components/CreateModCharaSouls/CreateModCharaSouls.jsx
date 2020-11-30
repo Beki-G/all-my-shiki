@@ -12,21 +12,23 @@ const CreateModCharaSouls = ({
     <div>
       <div className="text-2xl">SoulSets</div>
       <div>
-        <SoulSetDropDown
-          title="Four Set:"
-          isEdit={true}
-          setType={"mainSet"}
-          soulSetValue={soulSets.mainSet}
-          onChange={soulSetOnChange}
-        />
-        <SoulSetDropDown
-          title="TwoSet:"
-          isEdit={true}
-          setType="subSet"
-          soulSetValue={soulSets.subSet}
-          onChange={soulSetOnChange}
-        />
-        <br />
+        <div className="mb-3 flex flex-col md:flex-row">
+          <SoulSetDropDown
+            title="Four Set:"
+            isEdit={true}
+            setType={"mainSet"}
+            soulSetValue={soulSets.mainSet}
+            onChange={soulSetOnChange}
+          />
+          <SoulSetDropDown
+            title="TwoSet:"
+            isEdit={true}
+            setType="subSet"
+            soulSetValue={soulSets.subSet}
+            onChange={soulSetOnChange}
+          />
+        </div>
+        <div  className="mb-3 flex flex-col md:flex-row">
         <SoulSetStatDropDown
           title={"Slot 2: "}
           slot={2}
@@ -48,6 +50,9 @@ const CreateModCharaSouls = ({
           isEdit={true}
           onChange={soulStatsOnChange}
         />
+        </div>
+
+        
       </div>
     </div>
   );

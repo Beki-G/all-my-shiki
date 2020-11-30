@@ -21,6 +21,7 @@ export const SoulSetDropDown = ({ title, soulSetValue, onChange, isEdit, setType
         value={soulSetValue ? soulSetValue : ""}
         onChange={onChange}
         disabled={!isEdit}
+        className="rounded-md focus:outline-none focus:ring-2 ring-sky-blue mt-2 mr-2"
       >
         
         {soulSetData.map((soulSet) => {
