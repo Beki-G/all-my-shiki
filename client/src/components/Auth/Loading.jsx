@@ -4,7 +4,7 @@ import { SemipolarLoading } from 'react-loadingg'
 const Loading = () => {
     return (
         <div>
-            <SemipolarLoading color="#5a67d8" size="large"/>
+            <SemipolarLoading color="#4F2631" size="large"/>
         </div>
     )
 }
