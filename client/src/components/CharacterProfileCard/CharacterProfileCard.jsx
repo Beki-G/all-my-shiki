@@ -1,16 +1,21 @@
 /* eslint-disable no-restricted-globals */
 import React, { useState } from "react";
 import modCharacterAPI from "../../utils/modCharacterAPI";
+import userAPI from "../../utils/userAPI";
 import LoginButton from "../Buttons/LoginButton/LoginButton";
 import CharacterProfileCreatorButtons from "../CharacterProfileCreatorButtons/CharacterProfileCreatorButtons";
 import CharacterProfileName from "../CharacterProfileName/CharacterProfileName";
 import CharacterProfileOnmoyjiSection from "../CharacterProfileOnmoyjiSection/CharacterProfileOnmoyjiSection";
 import CharacterProfileSouls from "../CharacterProfileSouls/CharacterProfileSouls";
 import CharacterProfileTraits from "../CharacterProfileTraits/CharacterProfileTraits";
+import {UseUserSession} from "../../utils/UserContext"
+import Modal from "../Modal/Modal"
 
 export const CharacterProfileCard = ({ character, userType }) => {
   // console.log("character", character);
-
+  const {userProfile} = UseUserSession()
+  const [modalMsg, setModalMsg] = useState({msg: ""})
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [soulSets, setSoulSets] = useState({
     mainSet: character.soulsetMain?._id || "N/A",
     subSet: character.soulsetSub?._id || "N/A",
@@ -47,6 +52,14 @@ export const CharacterProfileCard = ({ character, userType }) => {
 
     await modCharacterAPI.updateModCharacterById(character._id, updates)
     location.reload();
+  }
+
+  const onAddFavorite= async(e) =>{
+    e.preventDefault();
+
+    await userAPI.addFavorite(userProfile._id, character._id)
+    setModalMsg({msg: `${characterName.name} has been added to your favorites`})
+    setIsModalOpen(true)
   }
 
   const soulSetOnChange = (e) => {
@@ -94,6 +107,7 @@ export const CharacterProfileCard = ({ character, userType }) => {
           isCharacterPrivate={isCharacterPrivate}
           setIsCharacterPrivate={setIsCharacterPrivate}
           onUpdate={onUpdate}
+          onAddFavorite={onAddFavorite}
         />
       ) : userType === "user" ? (
         <div>Future like button</div>
@@ -132,6 +146,7 @@ export const CharacterProfileCard = ({ character, userType }) => {
       <br />
 
       <CharacterProfileTraits tags={character.character.tags} />
+      <Modal open={isModalOpen} onClose={()=>setIsModalOpen(false)}>{modalMsg.msg}</Modal>
     </div>
   );
 };
