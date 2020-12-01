@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const _ = require('lodash');
 const db = require('../models');
 const tagsData = require('./tags');
+require('dotenv').config();
+
+console.log(process.env.MONGODB_URI)
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shikidata', { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true });
 
