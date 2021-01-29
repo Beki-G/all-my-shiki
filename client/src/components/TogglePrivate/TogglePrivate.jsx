@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
+import{ CREATE_TEAM_ACTIONS } from "../../pages/CreateTeam" 
 import './styles.css'
 
 const TogglePrivate = ({
   isEdit,
   isCharacterPrivate,
   setIsCharacterPrivate,
+  dispatch
 }) => {
   const [toggleMsg, setToggleMsg] = useState("Private");
 
@@ -29,7 +31,9 @@ const TogglePrivate = ({
           checked={isCharacterPrivate}
           disabled={!isEdit}
           onChange={() => {
-            setIsCharacterPrivate(!isCharacterPrivate);
+            typeof setIsCharacterPrivate === "function" 
+            ? setIsCharacterPrivate(!isCharacterPrivate)
+            :dispatch({type: CREATE_TEAM_ACTIONS.TOGGLE_ISPRIVATE, payload:{isPrivate: !isCharacterPrivate}});
           }}
         />
         {/* <!-- line --> */}
