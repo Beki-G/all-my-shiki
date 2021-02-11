@@ -133,6 +133,12 @@ function Navbar() {
               >
                 Advanced Search
               </Link>
+              <Link
+                className="block py-2 px-1 mt-2 text-sm bg-transparent  text-white md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring"
+                to="/about"
+              >
+                About
+              </Link>
             </div>
           </div>
         </div>

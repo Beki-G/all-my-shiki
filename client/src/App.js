@@ -14,6 +14,7 @@ import Team from "./pages/Team";
 import Traits from "./pages/Traits";
 import AdvancedSearch from "./pages/AdvancedSearch";
 import UserSessionProvider from "./utils/UserContext";
+import About from "./pages/About";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
             <Route path="/traits" component={Traits} />
             <Route path="/shiki/:id" component={CharacterProfile} />
             <Route path="/team/:id" component={TeamProfile} />
+            <Route path="/about" component={About} />
           </Switch>
         </Router>
       </div>
