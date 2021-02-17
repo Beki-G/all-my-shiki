@@ -2,6 +2,13 @@ import React, { useEffect, useReducer } from "react";
 import AdvancedSearchFilters from "../components/AdvancedSearchFilters/AdvancedSearchFilters";
 import Navbar from "../components/Navbar/Navbar";
 import characterAPI from "../utils/characterAPI";
+import { useWindowSize } from "@react-hook/window-size";
+import {
+  usePositioner,
+  useResizeObserver,
+  useContainerPosition,
+  MasonryScroller,
+} from "masonic";
 
 export const ACTIONS = {
   ADD_TO_INCLUDES: "add-to-includes",
@@ -60,10 +67,23 @@ const AdvancedSearch = () => {
     filteredChara: [],
     isDataReady: false,
   });
+  const containerRef = React.useRef(null);
+  const [windowWidth, windowHeight] = useWindowSize();
+  const { offset, width } = useContainerPosition(containerRef, [
+    windowWidth,
+    windowHeight,
+  ]);
 
   useEffect(() => {
     getCharacterData();
   }, []);
+
+  const positioner = usePositioner(
+    { width, columnWidth: 210, columnGutter: 6 },
+    [filtered.filteredChara]
+  );
+
+  const resizeObserver = useResizeObserver(positioner);
 
   const getCharacterData = async () => {
     const allCharactersData = await characterAPI.getAllCharactersWithTags();
@@ -72,6 +92,22 @@ const AdvancedSearch = () => {
       payload: { characters: allCharactersData },
     });
   };
+  const characterCard = ({ index, data: { _id, name, tags } }) => (
+    <div className=" items-center p-4 bg-white rounded-lg shadow-xs ">
+      <div>
+        <p className="mb-2 text-lg ">{name}</p>
+        <ul className="text-sm text-gray-700 ">
+          {tags.map((tag, index2) => {
+            return (
+              <li key={index2} className="">
+                {tag}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  );
 
   return (
     <div>
@@ -80,31 +116,17 @@ const AdvancedSearch = () => {
       </div>
       <div className="mx-auto w-5/6 mt-6 mb-6">
         <AdvancedSearchFilters dispatch={dispatch} />
-
-        <div className="flex flex-wrap -mx-1 overflow-hidden">
-          {filtered.isDataReady &&
-            filtered.filteredChara.map((character) => {
-              return (
-                <div
-                  key={character._id}
-                  className="my-1 px-1 w-full overflow-hidden sm:w-1/2 lg:w-1/3"
-                >
-                  
-                  <div className="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                    <div>
-                      <p className="mb-2 text-lg dark:text-gray-400">
-                       {character.name}
-                      </p>
-                      <ul className="text-sm text-gray-700 dark:text-gray-200">
-                        {character.tags.map((tag, index2)=>{
-                          return <li key={index2} className="">{tag}</li>
-                        })}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+        <div>
+          <MasonryScroller
+            positioner={positioner}
+            resizeObserver={resizeObserver}
+            containerRef={containerRef}
+            items={filtered.filteredChara}
+            height={windowHeight}
+            offset={offset}
+            overscanBy={6}
+            render={characterCard}
+          />
         </div>
       </div>
     </div>
