@@ -109,8 +109,10 @@ module.exports = {
             const removed = await db.Team.findByIdAndUpdate(
                 { _id: req.body.teamId },
                 { $pull: { likes: new ObjectId(req.body.userId) } },
+                { returnOriginal: false },
             );
-            console.log(removed);
+            // console.log(removed);
+            res.json(removed);
         } catch (err) {
             console.log('Error in TeamController.removeLike: ', err);
             res.json(err);

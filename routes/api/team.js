@@ -14,6 +14,6 @@ router.route('/:id')
     .put(teamController.updateTeambyTeamId);
 router.route('/like')
     .post(teamController.addLike)
-    .put(teamController.removeLike);
+    .patch(teamController.removeLike);
 
 module.exports = router;
