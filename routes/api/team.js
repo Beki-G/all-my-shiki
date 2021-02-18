@@ -12,5 +12,8 @@ router.route('/userbasic/:id')
 router.route('/:id')
     .get(teamController.getTeamById)
     .put(teamController.updateTeambyTeamId);
+router.route('/like')
+    .post(teamController.addLike)
+    .put(teamController.removeLike);
 
 module.exports = router;

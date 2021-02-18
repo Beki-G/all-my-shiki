@@ -14,9 +14,10 @@ const teamSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
     },
-    likes: {
-        type: Array,
-    },
+    likes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Team',
+    }],
     dateCreated: {
         type: Date,
         default: Date.now,
