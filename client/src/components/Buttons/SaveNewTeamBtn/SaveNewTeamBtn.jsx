@@ -58,13 +58,16 @@ const SaveNewTeamBtn = ({ team }) => {
   };
 
   const checkIsValidTeam = (team) => {
+    
     if (!team.title) {
       setModalText({ text: "Please Name your team!" });
+      console.log("Team Title non existent")
       return false;
     }
 
-    if (team.title === "Please name!" || "Team name") {
+    if (team.title === "Please name!" || team.title==="Team name") {
       setModalText({ text: "Please Name your team!" });
+      console.log("team tile has default name")
       return false;
     }
 
