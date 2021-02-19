@@ -104,7 +104,7 @@ module.exports = {
         }
     },
     async removeLike(req, res) {
-        console.warn('fired');
+        // console.warn('fired');
         try {
             const removed = await db.Team.findByIdAndUpdate(
                 { _id: req.body.teamId },
@@ -115,6 +115,18 @@ module.exports = {
             res.json(removed);
         } catch (err) {
             console.log('Error in TeamController.removeLike: ', err);
+            res.json(err);
+        }
+    },
+    async getLikeCount(req, res) {
+        try {
+            const likeCount = await db.Team.aggregate([
+                { $match: { _id: new ObjectId(req.params.id) } },
+                { $project: { numOfLikes: { $size: '$likes' } } },
+            ]);
+            res.json(likeCount[0].numOfLikes);
+        } catch (err) {
+            console.log('Error in TeamController.getLikeCount: ', err);
             res.json(err);
         }
     },
