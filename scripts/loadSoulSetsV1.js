@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const db = require('../models');
 const soulsData = require('./soulSets');
+require('dotenv').config();
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shikidata', { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true });
 

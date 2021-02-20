@@ -2,17 +2,19 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const CreateTeamTeamSummary = ({ teammates, allCharacters, isReady }) => {
+const CreateTeamTeamSummary = ({ teammates, allCharacters }) => {
   const [teamProfiles, setTeamProfiles] = useState([]);
   useEffect(() => {
     getTeamProfiles();
-  }, [isReady]);
+    console.log("triggered")
+  }, [teammates]);
 
   const getTeamProfiles = () => {
     // allCharacters.find(character=> character._id === teammates)
     let profiles = teammates.map((teammate) => {
       return allCharacters.find((character) => character._id === teammate.id);
     });
+    // console.log('teammates: ', teammates)
     setTeamProfiles(profiles);
   };
 

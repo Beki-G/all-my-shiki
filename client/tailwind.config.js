@@ -9,6 +9,19 @@ module.exports = {
     'public/**/*.html',
   ],
   theme: {
+    objectPosition: {
+      bottom: 'bottom',
+      center: 'center',
+      left: 'left',
+     'left-bottom': 'left bottom',
+     'left-top': 'left top',
+      right: 'right',
+      'right-bottom': 'right bottom',
+      'right-top': 'right top',
+      top: 'top',
+     'center-bottom': 'center bottom',
+     'center-top': 'center top',
+    },
     extend: {
       height: {
         '100px': '100px', 

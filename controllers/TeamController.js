@@ -89,4 +89,45 @@ module.exports = {
             res.json(err);
         }
     },
+    async addLike(req, res) {
+        try {
+            // console.log('req in add like: ', req.body);
+            const liked = await db.Team.findOneAndUpdate(
+                { _id: req.body.teamId },
+                { $addToSet: { likes: new ObjectId(req.body.userId) } },
+                { new: true },
+            );
+            res.json(liked);
+        } catch (err) {
+            console.log('Error in TeamController.addLike: ', err);
+            res.json(err);
+        }
+    },
+    async removeLike(req, res) {
+        // console.warn('fired');
+        try {
+            const removed = await db.Team.findByIdAndUpdate(
+                { _id: req.body.teamId },
+                { $pull: { likes: new ObjectId(req.body.userId) } },
+                { returnOriginal: false },
+            );
+            // console.log(removed);
+            res.json(removed);
+        } catch (err) {
+            console.log('Error in TeamController.removeLike: ', err);
+            res.json(err);
+        }
+    },
+    async getLikeCount(req, res) {
+        try {
+            const likeCount = await db.Team.aggregate([
+                { $match: { _id: new ObjectId(req.params.id) } },
+                { $project: { numOfLikes: { $size: '$likes' } } },
+            ]);
+            res.json(likeCount[0].numOfLikes);
+        } catch (err) {
+            console.log('Error in TeamController.getLikeCount: ', err);
+            res.json(err);
+        }
+    },
 };

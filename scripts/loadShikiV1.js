@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const _ = require('lodash');
 const db = require('../models');
 const shikiData = require('./shiki');
-
+require('dotenv').config();
 // This file empties the Books collection and inserts the books below
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shikidata', { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true });

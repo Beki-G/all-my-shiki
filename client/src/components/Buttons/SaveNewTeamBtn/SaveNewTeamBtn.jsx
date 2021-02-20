@@ -4,14 +4,7 @@ import Modal from "../../Modal/Modal";
 import { Redirect } from "react-router-dom";
 import { UseUserSession } from "../../../utils/UserContext";
 
-const SaveNewTeamBtn = ({
-  isPrivate,
-  teamName,
-  format,
-  teammates,
-  notes,
-  onmyoji,
-}) => {
+const SaveNewTeamBtn = ({ team }) => {
   const { userProfile } = UseUserSession();
 
   const [isValidTeam, setIsValidTeam] = useState(false);
@@ -32,21 +25,25 @@ const SaveNewTeamBtn = ({
   const onClick = async (e) => {
     e.preventDefault();
 
-    const newTeammates = teammates.map((teammate) => {
+    console.log("Team is: ", team);
+
+    const newTeammates = team.teammates.map((teammate) => {
       return teammate.id;
     });
 
     const newTeam = {
-      title: teamName,
+      title: team.teamName,
       teammates: newTeammates,
-      onmyoji: onmyoji,
-      userNotes: notes,
+      onmyoji: team.onmyoji,
+      userNotes: team.notes,
       creatorId: userProfile._id,
-      isPrivate: isPrivate,
-      teamFormat: format.teammates + " shiki + " + format.onmyoji,
+      isPrivate: team.isPrivate,
+      teamFormat:
+        team.composition.numOfTeammates +
+        " shiki + " +
+        team.composition.hostType,
     };
 
-    // const newProfile = await modCharacterAPI.createModCharacter(newChara);
     const isValid = checkIsValidTeam(newTeam);
     if (isValid) {
       const inDBTeam = await teamAPI.createTeam(newTeam);
@@ -61,13 +58,16 @@ const SaveNewTeamBtn = ({
   };
 
   const checkIsValidTeam = (team) => {
+    
     if (!team.title) {
       setModalText({ text: "Please Name your team!" });
+      console.log("Team Title non existent")
       return false;
     }
 
-    if (team.title === "Please name!") {
+    if (team.title === "Please name!" || team.title==="Team name") {
       setModalText({ text: "Please Name your team!" });
+      console.log("team tile has default name")
       return false;
     }
 

@@ -14,6 +14,9 @@ const DashboardTeamsTable = () => {
 
   useEffect(() => {
     getUserTeamInfo();
+    return () =>{
+      setData([])
+    }
   }, [userProfile]);
 
   const getUserTeamInfo = async () => {

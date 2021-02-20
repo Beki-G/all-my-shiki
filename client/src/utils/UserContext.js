@@ -20,7 +20,7 @@ export function UseUserSession() {
 
 export function UpdateUserSession() {
   const {updateUser} =  useContext(UserSessionProfileUpdateContext);
-  return updateUser
+  return {updateUser}
 }
 
 export default function UserSessionProvider({ children }) {

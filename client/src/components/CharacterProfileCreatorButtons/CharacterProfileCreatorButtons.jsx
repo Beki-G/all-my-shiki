@@ -10,7 +10,8 @@ const CharacterProfileCreatorButtons = ({
   isCharacterPrivate,
   setIsCharacterPrivate,
   onUpdate,
-  onAddFavorite
+  onFavorite,
+  isFavorite
 }) => {
   
   return (
@@ -21,7 +22,7 @@ const CharacterProfileCreatorButtons = ({
           setIsEdit={setIsEdit}
           onUpdate={onUpdate}
         />
-        <AddFavoriteFromProfile onClick={onAddFavorite}/>
+        <AddFavoriteFromProfile onClick={onFavorite} isFavorite={isFavorite}/>
       </div>
 
       <div className="sm:float-right">

@@ -12,6 +12,7 @@ const OnmyojiDropDown = ({ host, label, onChange, isEdit, defaultVal}) => {
   const setOptions = async () => {
     if (host === "onmyoji") {
       setDropdownOptions([
+        {name: "~~Please Choose~~"},
         { name: "Seimei" },
         { name: "Kagura" },
         { name: "Yaobikuni" },
@@ -19,6 +20,7 @@ const OnmyojiDropDown = ({ host, label, onChange, isEdit, defaultVal}) => {
       ]);
     } else {
       const options = await CharacterAPI.getCharacterNames();
+      options.unshift({name: "~~Please Choose~~"})
       setDropdownOptions(options);
     }
   };

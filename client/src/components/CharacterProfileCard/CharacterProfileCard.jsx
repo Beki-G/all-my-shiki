@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import modCharacterAPI from "../../utils/modCharacterAPI";
 import userAPI from "../../utils/userAPI";
 import LoginButton from "../Buttons/LoginButton/LoginButton";
@@ -8,12 +8,13 @@ import CharacterProfileName from "../CharacterProfileName/CharacterProfileName";
 import CharacterProfileOnmoyjiSection from "../CharacterProfileOnmoyjiSection/CharacterProfileOnmoyjiSection";
 import CharacterProfileSouls from "../CharacterProfileSouls/CharacterProfileSouls";
 import CharacterProfileTraits from "../CharacterProfileTraits/CharacterProfileTraits";
-import {UseUserSession} from "../../utils/UserContext"
+import { UseUserSession, UpdateUserSession } from "../../utils/UserContext"
 import Modal from "../Modal/Modal"
 
 export const CharacterProfileCard = ({ character, userType }) => {
   // console.log("character", character);
-  const {userProfile} = UseUserSession()
+  const {userProfile} = UseUserSession();
+  const {updateUser} = UpdateUserSession();
   const [modalMsg, setModalMsg] = useState({msg: ""})
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [soulSets, setSoulSets] = useState({
@@ -35,6 +36,12 @@ export const CharacterProfileCard = ({ character, userType }) => {
   const [isCharacterPrivate, setIsCharacterPrivate] = useState(
     character.isPrivate
   );
+  const [isFavorite, setIsFavorite] = useState({isFav: false})
+
+  useEffect(()=>{
+    if(userProfile.favorites && userProfile.favorites.includes(character._id)) setIsFavorite({isFav:true})
+    
+  }, [character._id, userProfile])
 
   const onUpdate = async (e)=> {
     e.preventDefault();
@@ -54,11 +61,22 @@ export const CharacterProfileCard = ({ character, userType }) => {
     location.reload();
   }
 
-  const onAddFavorite= async(e) =>{
+  const onFavorite= async(e) =>{
     e.preventDefault();
 
-    await userAPI.addFavorite(userProfile._id, character._id)
-    setModalMsg({msg: `${characterName.name} has been added to your favorites`})
+    if (isFavorite.isFav) {
+      console.log(`isFavorite: ${isFavorite.isFav}`)
+      await userAPI.removeFavorite(userProfile._id, character._id)
+      setModalMsg({msg:`${characterName.name} has been removed from your favorites`})
+
+    } else {
+      await userAPI.addFavorite(userProfile._id, character._id)
+      setModalMsg({msg: `${characterName.name} has been added to your favorites`})
+      
+    }
+    setIsFavorite({isFav: !isFavorite.isFav})
+    
+    updateUser();
     setIsModalOpen(true)
   }
 
@@ -107,7 +125,8 @@ export const CharacterProfileCard = ({ character, userType }) => {
           isCharacterPrivate={isCharacterPrivate}
           setIsCharacterPrivate={setIsCharacterPrivate}
           onUpdate={onUpdate}
-          onAddFavorite={onAddFavorite}
+          onFavorite={onFavorite}
+          isFavorite={isFavorite.isFav}
         />
       ) : userType === "user" ? (
         <div>Future like button</div>

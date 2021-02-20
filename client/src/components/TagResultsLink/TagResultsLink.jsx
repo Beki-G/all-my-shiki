@@ -2,22 +2,12 @@ import React from "react";
 import characterAPI from "../../utils/characterAPI";
 
 function TagResultsLink({ name, id, setCharacterProfile, setIsCharacter }) {
-  //sets string to Snake case
-  const snakeCase = (string) => {
-    return string
-      .replace(/\W+/g, " ")
-      .split(/ |\B(?=[A-Z])/)
-      .map((word) => word.toLowerCase())
-      .join("_");
-  };
-
-  //links to show the shiki
-  const url = "#" + snakeCase(name);
-
-  function onClick(e) {
+  async function onClick(e) {
     e.preventDefault();
     const characterId = e.target.getAttribute("data-id");
-    getProfile(characterId);
+    const characterAreaEl = await getProfile(characterId);
+    characterAreaEl.scrollIntoView({behavior:"smooth"});
+    // console.log('characterProfileArea is: ', characterAreaEl)
   }
 
   async function getProfile(characterId) {
@@ -26,11 +16,12 @@ function TagResultsLink({ name, id, setCharacterProfile, setIsCharacter }) {
     );
     setCharacterProfile(characterProfile);
     setIsCharacter(true);
+    return document.getElementById("characterTraits");
   }
 
   return (
     <div>
-      <a href={url} data-id={id} onClick={onClick}>
+      <a href={"/"} data-id={id} onClick={onClick}>
         {name}
       </a>
     </div>

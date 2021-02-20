@@ -6,7 +6,7 @@ module.exports = {
     async getAllTagNames(req, res) {
         // console.log("I'm in all tag names");
         try {
-            const allTags = await db.Tag.find({}, { _id: 1, tag: 1 });
+            const allTags = await db.Tag.find({}, { _id: 1, tag: 1 }).sort({ tag: 1 });
             // console.log('allTags in get allTagNames, ', allTags);
             res.json(allTags);
         } catch (error) {

@@ -25,5 +25,26 @@ export default {
     getUserTeamBasicInfo: async function(userId) {
         const { data } = await axios.get('/api/team/userbasic/'+userId)
         return data;
-    }
+    },
+    removeLike: async function(teamId, userId){
+        const body = {
+            userId: userId,
+            teamId: teamId
+        }
+        const { data } = await axios.patch('/api/team/like', body)
+        return data;
+    },
+    addLike: async function(teamId, userId) {
+        const body = {
+            userId: userId,
+            teamId: teamId
+        }
+        const { data } = await axios.post('/api/team/like', body)
+        return data;
+    },
+    getLikeCount: async function(teamId){
+        const { data } = await axios.get('/api/team/like/'+teamId)
+        return data;
+    },
+
 }
