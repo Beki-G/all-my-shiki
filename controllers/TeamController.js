@@ -94,7 +94,7 @@ module.exports = {
             // console.log('req in add like: ', req.body);
             const liked = await db.Team.findOneAndUpdate(
                 { _id: req.body.teamId },
-                { $push: { likes: new ObjectId(req.body.userId) } },
+                { $addToSet: { likes: new ObjectId(req.body.userId) } },
                 { new: true },
             );
             res.json(liked);

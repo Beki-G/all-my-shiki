@@ -8,7 +8,7 @@ import LogOutButton from "../Buttons/LogoutButton/LogoutButton";
 
 export const ProfileUser = () => {
   let { userProfile } = UseUserSession();
-  const updateProfile = UpdateUserSession();
+  const { updateUser} = UpdateUserSession();
 
   const [isOpen, setIsOpen] = useState(false);
   const [dateJoined, setDateJoined] = useState("");
@@ -45,7 +45,7 @@ export const ProfileUser = () => {
     //else prompt user to choose another username
     if (!isUsername) {
       await userAPI.updateUser(_id, userEdits);
-      updateProfile();
+      updateUser();
       setModalText({ modalTxt: "Thank you for updating!" });
       setIsOpen(true);
     } else {
