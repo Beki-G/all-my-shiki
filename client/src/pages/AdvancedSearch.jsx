@@ -10,15 +10,16 @@ import {
   MasonryScroller,
 } from "masonic";
 
-export const ACTIONS = {
+export const ADVANCED_SEARCH_ACTIONS = {
   ADD_TO_INCLUDES: "add-to-includes",
   REMOVE_FROM_INCLUDES: "remove-from-includes",
   ALL_CHARACTERS_READY: "all-characters-ready",
+  CLEAR_ALL_FILTERS:"clear-all-filters",
 };
 
 const reducer = (filters, action) => {
   switch (action.type) {
-    case ACTIONS.ADD_TO_INCLUDES:
+    case ADVANCED_SEARCH_ACTIONS.ADD_TO_INCLUDES:
       const newFilter = filters.includeFilter;
       newFilter.push(action.payload.name);
       const newFilteredChara = filters.filteredChara.filter((chara) => {
@@ -31,7 +32,7 @@ const reducer = (filters, action) => {
         filteredChara: newFilteredChara,
       };
 
-    case ACTIONS.REMOVE_FROM_INCLUDES:
+    case ADVANCED_SEARCH_ACTIONS.REMOVE_FROM_INCLUDES:
       const tempFilter = filters.includeFilter;
       tempFilter.splice(tempFilter.indexOf(action.payload.name), 1);
       // console.log('tempFilter: ', tempFilter)
@@ -45,7 +46,7 @@ const reducer = (filters, action) => {
         filteredChara: resetFiltered,
       };
 
-    case ACTIONS.ALL_CHARACTERS_READY:
+    case ADVANCED_SEARCH_ACTIONS.ALL_CHARACTERS_READY:
       return {
         ...filters,
         allCharacters: action.payload.characters,
@@ -53,6 +54,19 @@ const reducer = (filters, action) => {
         isDataReady: true,
       };
 
+    case ADVANCED_SEARCH_ACTIONS.CLEAR_ALL_FILTERS:
+      const inputs = document.getElementsByTagName("input")
+      // console.log("inputs", inputs)
+      
+      for(let input of inputs) {
+        input.checked=false;
+      }
+
+      return {
+        ...filters,
+        includeFilter: [],
+        filteredChara: filters.allCharacters,
+      }
     default:
       return filters;
   }
@@ -88,7 +102,7 @@ const AdvancedSearch = () => {
   const getCharacterData = async () => {
     const allCharactersData = await characterAPI.getAllCharactersWithTags();
     dispatch({
-      type: ACTIONS.ALL_CHARACTERS_READY,
+      type: ADVANCED_SEARCH_ACTIONS.ALL_CHARACTERS_READY,
       payload: { characters: allCharactersData },
     });
   };
