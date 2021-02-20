@@ -7,11 +7,9 @@ import TeamsTableRowCard from "../TeamsTableRowCard/TeamsTableRowCard";
 import { Link } from "react-router-dom";
 import { SelectColumnFilter } from "../Table/Filters";
 import StarIcon from "../StarIcon/StarIcon";
-import { UseUserSession } from "../../utils/UserContext";
 import TableLikeCount from "../TableLikeCount/TableLikeCount";
 
 const TeamsTableContainer = () => {
-  const { userProfile } = UseUserSession();
   const [data, setData] = useState([]);
   const [isShowFilter, setIsShowFilter] = useState(false);
   const [hideColumns, setHideColumns] = useState([

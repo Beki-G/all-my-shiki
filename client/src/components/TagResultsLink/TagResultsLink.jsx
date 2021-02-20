@@ -7,7 +7,7 @@ function TagResultsLink({ name, id, setCharacterProfile, setIsCharacter }) {
     const characterId = e.target.getAttribute("data-id");
     const characterAreaEl = await getProfile(characterId);
     characterAreaEl.scrollIntoView({behavior:"smooth"});
-    console.log('characterProfileArea is: ', characterAreaEl)
+    // console.log('characterProfileArea is: ', characterAreaEl)
   }
 
   async function getProfile(characterId) {
