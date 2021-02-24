@@ -16,6 +16,7 @@ import AdvancedSearch from "./pages/AdvancedSearch";
 import UserSessionProvider from "./utils/UserContext";
 import About from "./pages/About";
 import HowToUse from "./pages/HowToUse";
+import ScrollToTopBtn from "./components/Buttons/ScrollToTopBtn/ScrollToTopBtn";
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           </Switch>
         </Router>
       </div>
+      <ScrollToTopBtn />
     </UserSessionProvider>
   );
 }

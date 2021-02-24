@@ -13,7 +13,7 @@ const HowToWebChangeLog = () => {
     let parseCommits = response.map((commit) => {
       const newFormat = new Date(commit.commit.author.date);
       const commitDate =
-        newFormat.getMonth() +
+        (newFormat.getMonth() +1)+
         "/" +
         newFormat.getDate() +
         "/" +

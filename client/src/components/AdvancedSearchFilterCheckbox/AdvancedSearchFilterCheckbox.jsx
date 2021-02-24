@@ -1,16 +1,16 @@
 import React from "react";
-import { ACTIONS } from "../../pages/AdvancedSearch";
+import { ADVANCED_SEARCH_ACTIONS } from "../../pages/AdvancedSearch";
 
 const AdvancedSearchFilterCheckbox = ({ tag, dispatch }) => {
   const onChange = (e) => {
     if (e.target.checked) {
       dispatch({
-        type: ACTIONS.ADD_TO_INCLUDES,
+        type: ADVANCED_SEARCH_ACTIONS.ADD_TO_INCLUDES,
         payload: { name: e.target.value },
       });
     } else
       dispatch({
-        type: ACTIONS.REMOVE_FROM_INCLUDES,
+        type: ADVANCED_SEARCH_ACTIONS.REMOVE_FROM_INCLUDES,
         payload: { name: e.target.value },
       });
   };

@@ -3,6 +3,7 @@ import Collapse from "@kunukn/react-collapse";
 import Down from "./Down";
 import "./styles.css";
 import AdvancedSearchFilterCheckbox from "../AdvancedSearchFilterCheckbox/AdvancedSearchFilterCheckbox";
+import { ADVANCED_SEARCH_ACTIONS } from "../../pages/AdvancedSearch";
 
 function reducer(state, { type, index }) {
   switch (type) {
@@ -61,6 +62,13 @@ const AdvancedSearchCollapse = ({ initialState, tagData, dispatch2 }) => {
           disabled={state.every((s) => s === false)}
         >
           Collapse all
+        </button>
+        <button
+          className="bg-transparent mr-4 p-3 text-white disabled:text-old-mauve disabled:opacity-90 transition-opacity duration-300"
+          type={"reset"}
+          onClick={()=>dispatch2({type:ADVANCED_SEARCH_ACTIONS.CLEAR_ALL_FILTERS })}
+        >
+          Clear
         </button>
       </div>
 
