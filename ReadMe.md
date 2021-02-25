@@ -46,7 +46,7 @@ To share character and team builds with more ease instead of having both parties
 MIT License - A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
 
 ## Contributing/Authors
-Big shoutout to my Theookamikit for collecting most the data!!
+Big shoutout to my friend Theookamikit for collecting most the data!!
 Codebase by [Beki-G](www.github.com/Beki-G) 
 
 ## Questions
